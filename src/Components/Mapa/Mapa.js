@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl} from 'react-leaflet';
 import  {Icon} from 'leaflet';
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
-import '../styles/mapa.css';
+import '../../styles/mapa.css';
 
 
 function Mapa() {
@@ -12,7 +12,7 @@ function Mapa() {
         <ZoomControl position="bottomleft"/>
         <LayersControl position="bottomright">
 
-          <LayersControl.BaseLayer checked name="Mapa">
+          <LayersControl.BaseLayer checked name="Google">
           <TileLayer
           url="http://www.google.cn/maps/vt?lyrs=m@189,traffic&gl=cn&x={x}&y={y}&z={z}"
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
@@ -37,6 +37,12 @@ function Mapa() {
           </LayersControl.BaseLayer>
 
           <LayersControl.BaseLayer name="Open Street Maps Blanco y Negro">
+          <TileLayer
+          url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
+          </LayersControl.BaseLayer>
+
+          <LayersControl.BaseLayer name="Bing">
           <TileLayer
           url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
