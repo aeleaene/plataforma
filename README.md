@@ -1,29 +1,26 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Proyecto principal para nueva plataforma de Sabueso System Tracking
 
-### What is this repository for? ###
+### Este repositorio es para subir y controlar cambios realizados al codigo principal de este proyecto ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Escrito en ```React```
+* ```Traccar API```
 
-### How do I get set up? ###
+### ¿Como iniciar? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Clonar el repositorio: 
+```
+git clone git@bitbucket.org:asalgadov/plataforma.git
+```
+* Instalar las dependencias 
+```
+npm install
+```
+* Iniciar el proyecto 
+``` 
+cd plataforma
+npm start
+```
+### El contenido de este repositorio es propiedad de  ###
+```Sabueso System Tracking```  &copy;
