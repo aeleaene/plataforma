@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 
 export const BarraInferiorContainer = styled.div`
-    position: fixed;
-    bottom:0;
-    left:5%;
-    width: 95%;
-    height: 5%;
-    background:#192c3e;
-    color: white;
+height: 35px;
+position: absolute;
+left: 0;
+bottom: 0;
+right: 0;
+background-color: #192c3e;
+padding: 8px 0;
+z-index: 1001;
 `
