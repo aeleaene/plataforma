@@ -1,8 +1,7 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled/macro';
 import fondo from '../../assets/images/logo-bg.3cba04d.png';
 import perfil from '../../assets/images/perfil.jpg';
-
-
 
 export const BarraLateralContainer = styled.div`
     font: 400 13.3333px Arial;
@@ -21,25 +20,6 @@ export const BarraLateralContainer = styled.div`
     height: 100%;
     background-color: #001529;
 `
-
-export const account = styled.div`
-    height: 46px;
-    width: 72px;
-    cursor: pointer;
-    padding: 27px 0;
-    background: url(${fondo}) no-repeat;
-    background-size: auto;
-    background-position: center -28px;
-    &:hover images_box {
-            border: 1px solid #fff;
-    }
-    &:hover .menu_account_name {
-        color: #ffb711;
-    }
-    &:hover .profile_submenu_box {
-        display: block
-    }
-`;
 
 export const images_box = styled.div`
     box-sizing: border-box;
@@ -70,7 +50,6 @@ export const menu_account_name = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    &:hover {  }
 `
 
 export const menu_box = styled.div`
@@ -78,10 +57,7 @@ export const menu_box = styled.div`
     background-color: #001529;
 `
 
-
-
 export const profile_submenu_box = styled.div`
-   
     font: 400 13.3333px Arial;
     font-family: Avenir,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -90,7 +66,9 @@ export const profile_submenu_box = styled.div`
     padding: 0;
     z-index: 9999;
     background-color: #001529;
+    display: none;
 `
+
 
 export const submenu_box = styled.div`
     position: absolute;
@@ -99,11 +77,8 @@ export const submenu_box = styled.div`
     left: 72px;
     cursor: pointer;
     z-index: 9999;
+
 `
-
-
-
-
 export const submenu_item = styled.div`
     font: 400 13.3333px Arial;
     font-family: Avenir,Helvetica,Arial,sans-serif;
@@ -121,3 +96,49 @@ export const submenu_item = styled.div`
     transition: all .2s;
     color: #c4c9ce;
 `
+
+
+
+export const top_menu = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    position: relative;
+`
+
+export const router_link_exact_active = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+`
+export const router_link_active = styled.div`
+
+`
+
+
+export const account = styled.div`
+    height: 46px;
+    width: 72px;
+    cursor: pointer;
+    padding: 27px 0;
+    background: url(${fondo}) no-repeat;
+    background-size: auto;
+    background-position: center -28px;
+    &:hover {
+        ${profile_submenu_box} {
+            display: block;
+        }
+        ${images_box} {
+            border: 1px solid #fff;
+        }
+        ${menu_account_name} {
+            color: #ffb711;
+        }
+    }
+
+`;
+
