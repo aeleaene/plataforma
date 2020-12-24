@@ -66,7 +66,6 @@ export const profile_submenu_box = styled.div`
     padding: 0;
     z-index: 9999;
     background-color: #001529;
-    display: none;
 `
 
 
@@ -116,9 +115,39 @@ export const router_link_exact_active = styled.div`
     text-decoration: none;
 `
 export const router_link_active = styled.div`
+    color: #ffb711;
+`
+export const el_tooltip = styled.div`
 
 `
 
+export const el_menu_item = styled.div`
+font: 400 13.3333px Arial;
+font-family: Avenir,Helvetica,Arial,sans-serif;
+-webkit-font-smoothing: antialiased;
+margin: 0;
+list-style: none;
+position: relative;
+white-space: nowrap;
+font-size: 14px;
+cursor: pointer;
+transition: border-color .3s,background-color .3s,color .3s;
+box-sizing: border-box;
+height: 60px;
+text-align: center;
+line-height: normal;
+padding: 0;
+color: #ff9934;
+background-color: #233645!important;
+`
+
+export const item = styled.div`
+
+`
+
+export const is_active = styled.div`
+
+`
 
 export const account = styled.div`
     height: 46px;
@@ -128,10 +157,7 @@ export const account = styled.div`
     background: url(${fondo}) no-repeat;
     background-size: auto;
     background-position: center -28px;
-    &:hover {
-        ${profile_submenu_box} {
-            display: block;
-        }
+    &:hover { 
         ${images_box} {
             border: 1px solid #fff;
         }

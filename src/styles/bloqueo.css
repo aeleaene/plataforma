@@ -1,0 +1,8 @@
+.bloqueo {
+    display: none;
+}
+
+.account:hover + .bloqueo {
+    display: block;
+}
+
