@@ -149,6 +149,31 @@ export const is_active = styled.div`
 
 `
 
+export const bottom_menu = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 71px;
+    color: #fff;
+`
+
+export const bottom_menu_item = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+`
+
 export const account = styled.div`
     height: 46px;
     width: 72px;

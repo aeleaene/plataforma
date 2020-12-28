@@ -12,19 +12,19 @@ function Mapa() {
         <ZoomControl position="bottomleft"/>
         <LayersControl position="bottomright">
 
-          <LayersControl.BaseLayer checked name="Google">
+          <LayersControl.BaseLayer  name="Google">
           <TileLayer
           url="http://www.google.cn/maps/vt?lyrs=m@189,traffic&gl=cn&x={x}&y={y}&z={z}"
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
           </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer name="Híbrido">
+          <LayersControl.BaseLayer checked name="Híbrido">
           <TileLayer
           url="http://www.google.com/maps/vt?lyrs=s@189,traffic&gl=cn&x={x}&y={y}&z={z}"
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
           </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer name="Terreno">
+          <LayersControl.BaseLayer  name="Terreno">
           <TileLayer
           url="http://www.google.cn/maps/vt?lyrs=p@189,traffic&gl=cn&x={x}&y={y}&z={z}"
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
