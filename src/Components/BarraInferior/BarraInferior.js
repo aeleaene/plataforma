@@ -1,38 +1,46 @@
 import React from 'react';
 
+/*
+*Falta agregar caja de busqueda 
+*Falta acomodar la pantalla
+*Falta acomodar los botones y su funcionalidad
+ */
+
 import * as s from './BarraInferior.styles';
 
 const BarraInferior = () => {
     return (
-    <s.BarraInferiorContainer>
+        <s.herramienta_mapa>
+            <s.icono_distancia/>
+            <s.icono_area/>
+            <s.icono_trafico/>
+            <s.icono_mapa/>
 
-        <s.item_icon_distancia></s.item_icon_distancia>
-        <s.item_icon_area></s.item_icon_area>
-        <s.item_icon_trafico></s.item_icon_trafico>
-        <s.item_icon_mapa></s.item_icon_mapa>
-        <s.zoom_box>
-            <s.zoom_out></s.zoom_out>
-            <s.zoom_slider>
-                <s.slider></s.slider>
-            </s.zoom_slider>
-            <s.zoom_in></s.zoom_in>
-        </s.zoom_box>
+            <s.caja_zoom>
+                <s.icono_zoom_menos/>
+                <s.zoom_slider>
+                    <s.slider role={"slider"} aria-valuemin={"0"} aria-valuemax={"21"} aria-orientation={"horizontal"} aria-valuetext={"13"} aria-label={"slider entre 0 y 21"}>
+                        <s.slider_runway>
+                            <s.slider_bar style={{width: '9.52381%', left: '0%'}}></s.slider_bar>
+                            <s.slider_button_wrapper style={{left: '9.52381%'}}>
+                                <s.slider_button aria-describedby={"el-tooltip-5456"} tabindex={"0"}></s.slider_button>
+                            </s.slider_button_wrapper>
+                        </s.slider_runway>
+                    </s.slider>
+                </s.zoom_slider>
+                <s.icono_zoom_menos/>
+            </s.caja_zoom>
 
-        <s.map_address>
-            <s.input_inner placeholder={'Búsqueda de dirección'}></s.input_inner>
-            <s.item_icon_busqueda></s.item_icon_busqueda>
-        </s.map_address>
+            <s.caja_derecha>
+                <s.icono_POI/>
+                <s.icono_Ruta/>
+                <s.icono_GEO/>
+                <s.icono_Alertas/>
+                <s.icono_Recorrido/>
+            </s.caja_derecha>
 
-        <s.caja_derecha>
-            <s.item_icon_POI></s.item_icon_POI>
-            <s.item_icon_ruta></s.item_icon_ruta>
-            <s.item_icon_geo></s.item_icon_geo>
-            <s.item_icon_alerta></s.item_icon_alerta>
-            <s.item_icon_descargar></s.item_icon_descargar>
-            
-        </s.caja_derecha>
 
-    </s.BarraInferiorContainer>
+        </s.herramienta_mapa>
     );
 }
 
