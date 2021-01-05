@@ -7,16 +7,18 @@ import React from 'react';
  */
 
 import * as s from './BarraInferior.styles';
+import {Icon} from '@iconify/react';
+import searchIcon from '@iconify/icons-el/search';
 
 const BarraInferior = () => {
     return (
         <s.herramienta_mapa>
-            <s.icono_distancia/>
+           <s.icono_distancia/>
             <s.icono_area/>
             <s.icono_trafico/>
-            <s.icono_mapa/>
+           <s.icono_mapa/>
 
-            <s.caja_zoom>
+           <s.caja_zoom>
                 <s.icono_zoom_menos/>
                 <s.zoom_slider>
                     <s.slider role={"slider"} aria-valuemin={"0"} aria-valuemax={"21"} aria-orientation={"horizontal"} aria-valuetext={"13"} aria-label={"slider entre 0 y 21"}>
@@ -28,8 +30,15 @@ const BarraInferior = () => {
                         </s.slider_runway>
                     </s.slider>
                 </s.zoom_slider>
-                <s.icono_zoom_menos/>
-            </s.caja_zoom>
+                <s.icono_zoom_mas/>
+           </s.caja_zoom>
+
+            <s.direccion_mapa>
+                <s.busqueda type={'text'} autoComplete={'off'} placeholder={'Búsqueda de Dirección'}/>
+                <s.input_prefix>
+                    
+                </s.input_prefix>
+            </s.direccion_mapa>
 
             <s.caja_derecha>
                 <s.icono_POI/>

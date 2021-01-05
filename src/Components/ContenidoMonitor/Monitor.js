@@ -19,7 +19,7 @@ const ContenidoMonitor = () => {
     
     return(
         
-            <BarraInferior></BarraInferior>
+            <MainView/>
 
 
     );

@@ -11,6 +11,8 @@
     "@emotion/serialize": "^1.0.0",
     "@emotion/styled": "^11.0.0",
     "@emotion/utils": "^1.0.0",
+    "@iconify/icons-el": "^1.1.0",
+    "@iconify/react": "^1.1.3",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",

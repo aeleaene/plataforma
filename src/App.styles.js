@@ -18,7 +18,7 @@ export const content_box = styled.div`
 
 export const menu_izquierdo = styled.div`
     width: 72px;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     z-index: 3000;
@@ -30,7 +30,9 @@ export const contenido_derecho = styled.div`
     margin-left: 72px;
     background-color: #eef5f9;
     height: 100%;
+    width: 100%;
     overflow-y: auto;
+    position: fixed;
 `
 
 export const Header = styled.h1`

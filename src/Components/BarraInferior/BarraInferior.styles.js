@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import menus from '../../assets/images/menus.46a5756.png';
+import iconoBusqueda from '../../assets/images/search.svg';
 
 export const herramienta_mapa = styled.div`
     height: 35px;
@@ -7,6 +8,8 @@ export const herramienta_mapa = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
+    margin: 0 auto;
+    paddding:0;
     background-color: #192c3e;
     padding: 8px 0;
     z-index: 1001;
@@ -25,7 +28,7 @@ export const icono_distancia = styled.span`
     background-image: url(${menus});
     background-position: 0 -120px;
     &:hover{
-        background-position: -60 -120px;
+        background-position: -60px -120px;
     }
 `
 
@@ -180,15 +183,12 @@ export const icono_zoom_mas = styled.div`
 `
 
 export const caja_derecha = styled.div`
-    font: 400 13.3333px Arial;
-    font-family: Avenir,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
-    color: #2c3e50;
     margin: 0;
     padding: 0;
     display: inline;
-    float: right;
-    margin-right: 20px;
+    float: left;
+    margin-left: 920px;
+    position: fixed;
 `
 
 export const icono_POI = styled.span`
@@ -294,4 +294,66 @@ export const icono_Recorrido = styled.span`
     &:hover{
         background-position: -180px 0px;
     }
+`
+
+export const direccion_mapa = styled.div`
+    width: 252px;
+    float: left;
+    height: 24px;
+    padding: 5px 0;
+    margin-left: 20px;
+`
+
+export const busqueda = styled.input`
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    background-image: none;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: inherit;
+    outline: 0;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+    padding: 0 8px;
+    padding-left: 30px;
+    height: 24px;
+    line-height: 24px;
+    background-color: #192c3e;
+    border-color: #babec1;
+    color: #ddd;
+    border-radius: 15px;
+`
+
+export const input_prefix = styled.span`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    position: absolute;
+    color: #c0c4cc;
+    text-align: center;
+    left: 5px;
+    transition: all .3s;
+    height: 24px;
+    line-height: 24px;
+    top: 5px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+`
+
+export const icono_busqueda = styled.i`
+    height: 24px;
+    line-height: 24px;
+    background-image: url(${iconoBusqueda});
+    &::before{
+        content: "\E778";
+    };
+    &::after{
+        content: "";
+        height: 100%;
+        width: 0;
+        display: inline-block;
+        vertical-align: middle;
+    };
 `
