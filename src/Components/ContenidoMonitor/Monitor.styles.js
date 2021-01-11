@@ -9,10 +9,8 @@ export const contenido_monitor = styled.div`
     position: relative;
     height: 100%;
     overflow-y: hidden;
-<<<<<<< Updated upstream
-`
-=======
-`
+
+` 
 
 export const caja_direccion_dispositivo = styled.div`
     min-height: 25px;
@@ -256,7 +254,3 @@ export const icono_fondo = styled.i`
     display: inline-block;
     -webkit-font-smoothing: antialiased;
 `
-
-
-
->>>>>>> Stashed changes

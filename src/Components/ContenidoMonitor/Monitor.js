@@ -6,11 +6,9 @@ import MainView from '../MainView/MainView';
 import BarraInferior from '../BarraInferior/BarraInferior';
 import BarraLateral from '../BarraLateral/BarraLateral';
 
-<<<<<<< Updated upstream
-=======
 import * as fa from 'react-icons/fa';
 import * as ai from 'react-icons/ai';
->>>>>>> Stashed changes
+
 
 const ContenidoMonitor = () => {
     const [contador, setContador] = React.useState(10);
@@ -23,11 +21,6 @@ const ContenidoMonitor = () => {
 
     
     return(
-<<<<<<< Updated upstream
-        
-            <BarraInferior></BarraInferior>
-
-=======
         <s.contenido_monitor>
             <s.caja_direccion_dispositivo><span></span></s.caja_direccion_dispositivo>
 
@@ -85,7 +78,6 @@ const ContenidoMonitor = () => {
             <MainView />
         </s.contenido_monitor>
             
->>>>>>> Stashed changes
 
     );
 
