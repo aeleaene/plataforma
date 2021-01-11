@@ -7,11 +7,8 @@ import BarraInferior from '../BarraInferior/BarraInferior';
 import BarraLateral from '../BarraLateral/BarraLateral';
 
 import * as fa from 'react-icons/fa';
-<<<<<<< HEAD
-=======
 import * as ai from 'react-icons/ai';
 
->>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
 
 const ContenidoMonitor = () => {
     const [contador, setContador] = React.useState(10);
@@ -49,10 +46,6 @@ const ContenidoMonitor = () => {
 
                 <s.contenido_panel_dispositivo>
                     <s.busqueda_dispositivo>
-<<<<<<< HEAD
-                        <s.busqueda_en_linea aria-haspopup="listbox" role="combobox" aria-owns="el-complete-8812">
-
-=======
 
                         <s.busqueda_en_linea aria-haspopup="listbox" role="combobox" aria-owns="el-complete-8812">
                             <s.sufijo_entrada>
@@ -68,13 +61,10 @@ const ContenidoMonitor = () => {
                                                         */}
                              {/* agregar el icono de cerrar */}
                             </s.sufijo_entrada>
->>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
                         </s.busqueda_en_linea>
                     </s.busqueda_dispositivo>
                 </s.contenido_panel_dispositivo>
 
-<<<<<<< HEAD
-=======
                 <s.arbol_caja_monitor>
                     <s.titulo_caja>
                         <s.icono_fondo>
@@ -83,7 +73,6 @@ const ContenidoMonitor = () => {
                     </s.titulo_caja>
                 </s.arbol_caja_monitor>
 
->>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
             </s.caja_dispositivo_panel>
 
             <MainView />

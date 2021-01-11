@@ -9,12 +9,8 @@ export const contenido_monitor = styled.div`
     position: relative;
     height: 100%;
     overflow-y: hidden;
-<<<<<<< HEAD
-`
-=======
 
 ` 
->>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
 
 export const caja_direccion_dispositivo = styled.div`
     min-height: 25px;
@@ -143,9 +139,6 @@ export const busqueda_en_linea = styled.div`
     width: 100%;
 `
 
-<<<<<<< HEAD
-
-=======
 export const sufijo_entrada = styled.div`
     width: 100%;
 `
@@ -261,4 +254,3 @@ export const icono_fondo = styled.i`
     display: inline-block;
     -webkit-font-smoothing: antialiased;
 `
->>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
