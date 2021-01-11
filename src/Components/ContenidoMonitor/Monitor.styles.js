@@ -9,7 +9,12 @@ export const contenido_monitor = styled.div`
     position: relative;
     height: 100%;
     overflow-y: hidden;
+<<<<<<< HEAD
 `
+=======
+
+` 
+>>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
 
 export const caja_direccion_dispositivo = styled.div`
     min-height: 25px;
@@ -138,4 +143,122 @@ export const busqueda_en_linea = styled.div`
     width: 100%;
 `
 
+<<<<<<< HEAD
 
+=======
+export const sufijo_entrada = styled.div`
+    width: 100%;
+`
+export const entrada_interna = styled.input`
+   -webkit-font-smoothing: antialiased;
+    user-select: none;
+    margin: 0;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    outline: 0;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+    padding: 0 8px;
+    border-radius: 0;
+    padding-right: 30px;
+    height: 26px;
+    line-height: 26px;
+    &:hover{
+        border-color: #ff9934;
+    }
+    &:active{
+        border-color: #ff9934;
+    }   
+`
+
+export const el_input__suffix = styled.span`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    font-size: 14px;
+    position: absolute;
+    color: #c0c4cc;
+    text-align: center;
+    right: 5px;
+    transition: all .3s;
+    pointer-events: none;
+    height: 26px;
+    top: 0;
+    cursor: pointer;
+`
+
+export const el_input__suffix_inner = styled.span`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    font-size: 14px;
+    color: #c0c4cc;
+    text-align: center;
+    cursor: pointer;
+    pointer-events: all;
+`
+export const icono_cerrar = styled.i`
+    content: "";
+    transition: none;
+    line-height: 26px;
+    &::after{ 
+    height: 100%;
+    width:0;
+    display: inline-block;
+    vertical-align: middle;
+    };
+`
+
+export const arbol_caja_monitor = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+`
+
+export const titulo_caja = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    height: 34px;
+    line-height: 34px;
+    background-color: #fbfbfb;
+    display: block;
+    padding-left: 10px;
+    position: relative;
+    border-bottom: 1px solid #f9f2f2;
+    cursor: pointer;
+`
+
+export const icono_fondo = styled.i`
+    font: 400 13.3333px Arial;
+    color: #2c3e50;
+    user-select: none;
+    cursor: pointer;
+    font-family: element-icons!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+`
+>>>>>>> 9cee0f0faecabd9b1aa0b4b9d9763dc4a5d9ac40
