@@ -4,22 +4,27 @@ import * as s from './BarraLateral.styles';
 
 import perfil from '../../assets/images/perfil.jpg';
 
+import * as ic from 'react-icons/all'; 
+
 const BarraLateral = () => {
+    
     return (
             <s.menu_caja>
 
             <s.cuenta>
                 <s.caja_imagen style={{backgroundImage: `url(${perfil})`}}/>
                 <s.nombre_cuenta>demo</s.nombre_cuenta>
+                <s.submenu_perfil >
+                <s.submenu_elemento><ic.FiUserPlus /> Cuenta</s.submenu_elemento>
+                <s.submenu_elemento><ic.FaUserAlt /> Proveedor de servicios</s.submenu_elemento>
+                <s.submenu_elemento><ic.AiFillLock/> Modificar la contraseña</s.submenu_elemento>
+                <s.submenu_elemento><ic.FaUser /> Registro de inicio de sesión</s.submenu_elemento>
+                <s.submenu_elemento><ic.AiOutlineCloudDownload/> Manual de usuario</s.submenu_elemento>
+            </s.submenu_perfil>
             </s.cuenta>
 
-            <s.submenu_perfil style={{display: 'none'}}>
-                <s.submenu_elemento>Cuenta</s.submenu_elemento>
-                <s.submenu_elemento>Cuenta</s.submenu_elemento>
-                <s.submenu_elemento>Cuenta</s.submenu_elemento>
-                <s.submenu_elemento>Cuenta</s.submenu_elemento>
-                <s.submenu_elemento>Cuenta</s.submenu_elemento>
-            </s.submenu_perfil>
+            
+            
 
             <s.menu_superior>
                 <s.redireccionador_activo>

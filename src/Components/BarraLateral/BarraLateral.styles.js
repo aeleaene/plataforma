@@ -1,8 +1,13 @@
 import styled from '@emotion/styled/macro';
 import fondo from '../../assets/images/logo-bg.3cba04d.png';
 import menus from '../../assets/images/menus.46a5756.png';
-import perfil from '../../assets/images/perfil.jpg';
 
+export const mostrar = styled.div`
+    display: none;
+    :hover{
+        display:block;
+    }
+`
 
 export const menu_caja = styled.div`
     margin: 0;
@@ -36,6 +41,7 @@ export const nombre_cuenta = styled.div`
 
 export const submenu_perfil = styled.div`
     position: absolute;
+    display: none;
     top: 20px;
     left: 72px;
     cursor: pointer;
