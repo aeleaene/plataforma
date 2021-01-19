@@ -9,7 +9,6 @@ export const contenido_monitor = styled.div`
     position: relative;
     height: 100%;
     overflow-y: hidden;
-
 ` 
 
 export const caja_direccion_dispositivo = styled.div`
@@ -71,6 +70,12 @@ export const caja_dispositivo_pequena = styled.div`
 `
 
 export const caja_dispositivo_panel = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
     position: absolute;
     bottom: 60px;
     width: 328px;
@@ -78,8 +83,9 @@ export const caja_dispositivo_panel = styled.div`
     z-index: 500;
     box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
     user-select: none;
-    left: 0px;
-    top: 0px;
+    left: 475px;
+    top: 15px;
+    height: 852px;
 `
 
 export const caja_dispositivo_titulo = styled.div`
@@ -116,17 +122,7 @@ export const barra_superior_titulo = styled.div`
     line-height: 36px;
     font-size: 14px;
 `
-export const opcion_derecha = styled.span`
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 35px;
-    width: 35px;
-    background-image: url(${min});
-    background-repeat: no-repeat;
-    background-position: 50%;
-    cursor: pointer;
-`
+
 export const contenido_panel_dispositivo = styled.div`
     position: relative;
 `
@@ -253,4 +249,18 @@ export const icono_fondo = styled.i`
     vertical-align: baseline;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
+`
+
+export const opcion_derecha = styled.button`
+    position: absolute;
+    border: none;
+    background: none;
+    right: 0;
+    top: 0;
+    height: 35px;
+    width: 35px;
+    background-image: url(${min});
+    background-repeat: no-repeat;
+    background-position: 50%;
+    cursor: pointer;
 `

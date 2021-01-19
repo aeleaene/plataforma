@@ -140,7 +140,7 @@ export const slider_button_wrapper = styled.div`
     text-align: center;
     user-select: none;
     line-height: normal;
-    top: -13px;
+    top: 16px;
 `
 
 export const slider_button = styled.div`

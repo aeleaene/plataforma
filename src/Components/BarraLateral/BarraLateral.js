@@ -26,19 +26,18 @@ const BarraLateral = () => {
 
             <s.menu_superior>
 
-                <s.redireccionador_activo>
-                    <s.elemento_menu_activo>
-                        <s.icono_monitor />
-                        <s.texto_elemento_menu>Monitor</s.texto_elemento_menu>
-                    </s.elemento_menu_activo>
-                </s.redireccionador_activo>
+                <s.monitor>
+                    <s.icono_monitor />
+                    <s.texto_elemento_menu>Monitor</s.texto_elemento_menu>
+                    <s.tooltip_monitor>Monitor</s.tooltip_monitor>
+                </s.monitor>
 
                 <s.reportes>
                     <s.icono_reportes />
                     <s.texto_elemento_menu>Reportes</s.texto_elemento_menu>
                     <s.submenu_reportes tabIndex="-1">
                         <s.submenu_reportes_grupo>Informes generales</s.submenu_reportes_grupo>
-                        <s.submenu_reportes_grupo_contenido>
+                        <s.submenu_reportes_grupo_contenido_operacion>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span> Estadísticas de Operación &nbsp; &nbsp; &nbsp;</span>
@@ -118,13 +117,57 @@ const BarraLateral = () => {
 
 
                             </s.submenu_reportes_grupo_dos>
-                        </s.submenu_reportes_grupo_contenido>
+                        </s.submenu_reportes_grupo_contenido_operacion>
 
                         <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span> Informe OBD &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
+                                <s.submenu_reportes_submenu>
+                                <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Visión general del comportamiento de conducción</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Informe de comportamiento de conducción</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Detalles del comportamiento de conducción</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Resumen de consumo de combustible de viaje</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Detalles de consumo de combustible de viaje</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Informe DTC</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                </s.submenu_reportes_submenu>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
 
@@ -133,6 +176,30 @@ const BarraLateral = () => {
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span> Estadística de Alarma &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
+                                
+                                <s.submenu_reportes_submenu>
+                                <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Descripción general de alarma</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Estadística de alarma</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span> Detalle de Alarma</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                </s.submenu_reportes_submenu>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
 
@@ -198,17 +265,18 @@ const BarraLateral = () => {
 
                 <s.anterior>
                     <s.icono_anterior />
+                    <s.tooltip_anterior role="tooltip" aria-hidden="true">Versión Anterior</s.tooltip_anterior>
                 </s.anterior>
 
 
                 <s.opciones>
                     <s.icono_opciones />
-                    <s.submenu_opciones>
-
+                    <s.submenu_opciones tabIndex="-1">
                         <s.submenu_opciones_item>
                             <s.submenu_opciones_item_icono><ic.HiCog /></s.submenu_opciones_item_icono> &nbsp;
                             Preferencias
                         </s.submenu_opciones_item>
+                    
 
                         <s.submenu_opciones_item>
                             <s.submenu_opciones_item_icono><ic.BsBellFill /></s.submenu_opciones_item_icono> &nbsp;
@@ -219,20 +287,20 @@ const BarraLateral = () => {
                             <s.submenu_opciones_item_icono><ic.GoKey /></s.submenu_opciones_item_icono> &nbsp;
                             Llave API de Google Maps
                         </s.submenu_opciones_item>
-
                     </s.submenu_opciones>
                 </s.opciones>
 
                 <s.mensajes>
                     <s.icono_mensajes />
+                    <s.tooltip_mensaje role="tooltip" aria-hidden="true">Mensaje</s.tooltip_mensaje>
                 </s.mensajes>
 
                 <s.salir>
                     <s.icono_salir />
+                    <s.tooltip_salir role="tooltip" aria-hidden="true">Salir</s.tooltip_salir>   
                 </s.salir>
-
-            </s.menu_inferior>
-
+            
+            </s.menu_inferior> 
         </s.menu_caja>
     );
 }

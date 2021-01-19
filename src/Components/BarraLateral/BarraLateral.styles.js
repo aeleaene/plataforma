@@ -89,6 +89,51 @@ export const elemento_menu_activo = styled.div`
     background-color: #233645!important;
 `
 
+export const tooltip_monitor = styled.div`
+    font: 400 13.3333px Arial;
+    margin: 0;
+    left: 125%;
+    position: absolute;
+    padding: 10px;
+    font-size: 12px;
+    min-width: 10px;
+    max-width: 280px;
+    line-height: 21px;
+    background: #303133;
+    color: #fff;
+    border-radius: 2px;
+    background-color: rgba(47,64,80,.8);
+    transform-origin: left center;
+    z-index: 2172;
+    display: none;
+    top: 12px;
+`
+
+export const monitor = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .3s,background-color .3s,color .3s;
+    box-sizing: border-box;
+    height: 60px;
+    text-align: center;
+    line-height: normal;
+    padding: 0;
+    color: #ff9934;
+    background-color: #233645!important;
+    &:hover{
+        ${tooltip_monitor}{
+            display:block;
+        }
+    }
+`
+
 export const icono_monitor = styled.i`
     font-style: normal;
     font-weight: 400;
@@ -151,7 +196,7 @@ export const submenu_reportes_submenu = styled.div`
     position: absolute;
     z-index: 9999;
     background-color: #001529;
-    top: -20px;
+    top: 0px;
     left: 222px;
     display: none;
 `
@@ -239,6 +284,20 @@ export const submenu_reportes_grupo_dos_icono_derecha = styled.i`
     top: 17px;
 `
 
+export const submenu_reportes_grupo_contenido_operacion = styled.a`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    color: #fff;
+`
+export const submenu_reportes_grupo_contenido_obd = styled.a`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    color: #fff;
+`
 export const submenu_reportes_grupo_contenido = styled.a`
     font: 400 13.3333px Arial;
     font-family: Avenir,Helvetica,Arial,sans-serif;
@@ -246,7 +305,6 @@ export const submenu_reportes_grupo_contenido = styled.a`
     text-decoration: none;
     color: #fff;
 `
-
 
 
 export const reportes = styled.div`
@@ -429,6 +487,25 @@ export const menu_inferior = styled.div`
     color: #fff;
 `
 
+export const tooltip_anterior = styled.div`
+    font: 400 13.3333px Arial;
+    margin: 0;
+    left: 125%;
+    position: absolute;
+    padding: 10px;
+    font-size: 12px;
+    min-width: 10px;
+    max-width: 280px;
+    line-height: 21px;
+    background: #303133;
+    color: #fff;
+    border-radius: 2px;
+    background-color: rgba(47,64,80,.8);
+    transform-origin: left center;
+    z-index: 2160;
+    display: none;
+`
+
 export const anterior = styled.div`
     height: 50px;
     text-align: center;
@@ -436,6 +513,9 @@ export const anterior = styled.div`
     cursor: pointer;
     &:hover{
         background-color: #2c3e50;
+        ${tooltip_anterior}{
+            display: block;
+        }
     }
 `
 
@@ -470,7 +550,7 @@ export const submenu_opciones = styled.div`
     left: 72px;
     z-index: 9999;
     background-color: #001529;
-    bottom:0px;
+    bottom: 0px;
     cursor: pointer;
     display: none;
 `
@@ -550,6 +630,25 @@ export const icono_opciones = styled.i`
     background-position: -122px -602px;
 `
 
+export const tooltip_mensaje = styled.div`
+    font: 400 13.3333px Arial;
+    left: 125%;
+    margin: 0;
+    position: absolute;
+    padding: 10px;
+    font-size: 12px;
+    min-width: 10px;
+    max-width: 280px;
+    line-height: 21px;
+    background: #303133;
+    color: #fff;
+    border-radius: 2px;
+    background-color: rgba(47,64,80,.8);
+    transform-origin: left center;
+    z-index: 2141;
+    display: none;
+`
+
 export const mensajes = styled.div`
     height: 50px;
     text-align: center;
@@ -557,6 +656,9 @@ export const mensajes = styled.div`
     cursor: pointer;
     &:hover{
         background-color: #2c3e50;
+        ${tooltip_mensaje}{
+            display:block;
+        }
     }
 `
 
@@ -580,6 +682,25 @@ export const icono_mensajes = styled.div`
     background-position: 0 -540px;
 `
 
+export const tooltip_salir = styled.div`
+    font: 400 13.3333px Arial;
+    left: 125%;
+    margin: 0;
+    position: absolute;
+    padding: 10px;
+    font-size: 12px;
+    min-width: 10px;
+    max-width: 280px;
+    line-height: 21px;
+    background: #303133;
+    color: #fff;
+    border-radius: 2px;
+    background-color: rgba(47,64,80,.8);
+    transform-origin: left center;
+    z-index: 2141;
+    display: none;
+`
+
 export const salir = styled.div`
     height: 50px;
     text-align: center;
@@ -587,6 +708,9 @@ export const salir = styled.div`
     cursor: pointer;
     &:hover{
         background-color: #2c3e50;
+        ${tooltip_salir}{
+            display:block;
+        }
     }
 `
 
@@ -609,7 +733,6 @@ export const icono_salir = styled.div`
     left: 24px;
     background-position: -120px -540px;
 `
-
 
 export const cuenta = styled.div`
     height: 46px;

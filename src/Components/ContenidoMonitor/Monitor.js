@@ -32,16 +32,17 @@ const ContenidoMonitor = () => {
             </s.refrescar>
 
             <s.caja_dispositivo_pequena style={{display:'none'}}/>
+            
 
             <s.caja_dispositivo_panel style={{left:'0px', top:'0px'}}>
-
+            
                 <s.caja_dispositivo_titulo>
                     <s.barra_arrastable />
                     <s.barra_superior_titulo>
                     &nbsp;
                          &nbsp;<fa.FaLaptop />&nbsp;&nbsp;Mis Metas
-                         <s.opcion_derecha />
                     </s.barra_superior_titulo>
+                    <s.opcion_derecha  />
                 </s.caja_dispositivo_titulo>
 
                 <s.contenido_panel_dispositivo>
@@ -72,7 +73,6 @@ const ContenidoMonitor = () => {
                         </s.icono_fondo>
                     </s.titulo_caja>
                 </s.arbol_caja_monitor>
-
             </s.caja_dispositivo_panel>
 
             <MainView />
