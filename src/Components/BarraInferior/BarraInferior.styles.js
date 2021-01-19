@@ -128,6 +128,10 @@ export const slider_bar = styled.div`
 `
 
 export const slider_button_wrapper = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
     cursor: pointer;
     margin: 0;
     padding: 0;
@@ -140,7 +144,7 @@ export const slider_button_wrapper = styled.div`
     text-align: center;
     user-select: none;
     line-height: normal;
-    top: 16px;
+    top: 16.18px;
 `
 
 export const slider_button = styled.div`
