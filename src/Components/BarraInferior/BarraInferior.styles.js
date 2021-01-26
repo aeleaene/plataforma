@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import menus from '../../assets/images/menus.46a5756.png';
+import cabezera from '../../assets/images/dialog-header.cc6302f.png'
+import capa from '../../assets/images/maplayer.0b9b41f.png';
 import iconoBusqueda from '../../assets/images/search.svg';
 
 export const herramienta_mapa = styled.div`
@@ -66,6 +68,110 @@ export const icono_trafico = styled.span`
     }
 `
 
+export const capa_mapa = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 42px;
+    width: 190px;
+    background-color: #fff;
+    left: -80px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
+    display: none;
+`
+
+export const capa_mapa_titulo = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: #001529 url(${cabezera}) no-repeat center 0;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 30px;
+    position: relative;
+`
+
+export const capa_mapa_titulo_icono_izquierda = styled.i`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    color: #fff;
+    line-height: 35px;
+    font-size: 14px;
+    background-image: url(${capa});
+    background-position: 2px;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 6px;
+    top: 8px;
+`
+
+export const capa_mapa_titulo_icono_derecha = styled.i`
+    font: 400 13.3333px Arial;
+    cursor: pointer;
+    color: #fff;
+    font-family: element-icons!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    text-align: center;
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+`
+
+export const capa_mapa_item_seleccionado = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+    padding-left: 15px;
+    font-size: 13px;
+    background-color: #ffb771;
+`
+
+export const capa_mapa_item = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+    padding-left: 15px;
+    font-size: 13px;
+    &:hover{
+        background-color: #ffb771;
+    }
+`
+
 export const icono_mapa = styled.span`
     width: 34px;
     height: 34px;
@@ -80,8 +186,12 @@ export const icono_mapa = styled.span`
     position: relative;
     &:hover{
         background-position: -180px -120px;
+        ${capa_mapa}{
+            display:block;
+        }
     }
 `
+
 
 export const caja_zoom = styled.div`
     margin-left: 20px;

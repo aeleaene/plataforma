@@ -8,7 +8,7 @@ import React from 'react';
 
 import * as s from './BarraInferior.styles';
 import {Icon} from '@iconify/react';
-import searchIcon from '@iconify/icons-el/search';
+import * as ic from 'react-icons/all';
 
 const BarraInferior = () => {
     return (
@@ -16,7 +16,25 @@ const BarraInferior = () => {
            <s.icono_distancia/>
             <s.icono_area/>
             <s.icono_trafico/>
-           <s.icono_mapa/>
+           <s.icono_mapa>
+               <s.capa_mapa>
+                   <s.capa_mapa_titulo>
+                       <s.capa_mapa_titulo_icono_izquierda />
+                       Mapa 
+                       <s.capa_mapa_titulo_icono_derecha><ic.AiOutlineMinus/></s.capa_mapa_titulo_icono_derecha>
+                   </s.capa_mapa_titulo>
+                   <s.capa_mapa_item_seleccionado>Google Streets</s.capa_mapa_item_seleccionado>
+                   <s.capa_mapa_item>Google Hybrid</s.capa_mapa_item>
+                   <s.capa_mapa_item>Google Terrain</s.capa_mapa_item>
+                   <s.capa_mapa_item>Bing Road</s.capa_mapa_item>
+                   <s.capa_mapa_item>Bing Aerial</s.capa_mapa_item>
+                   <s.capa_mapa_item>Bing Aerial</s.capa_mapa_item>
+                   <s.capa_mapa_item>OSM Map</s.capa_mapa_item>
+                   <s.capa_mapa_item>Mapbox Streets</s.capa_mapa_item>
+                   <s.capa_mapa_item>Mapbox Satellite</s.capa_mapa_item>
+                   <s.capa_mapa_item>Baidu Map</s.capa_mapa_item>
+               </s.capa_mapa>
+           </s.icono_mapa>
 
            <s.caja_zoom>
                 <s.icono_zoom_menos/>
