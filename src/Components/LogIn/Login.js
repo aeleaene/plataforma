@@ -1,9 +1,61 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import * as s from './Login.styles';
 import logo from '../../assets/images/logo.png'
 
-const Login = () => {
+import axios from 'axios';
+import qs from 'qs';
+
+const Login = (props) => {
+
+    const [usuario, setUsuario] = useState({
+        email: "",
+        password: ""
+    });
+
+    const handleCambio = (e) => {
+        const {id, value} = e.target;
+        setUsuario(prevUsuario => ({
+            ...prevUsuario,
+            [id] : value
+        }))
+    }
+
+    const handleEnviar = (e) => {
+        e.preventDefault();
+        if(usuario.password != "") {
+           iniciarSesion();
+        }else{
+            alert('Mamaste');
+        }
+    }
+
+    const iniciarSesion = () => {
+        const data = qs.stringify({
+            'email': usuario.email,
+            'password': usuario.password
+        });
+
+        console.log(data);
+
+        const config = {
+            method: 'post',
+            url: '"https://cors-anywhere.herokuapp.com/52.36.58.203:7082/api/session',
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+            data : data
+        };
+
+        axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+ 
 
     return(
         <s.principal>
@@ -26,18 +78,18 @@ const Login = () => {
                 <s.wrap style={{width: '1100px', visibility: 'visible'}}>
                     <s.caja_login>
                         <s.container>
-                            <s.formulario>
+                            <s.formulario onSubmit={handleEnviar}>
                                 <s.formulatio_titulo>Iniciar Sesión</s.formulatio_titulo>
                                 <s.formulario_contenido>
                                   <s.formulario_contenido_cuenta>
-                                      <s.ipt_f_f_ms type={"text"} tabIndex={1} style={{display:"table-cell", color: "white"}} placeholder={"Cuenta"}/>
+                                      <s.ipt_f_f_ms type="text" id="email" value={usuario.email} onChange={handleCambio} tabIndex={1} style={{display:"table-cell", color: "white"}} placeholder="Cuenta"/>
                                       <s.icono_cuenta />
                                       <s.tips_f13 />
                                       <s.entrada_limpia />
                                   </s.formulario_contenido_cuenta>
 
                                   <s.formulario_contenido_contrasena>
-                                  <s.ipt_f_f_ms type={"password"} tabIndex={2} style={{display:"table-cell", color:"white"}} placeholder={"Contraseña"}/>
+                                  <s.ipt_f_f_ms type="password" id="password" value={usuario.password} onChange={handleCambio} tabIndex={2} style={{display:"table-cell", color:"white"}} placeholder="Contraseña"/>
                                   <s.icono_contra />
                                   <s.tips_f13 />
                                   <s.entrada_limpia />

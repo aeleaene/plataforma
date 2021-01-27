@@ -1155,4 +1155,7 @@ export const enlaces = styled.div`
     padding: 0;
     height: 25px;
     line-height: 25px;
+    &:hover{
+        color: #ffab05;
+    }
 `
