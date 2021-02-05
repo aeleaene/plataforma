@@ -1159,3 +1159,11 @@ export const enlaces = styled.div`
         color: #ffab05;
     }
 `
+
+export const animacionCargar = styled.div`
+    width: 100%;
+    height: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center
+` 

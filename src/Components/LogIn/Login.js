@@ -3,6 +3,11 @@ import React, {useState} from 'react';
 import * as s from './Login.styles';
 import logo from '../../assets/images/logo.png'
 
+import {usePromiseTracker} from 'react-promise-tracker';
+import {trackPromise} from 'react-promise-tracker';
+
+import Loader from 'react-loader-spinner';
+
 import axios from 'axios';
 import qs from 'qs';
 
@@ -26,36 +31,47 @@ const Login = (props) => {
         if(usuario.password != "") {
            iniciarSesion();
         }else{
-            alert('Mamaste');
+            alert('🥱');
         }
     }
 
-    const iniciarSesion = () => {
-        const data = qs.stringify({
-            'email': usuario.email,
-            'password': usuario.password
-        });
-
-        console.log(data);
-
-        const config = {
-            method: 'post',
-            url: '"https://cors-anywhere.herokuapp.com/52.36.58.203:7082/api/session',
-            headers: { 
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-            data : data
-        };
-
-        axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    const LoadingIndicator = () => {
+        const {promiseInProgress} = usePromiseTracker();
+        return(
+            promiseInProgress &&
+            <s.animacionCargar>
+                <Loader type="ThreeDots" color="#ffab05" height="50" width="50" />
+            </s.animacionCargar>
+        );
     }
- 
+
+    const iniciarSesion = async () => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Basic Og==");
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("email", usuario.email);
+    urlencoded.append("password", usuario.password);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+    }
+
+    trackPromise(
+       fetch("http://52.36.58.203:7082/api/session", requestOptions)
+       .then(response => response.text())
+       .then(result => console.log(result))
+       .catch(error => console.log('error', error)) 
+    );
+    }
+
+
 
     return(
         <s.principal>
@@ -114,6 +130,7 @@ const Login = (props) => {
 
                                   <s.iniciar>
                                     <s.boton>Iniciar Sesión</s.boton>
+                                    <LoadingIndicator />
                                   </s.iniciar>
 
                                   <s.formulario_contenido_demo>
