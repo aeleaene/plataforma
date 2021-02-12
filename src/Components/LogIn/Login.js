@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
-
+import React, {useState, createContext, useContext} from 'react';
 import * as s from './Login.styles';
 import logo from '../../assets/images/logo.png'
-
 import {usePromiseTracker} from 'react-promise-tracker';
 import {trackPromise} from 'react-promise-tracker';
-
 import Loader from 'react-loader-spinner';
 
-import axios from 'axios';
-import qs from 'qs';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    useHistory
+  } from "react-router-dom";
+
+  import Monitor from '../ContenidoMonitor/Monitor';
+
 
 const Login = (props) => {
 
@@ -44,8 +49,8 @@ const Login = (props) => {
             </s.animacionCargar>
         );
     }
-
     const iniciarSesion = async () => {
+    
 
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Basic Og==");
@@ -65,8 +70,18 @@ const Login = (props) => {
 
     trackPromise(
        fetch("http://52.36.58.203:7082/api/session", requestOptions)
-       .then(response => response.text())
-       .then(result => console.log(result))
+       .then((response) => {
+        if(response.ok) {
+            alert('OK');
+            return(
+                <Redirect to={{
+                    pathname: "/Mapa",
+                }} />
+            )
+        }else{
+            alert('Hubo un problema');
+        }
+       })
        .catch(error => console.log('error', error)) 
     );
     }
@@ -74,6 +89,7 @@ const Login = (props) => {
 
 
     return(
+        <Router>
         <s.principal>
 
             <s.cabecera>
@@ -175,6 +191,7 @@ const Login = (props) => {
 
                     <s.copyright>
                         <s.derechos>Copyright © 2021 Protrack GPS. All rights reserved.</s.derechos>
+                        
                         <s.enlaces>
                             <a>OPEN API</a> &nbsp;&nbsp;
                             <a>Privacy policy</a>&nbsp;&nbsp;
@@ -188,7 +205,12 @@ const Login = (props) => {
             </s.footer>
 
         </s.principal>
-        
+
+        <Switch>
+            <Route path="/Mapa" component={Monitor} />
+        </Switch>
+
+        </Router>
     )
 }
 

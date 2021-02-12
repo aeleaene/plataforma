@@ -1,6 +1,13 @@
 import React from 'react';
 import * as s from './App.styles';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 //Componentes
 import BarraLateral from './Components/BarraLateral/BarraLateral';
 
@@ -8,6 +15,9 @@ import Login from './Components/LogIn/Login';
 
 import Monitor from './Components/ContenidoMonitor/Monitor';
 import BarraInferior from './Components/BarraInferior/BarraInferior';
+
+import Mapa from '../src/Components/Mapa/Mapa';
+
 
 function App() {
   return (
@@ -28,6 +38,7 @@ function App() {
       
       </s.content_box>*/}
     </s.App>
+
   );
 }
 
