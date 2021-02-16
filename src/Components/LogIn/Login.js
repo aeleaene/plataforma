@@ -5,18 +5,24 @@ import {usePromiseTracker} from 'react-promise-tracker';
 import {trackPromise} from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
 
+import * as enrutador from '../../Routes/index';
+
 import {
     BrowserRouter as Router,
+    useHistory,
     Switch,
     Route,
     Redirect,
-    useHistory
+    useLocation
   } from "react-router-dom";
 
-  import Monitor from '../ContenidoMonitor/Monitor';
+ 
 
 
 const Login = (props) => {
+
+    const location = useLocation();
+    const history = useHistory();
 
     const [usuario, setUsuario] = useState({
         email: "",
@@ -49,6 +55,12 @@ const Login = (props) => {
             </s.animacionCargar>
         );
     }
+
+    const redireccionar = () => {
+       history.push("/Mapa")
+       console.log('Entra'+JSON.stringify(history.location))
+    }
+
     const iniciarSesion = async () => {
     
 
@@ -71,13 +83,12 @@ const Login = (props) => {
     trackPromise(
        fetch("http://52.36.58.203:7082/api/session", requestOptions)
        .then((response) => {
+           response.json().then((data) => {
+               console.log(data)
+           })
         if(response.ok) {
-            alert('OK');
-            return(
-                <Redirect to={{
-                    pathname: "/Mapa",
-                }} />
-            )
+            alert('Bienvenido: '+usuario.email);
+            redireccionar();
         }else{
             alert('Hubo un problema');
         }
@@ -205,10 +216,6 @@ const Login = (props) => {
             </s.footer>
 
         </s.principal>
-
-        <Switch>
-            <Route path="/Mapa" component={Monitor} />
-        </Switch>
 
         </Router>
     )

@@ -7,7 +7,7 @@ import Mapa from '../Mapa/Mapa'
 const MainView = () => {
     return (
         <Mapa />
-    );//<s.MainViewContainer>MainViewContainer</s.MainViewContainer>
+    );
 }
 
 export default MainView;

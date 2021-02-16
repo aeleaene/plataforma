@@ -1,6 +1,8 @@
 import React from 'react';
 import * as s from './App.styles';
 
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,9 +23,8 @@ import Mapa from '../src/Components/Mapa/Mapa';
 
 function App() {
   return (
+    <Router>
     <s.App>
-
-      <Login/>
 
       {/*<s.content_box>
         
@@ -37,7 +38,13 @@ function App() {
         </s.contenido_derecho>
       
       </s.content_box>*/}
+      <Switch>
+        <Route exact={true} path="/" component={Login}/>
+        <Route path="/Mapa" component={BarraLateral}/>
+      </Switch>
+
     </s.App>
+    </Router>
 
   );
 }
