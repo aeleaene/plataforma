@@ -11,7 +11,7 @@ Proyecto principal para nueva plataforma de Sabueso System Tracking
 
 * Clonar el repositorio: 
 ```
-git clone git@bitbucket.org:asalgadov/plataforma.git
+git clone https://github.com/aeleaene/plataforma.git
 ```
 * Instalar las dependencias 
 ```
