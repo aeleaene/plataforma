@@ -8,7 +8,7 @@ import '../../styles/mapa.css';
 
 function Mapa() {
   return (
-    <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} scrollWheelZoom={false}>
+    <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} scrollWheelZoom={true}>
         <ZoomControl position="bottomleft"/>
         <LayersControl position="bottomright">
 
@@ -18,7 +18,7 @@ function Mapa() {
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
           </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer checked name="Híbrido">
+          <LayersControl.BaseLayer name="Híbrido">
           <TileLayer
           url="http://www.google.com/maps/vt?lyrs=s@189,traffic&gl=cn&x={x}&y={y}&z={z}"
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
@@ -30,7 +30,7 @@ function Mapa() {
           attribution="Datos del mapa &copy; 2020 INEGI México"/>
           </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer name="Open Street Maps">
+          <LayersControl.BaseLayer checked name="Open Street Maps">
           <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>

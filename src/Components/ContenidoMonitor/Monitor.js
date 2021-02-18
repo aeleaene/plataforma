@@ -9,6 +9,8 @@ import BarraLateral from '../BarraLateral/BarraLateral';
 import * as fa from 'react-icons/fa';
 import * as ai from 'react-icons/ai';
 
+import * as sapp from '../../App.styles'
+
 
 const ContenidoMonitor = () => {
     const [contador, setContador] = React.useState(10);
@@ -21,6 +23,8 @@ const ContenidoMonitor = () => {
 
     
     return(
+        <sapp.App>
+            <sapp.content_box>
         <s.contenido_monitor>
             <s.caja_direccion_dispositivo><span></span></s.caja_direccion_dispositivo>
 
@@ -77,8 +81,8 @@ const ContenidoMonitor = () => {
 
             <MainView />
         </s.contenido_monitor>
-            
-
+        </sapp.content_box>
+        </sapp.App>
     );
 
 }
