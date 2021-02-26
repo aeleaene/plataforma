@@ -1,18 +1,20 @@
-import React from 'react';
-import * as s from './App.styles';
+import React, {useState} from 'react';
 
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 //Componentes
 import Login from './Components/LogIn/Login';
 import Principal from './Components/Principal/Principal';
+import AdminDashboard from './Components/AdminDashboard/AdminDashboard';
+import { getSessionCookie, SessionContext } from './sessions';
+
 
 function App() {
+
   return (
     <Router>        
        { /* <s.content_box>
@@ -28,11 +30,11 @@ function App() {
        </s.content_box> */}
       
      <Switch>
+        <Route exact={true} path="/dealer2" component={AdminDashboard} />
         <Route exact={true} path="/" component={Login}/>
         <Route path="/Mapa" component={Principal}/>
      </Switch> 
     </Router>
-
   );
 }
 

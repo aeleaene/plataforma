@@ -1,14 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import {
+    BrowserRouter as Router,
+    useHistory,
+  } from "react-router-dom";
 
 import * as s from './BarraLateral.styles';
-
 import perfil from '../../assets/images/perfil.jpg';
 
 import * as ic from 'react-icons/all';
+import { getSessionCookie } from '../../sessions';
 
-const BarraLateral = () => {
+import * as Cookies from 'js-cookie';
+
+
+
+const BarraLateral = (props) => {
+
+    const [sesion, setSesion] = useState(false);
+    const history = useHistory();
+
+    const handleSalir = (e) => {
+        e.preventDefault();
+        salir();
+        setSesion(true);
+    }
+
+    const Probar = () => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'manual'
+        }
+        fetch('http://52.36.58.203:7082/api/session?token='+Cookies.get('session'), requestOptions)
+        .then((response) => {
+            if(response.ok) {
+                salir();
+                Cookies.remove('session');
+                history.push('/');
+
+            }else{
+                console.log('ASKI');
+            }
+        })
+        .catch(error => console.log('error', error));
+        {/*Cookies.remove("session");
+        history.push("/");
+        console.log(Cookies)
+          fetch("http://52.36.58.203:7082/api/session")
+            .then(response => response.text())
+            .then(result => console.log(result))
+        .catch(error => console.log('error', error));*/}
+    }
+
+    const redireccionar = () => {
+        history.push("/")
+    }
+
+    const salir = async() => {
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("http://52.36.58.203:7082/api/session", requestOptions)
+        .then((response) => {
+            console.log('Estado'+response.status)
+        if(response.ok){
+            alert('SALIR');
+        }else{
+            alert('Hubo un problema');
+            redireccionar();
+        }
+        }).catch(error => console.log('error: ', error))
+    }
 
     return (
+        <Router>
         <s.menu_caja>
 
             <s.cuenta>
@@ -296,12 +366,13 @@ const BarraLateral = () => {
                 </s.mensajes>
 
                 <s.salir>
-                    <s.icono_salir />
+                    <s.icono_salir onClick={handleSalir}/>
                     <s.tooltip_salir role="tooltip" aria-hidden="true">Salir</s.tooltip_salir>   
                 </s.salir>
             
             </s.menu_inferior> 
         </s.menu_caja>
+        </Router>
     );
 }
 
