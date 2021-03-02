@@ -56,7 +56,7 @@ const Login = (props) => {
     }
 
     const redireccionar = () => {
-        history.push("/dealer2")
+        history.push("/Mapa")
         setLoading(false);
     }
 

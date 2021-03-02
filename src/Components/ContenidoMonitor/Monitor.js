@@ -3,6 +3,9 @@ import React from 'react';
 import * as s from './Monitor.styles';
 
 import MainView from '../MainView/MainView';
+
+import Draggable from 'react-draggable';
+
 import BarraInferior from '../BarraInferior/BarraInferior';
 import BarraLateral from '../BarraLateral/BarraLateral';
 
@@ -37,7 +40,7 @@ const ContenidoMonitor = () => {
 
             <s.caja_dispositivo_pequena style={{display:'none'}}/>
             
-
+            <Draggable>
             <s.caja_dispositivo_panel style={{left:'0px', top:'0px'}}>
             
                 <s.caja_dispositivo_titulo>
@@ -78,6 +81,7 @@ const ContenidoMonitor = () => {
                     </s.titulo_caja>
                 </s.arbol_caja_monitor>
             </s.caja_dispositivo_panel>
+            </Draggable> 
 
             <MainView />
         </s.contenido_monitor>

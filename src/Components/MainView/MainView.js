@@ -6,7 +6,9 @@ import Mapa from '../Mapa/Mapa'
 
 const MainView = () => {
     return (
+        <s.MainViewContainer>
         <Mapa />
+        </s.MainViewContainer>
     );
 }
 

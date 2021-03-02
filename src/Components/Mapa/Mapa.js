@@ -8,8 +8,7 @@ import '../../styles/mapa.css';
 
 function Mapa() {
   return (
-    <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} scrollWheelZoom={true}>
-        <ZoomControl position="bottomleft"/>
+    <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true}>
         <LayersControl position="bottomright">
 
           <LayersControl.BaseLayer  name="Google">

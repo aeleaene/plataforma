@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
 export const MainViewContainer = styled.div`
-    width: 95%;
+    width: 100%;
+    height: 100%;
 `
