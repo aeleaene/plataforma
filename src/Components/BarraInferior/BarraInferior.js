@@ -10,6 +10,9 @@ import * as s from './BarraInferior.styles';
 import {Icon} from '@iconify/react';
 import * as ic from 'react-icons/all';
 
+import Draggable from 'react-draggable';
+
+
 const BarraInferior = () => {
     return (
         <s.herramienta_mapa>
@@ -35,16 +38,18 @@ const BarraInferior = () => {
                    <s.capa_mapa_item>Baidu Map</s.capa_mapa_item>
                </s.capa_mapa>
            </s.icono_mapa>
-
+{/* El valor es de -13 a 47*/}
            <s.caja_zoom>
                 <s.icono_zoom_menos/>
                 <s.zoom_slider>
                     <s.slider role={"slider"} aria-valuemin={"0"} aria-valuemax={"21"} aria-orientation={"horizontal"} aria-valuetext={"13"} aria-label={"slider entre 0 y 21"}>
                         <s.slider_runway>
                             <s.slider_bar style={{width: '9.52381%', left: '0%'}}></s.slider_bar>
+                               <Draggable axis="x" defaultPosition={{x:-13, y:0}} bounds={{left:-13, right:47}}>
                                <s.slider_button_wrapper style={{left:''}}> 
                                 <s.slider_button aria-describedby={"el-tooltip-5456"} tabindex={"0"}></s.slider_button>
                             </s.slider_button_wrapper>
+                            </Draggable>
                         </s.slider_runway>
                     </s.slider>
                 </s.zoom_slider>

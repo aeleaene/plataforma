@@ -24,6 +24,7 @@ const ContenidoMonitor = () => {
         }
     }, [contador])
 
+
     
     return(
         <sapp.App>
@@ -40,7 +41,7 @@ const ContenidoMonitor = () => {
 
             <s.caja_dispositivo_pequena style={{display:'none'}}/>
             
-            <Draggable>
+            <Draggable bounds="parent">
             <s.caja_dispositivo_panel style={{left:'0px', top:'0px'}}>
             
                 <s.caja_dispositivo_titulo>
@@ -49,7 +50,7 @@ const ContenidoMonitor = () => {
                     &nbsp;
                          &nbsp;<fa.FaLaptop />&nbsp;&nbsp;Mis Metas
                     </s.barra_superior_titulo>
-                    <s.opcion_derecha  />
+                    <s.opcion_derecha  onClick={() => {console.log('Hola')}}/>
                 </s.caja_dispositivo_titulo>
 
                 <s.contenido_panel_dispositivo>

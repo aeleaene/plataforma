@@ -3,6 +3,8 @@ import max from '../../assets/images/maximization.7a10253.png';
 import min from '../../assets/images/minimize.5127082.png';
 import header from '../../assets/images/dialog-header.cc6302f.png';
 
+
+
 export const contenido_monitor = styled.div`
     position: relative;
     height: 100%;
