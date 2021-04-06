@@ -49,7 +49,7 @@ export const principal = styled.div`
     background: url(${fondo}) no-repeat center center;
     background-size: cover;
     color: #fff;
-    height: 969px;
+    height: 100vh;
 `
 
 export const cabecera = styled.div`

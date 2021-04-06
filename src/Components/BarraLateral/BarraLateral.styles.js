@@ -1,6 +1,7 @@
 import styled from '@emotion/styled/macro';
 import fondo from '../../assets/images/logo-bg.3cba04d.png';
 import menus from '../../assets/images/menus.46a5756.png';
+import headerModal from '../../assets/images/dialog-header.cc6302f.png';
 
 export const mostrar = styled.div`
     display: none;
@@ -754,3 +755,60 @@ export const cuenta = styled.div`
         }
     }
 `
+export const HeaderModal = styled.div`
+    color: #fff;
+    background: #596673 url(${headerModal}) no-repeat center 0;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+`;
+export const TituloModal = styled.h2`
+    font-size: 13px;
+`;
+export const CerrarModal = styled.p`
+    font-size: 20px;
+    transform: rotate(45deg);
+    transition: all .3s ease;
+    &:hover{
+        transform: rotate(135deg);
+    }
+`;
+export const DivBotones = styled.div`
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+`;
+export const BotonCancelar = styled.button`
+    font-size: 12px;
+    padding: 7px 15px;
+    margin-left: 10px;
+    color: #606266;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: background-color .3s ease;
+    &:hover{
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #fcac5d;
+        background-color: #fcac5d;
+    }
+`;
+export const BotonGuardar = styled.button`
+    font-size: 12px;
+    padding: 7px 15px;
+    margin-left: 10px;
+    color: #fff;
+    border: 1px solid #ff9934;
+    background-color: #ff9934;
+    border-radius: 3px;
+    transition: all .3s ease;
+    &:hover{
+        cursor: pointer;
+        border: 1px solid #fcac5d;
+        background-color: #fcac5d;
+    }
+`;

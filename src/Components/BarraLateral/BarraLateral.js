@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
+import Modal from 'react-modal';
+import '../../styles/modals.css';
 import {
     BrowserRouter as Router,
     useHistory,
@@ -13,7 +14,13 @@ import { getSessionCookie } from '../../sessions';
 
 import * as Cookies from 'js-cookie';
 
-
+/* Modals */
+import ContenidoCuenta from '../ContenidoCuenta/ContenidoCuenta';
+import ProveedorServicios from '../ProveedorServicios/ProveedorServicios';
+import ModificarPassword from '../ModificarPassword/ModificarPassword';
+import RegistroSesion from '../RegistroSesion/RegistroSesion';
+import ManualUsuario from '../ManualUsuario/ManualUsuario';
+Modal.setAppElement('#root');
 
 const BarraLateral = (props) => {
 
@@ -76,23 +83,160 @@ const BarraLateral = (props) => {
         }
         }).catch(error => console.log('error: ', error))
     }
+    /* State Modal */
+    const [modalCuenta, setModalCuenta] = useState(false);
+    const [modalServicios, setModalServicios] = useState(false);
+    const [modalModPassword, setModalModPassword] = useState(false);
+    const [modalRegistroSesion, setModalRegistroSesion] = useState(false);
+    const [modalManualUsuario, setModalManualUsuario] = useState(false);
 
     return (
         <Router>
         <s.menu_caja>
 
             <s.cuenta>
-                <s.caja_imagen style={{ backgroundImage: `url(${perfil})` }} />
+                <s.caja_imagen onClick={() => setModalCuenta(true)} style={{ backgroundImage: `url(${perfil})` }} />
                 <s.nombre_cuenta>demo</s.nombre_cuenta>
                 <s.submenu_perfil >
-                    <s.submenu_elemento><ic.FiUserPlus /> Cuenta</s.submenu_elemento>
-                    <s.submenu_elemento><ic.FaUserAlt /> Proveedor de servicios</s.submenu_elemento>
-                    <s.submenu_elemento><ic.AiFillLock /> Modificar la contraseña</s.submenu_elemento>
-                    <s.submenu_elemento><ic.FaUser /> Registro de inicio de sesión</s.submenu_elemento>
-                    <s.submenu_elemento><ic.AiOutlineCloudDownload /> Manual de usuario</s.submenu_elemento>
+                    <s.submenu_elemento onClick={() => setModalCuenta(true)}><ic.FiUserPlus /> Cuenta</s.submenu_elemento>
+                    <s.submenu_elemento onClick={() => setModalServicios(true)}><ic.FaUserAlt /> Proveedor de servicios</s.submenu_elemento>
+                    <s.submenu_elemento onClick={() => setModalModPassword(true)}><ic.AiFillLock /> Modificar la contraseña</s.submenu_elemento>
+                    <s.submenu_elemento onClick={() => setModalRegistroSesion(true)}><ic.FaUser /> Registro de inicio de sesión</s.submenu_elemento>
+                    <s.submenu_elemento onClick={() => setModalManualUsuario(true)}><ic.AiOutlineCloudDownload /> Manual de usuario</s.submenu_elemento>
                 </s.submenu_perfil>
             </s.cuenta>
-
+            {/* MODALS */}
+            {/* Modal Cuenta */}
+            <Modal 
+                isOpen={modalCuenta}
+                onRequestClose={() => setModalCuenta(false)}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                    },
+                    content: {
+                        width: 650,
+                        height: 478
+                    }
+                }}
+            >
+                <s.HeaderModal>
+                    <s.TituloModal><ic.FiUserPlus /> Cuenta</s.TituloModal>
+                    <s.CerrarModal onClick={() => setModalCuenta(false)}>+</s.CerrarModal>
+                </s.HeaderModal>
+                <ContenidoCuenta/>
+                <s.DivBotones>
+                    <s.BotonCancelar onClick={() => setModalModPassword(false)}>Cancelar</s.BotonCancelar>
+                    <s.BotonGuardar>Guardar</s.BotonGuardar>
+                </s.DivBotones>
+            </Modal>
+                {/* Modal Servicios */}
+            <Modal 
+                isOpen={modalServicios}
+                onRequestClose={() => setModalServicios(false)}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                    },
+                    content: {
+                        width: 350
+                    }
+                }}
+            >
+                <s.HeaderModal>
+                    <s.TituloModal><ic.FaUserAlt /> Proveedor de Servicios</s.TituloModal>
+                    <s.CerrarModal onClick={() => setModalServicios(false)}>+</s.CerrarModal>
+                </s.HeaderModal>
+                <ProveedorServicios/>
+            </Modal>
+            {/* Modal Password */}
+            <Modal 
+                isOpen={modalModPassword}
+                onRequestClose={() => setModalModPassword(false)}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                    },
+                    content: {
+                        width: 350
+                    }
+                }}
+            >   
+                <s.HeaderModal>
+                    <s.TituloModal><ic.AiFillLock /> Modificar Password</s.TituloModal>
+                    <s.CerrarModal onClick={() => setModalModPassword(false)}>+</s.CerrarModal>
+                </s.HeaderModal>
+                <ModificarPassword/>
+                <s.DivBotones>
+                    <s.BotonCancelar onClick={() => setModalModPassword(false)}>Cancelar</s.BotonCancelar>
+                    <s.BotonGuardar>Guardar</s.BotonGuardar>
+                </s.DivBotones>
+            </Modal>
+            {/* Modal Registro */}
+            <Modal 
+                isOpen={modalRegistroSesion}
+                onRequestClose={() => setModalRegistroSesion(false)}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                    },
+                    content: {
+                        width: 850,
+                        height: 427
+                    }
+                }}
+            >
+                <s.HeaderModal>
+                    <s.TituloModal><ic.FaUser /> Registro de Inicio de Sesión</s.TituloModal>
+                    <s.CerrarModal onClick={() => setModalRegistroSesion(false)}>+</s.CerrarModal>
+                </s.HeaderModal>
+                <RegistroSesion/>
+            </Modal>
+            {/* Modal Manual */}
+            <Modal 
+                isOpen={modalManualUsuario}
+                onRequestClose={() => setModalManualUsuario(false)}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                    },
+                    content: {
+                        width: 350
+                    }
+                }}
+            >
+                <s.HeaderModal>
+                    <s.TituloModal><ic.AiOutlineCloudDownload /> Manual de Usuario</s.TituloModal>
+                    <s.CerrarModal onClick={() => setModalManualUsuario(false)}>+</s.CerrarModal>
+                </s.HeaderModal>
+                <ManualUsuario/>
+            </Modal>
+            
 
             <s.menu_superior>
 
