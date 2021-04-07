@@ -14,6 +14,10 @@ import Draggable from 'react-draggable';
 
 
 const BarraInferior = () => {
+
+
+
+
     return (
         <s.herramienta_mapa>
            <s.icono_distancia/>

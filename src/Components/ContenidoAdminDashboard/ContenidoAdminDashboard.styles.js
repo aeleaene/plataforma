@@ -16,6 +16,45 @@ export const body = styled.body`
     background-color: green;
 `
 
+export const sidebar_container_ = styled.div`
+font: 400 14px Arial;
+font-family: Avenir,Helvetica,Arial,sans-serif;
+-webkit-font-smoothing: antialiased;
+color: #2c3e50;
+margin: 0;
+padding: 0;
+transition: width .28s;
+width: 290px!important;
+background-color: #001529;
+height: 100%;
+position: fixed;
+font-size: 0;
+top: 0;
+bottom: 0;
+left: 0;
+z-index: 1001;
+`
+
+export const main_cointainer = styled.div`
+font: 400 14px Arial;
+font-family: Avenir,Helvetica,Arial,sans-serif;
+-webkit-font-smoothing: antialiased;
+color: #2c3e50;
+margin: 0;
+padding: 0;
+height: 100%;
+transition: margin-left .28s;
+overflow-y: hidden;
+padding-top: 119px;
+box-sizing: border-box;
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+right: 0;
+margin-left: 70px;
+`
+
 export const tip_box = styled.span`
     font: 400 14px Arial;
     background-color: #ffffcf;
