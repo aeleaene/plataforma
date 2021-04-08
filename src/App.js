@@ -15,6 +15,8 @@ import { getSessionCookie, SessionContext } from './sessions';
 
 function App() {
 
+  
+
   return (
     <Router>        
        { /* <s.content_box>
@@ -30,9 +32,9 @@ function App() {
        </s.content_box> */}
       
      <Switch>
-        <Route exact={true} path="/dealer2" component={AdminDashboard} />
+        <Route exact={true} path="/dealer2/" component={AdminDashboard} />
         <Route exact={true} path="/" component={Login}/>
-        <Route path="/Mapa" component={Principal}/>
+        <Route path="/mapa" component={Principal}/>
      </Switch> 
     </Router>
   );

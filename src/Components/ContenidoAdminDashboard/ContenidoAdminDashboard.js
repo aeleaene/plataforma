@@ -2,15 +2,27 @@ import React from 'react';
 
 import * as s from './ContenidoAdminDashboard.styles';
 
-import BarraLateralAdmin from '../BarraLateralAdmin/BarraLateralAdmin'
+import BarraLateralAdmin from '../BarraLateralAdmin/BarraLateralAdmin';
+import BarraSuperior from '../BarraSuperiorAdmin/BarraSuperior';
+import ContenidoAdmin from '../ContenidoAdmin/ContenidoAdmin';
 
 const ContenidoAdminDashboard = (props) => {
     return(
         <s.body>
-            <s.tip_box>Versión Anterior</s.tip_box>
             <s.app id="app">
-                <BarraLateralAdmin />
+                <s.app_main>
+                    <s.sidebar_container_>
+                        <BarraLateralAdmin />
+                    </s.sidebar_container_>
+
+                </s.app_main>
+                {/* />*/}
             </s.app>
+
+            <s.main_cointainer>
+                        <BarraSuperior />
+                        <ContenidoAdmin />
+            </s.main_cointainer>
         </s.body>
     )
 }

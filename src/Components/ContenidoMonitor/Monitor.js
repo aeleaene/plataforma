@@ -15,6 +15,8 @@ import * as ai from 'react-icons/ai';
 import * as sapp from '../../App.styles'
 
 
+
+
 const ContenidoMonitor = () => {
     const [contador, setContador] = React.useState(10);
     React.useEffect(()=> {
@@ -24,12 +26,11 @@ const ContenidoMonitor = () => {
         }
     }, [contador])
 
-
-    
     return(
         <sapp.App>
             <sapp.content_box>
         <s.contenido_monitor>
+
             <s.caja_direccion_dispositivo><span></span></s.caja_direccion_dispositivo>
 
             <s.refrescar>
@@ -39,18 +40,20 @@ const ContenidoMonitor = () => {
                 </span>
             </s.refrescar>
 
-            <s.caja_dispositivo_pequena style={{display:'none'}}/>
+            <s.caja_dispositivo_pequena>
+
+            <s.opcion_derecha  onClick={() => {console.log('Hola')}} />
+
             
             <Draggable bounds="parent">
             <s.caja_dispositivo_panel style={{left:'0px', top:'0px'}}>
-            
+                
                 <s.caja_dispositivo_titulo>
                     <s.barra_arrastable />
                     <s.barra_superior_titulo>
                     &nbsp;
                          &nbsp;<fa.FaLaptop />&nbsp;&nbsp;Mis Metas
                     </s.barra_superior_titulo>
-                    <s.opcion_derecha  onClick={() => {console.log('Hola')}}/>
                 </s.caja_dispositivo_titulo>
 
                 <s.contenido_panel_dispositivo>
@@ -80,11 +83,15 @@ const ContenidoMonitor = () => {
                             <ai.AiFillCaretDown />
                         </s.icono_fondo>
                     </s.titulo_caja>
-                </s.arbol_caja_monitor>
+                </s.arbol_caja_monitor>  
             </s.caja_dispositivo_panel>
+            
             </Draggable> 
+            </s.caja_dispositivo_pequena>
+            
 
             <MainView />
+            
         </s.contenido_monitor>
         </sapp.content_box>
         </sapp.App>

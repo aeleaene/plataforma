@@ -548,38 +548,112 @@ color: #909399;
 opacity: .7;
 `
 
+export const opcion_tarjeta = styled.div`
+    font: 400 14px Arial;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    position: fixed;
+    z-index: 9999;
+    background-color: #001529;
+    top: 565px;
+    left: 290px;
+    display: none;
+`
+
 export const menu_border = styled.div`
-font: 400 14px Arial;
-font-family: Avenir,Helvetica,Arial,sans-serif;
--webkit-font-smoothing: antialiased;
-color: #2c3e50;
-font-size: 0;
-list-style: none;
-margin: 0;
-padding: 0;
-border-top: 1px solid #1a2d3e;
+    font: 400 14px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    font-size: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #1a2d3e;
+`
+
+export const wrapper_card = styled.div`
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #1a2d3e;
+    cursor: pointer;
+    &:hover{
+        ${opcion_tarjeta}{
+            display: block;
+        }
+        }
 `
 
 export const icono_card = styled.i`
     font: 400 14px Arial;
-font-family: Avenir,Helvetica,Arial,sans-serif;
--webkit-font-smoothing: antialiased;
-line-height: 56px;
-list-style: none;
-cursor: pointer;
-white-space: nowrap;
-margin-right: 5px;
-width: 16px;
-height: 16px;
-display: inline-block;
-background-repeat: no-repeat;
-text-align: center;
-font-size: 18px;
-vertical-align: middle;
-background-image: url(${menus});
-background-position: -161px -64px;
-color: #909399;
-opacity: .7;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 56px;
+    list-style: none;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 18px;
+    vertical-align: middle;
+    background-image: url(${menus});
+    background-position: -161px -64px;
+    color: #909399;
+    opacity: .7;
+`
+
+export const contenido_opcion_tarjeta = styled.ul`
+    font: 400 14px Arial;
+    list-style: none;
+    position: relative;
+    margin: 0;
+    z-index: 100;
+    min-width: 200px;
+    border: none;
+    padding: 5px 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #001529;
+    max-height: 100vh;
+    overflow-y: auto;
+
+`
+
+export const contenido_opcion_tarjeta_item = styled.a`
+    font: 400 14px Arial;
+    list-style: none;
+    text-decoration: none;
+    color: #20a8d8;
+    cursor: pointer;
+    outline: none;
+
+`
+
+export const contenido_opcion_tarjeta_item_texto = styled.li`
+    font: 400 14px Arial;
+    margin: 0;
+    height: 56px;
+    line-height: 56px;
+    font-size: 14px;
+    padding: 0 20px;
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    transition: border-color .3s,background-color .3s,color .3s;
+    box-sizing: border-box;
+    white-space: nowrap;
+    padding-left: 20px;
+    color: hsla(0,0%,100%,.65);
+    &:hover{
+        background-color: #233645;
+    }
 `
 
 export const icono_chevron = styled.i`

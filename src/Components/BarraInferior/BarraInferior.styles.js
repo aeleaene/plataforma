@@ -4,6 +4,7 @@ import cabezera from '../../assets/images/dialog-header.cc6302f.png'
 import capa from '../../assets/images/maplayer.0b9b41f.png';
 import iconoBusqueda from '../../assets/images/search.svg';
 
+
 export const herramienta_mapa = styled.div`
     height: 35px;
     position: absolute;
@@ -68,22 +69,6 @@ export const icono_trafico = styled.span`
     }
 `
 
-export const capa_mapa = styled.div`
-    font: 400 13.3333px Arial;
-    font-family: Avenir,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
-    color: #2c3e50;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    bottom: 42px;
-    width: 190px;
-    background-color: #fff;
-    left: -80px;
-    box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
-    display: none;
-`
 
 export const capa_mapa_titulo = styled.div`
     font: 400 13.3333px Arial;
@@ -172,7 +157,24 @@ export const capa_mapa_item = styled.div`
     }
 `
 
-export const icono_mapa = styled.span`
+export const capa_mapa = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 42px;
+    width: 190px;
+    background-color: #fff;
+    left: -80px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
+    display: none;
+`
+
+export const icono_mapa = styled.buton`
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -184,11 +186,11 @@ export const icono_mapa = styled.span`
     background-image: url(${menus});
     background-position: -120px -120px;
     position: relative;
-    &:hover{
+    &:hover{ 
         background-position: -180px -120px;
-        ${capa_mapa}{
-            display:block;
-        }
+            ${capa_mapa}{
+                display: block;
+            }
     }
 `
 

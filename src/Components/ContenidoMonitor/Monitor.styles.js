@@ -55,19 +55,6 @@ export const refTemporizador = styled.font`
     font-weight: 700;
 `
 
-export const caja_dispositivo_pequena = styled.div`
-    height: 36px;
-    width: 36px;
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    background-repeat: no-repeat;
-    background-image: url(${max});
-    background-position: 50%;
-    z-index: 599;
-    cursor: pointer;
-    display: none;
-`
 
 export const caja_dispositivo_panel = styled.div`
     font: 400 13.3333px Arial;
@@ -86,6 +73,7 @@ export const caja_dispositivo_panel = styled.div`
     left: 475px;
     top: 15px;
     height: 852px;
+    display:none;
 `
 
 export const caja_dispositivo_titulo = styled.div`
@@ -251,6 +239,29 @@ export const icono_fondo = styled.i`
     -webkit-font-smoothing: antialiased;
 `
 
+
+export const caja_dispositivo_pequena = styled.button`
+    border: none;
+    background: none;
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-repeat: no-repeat;
+    background-image: url(${max});
+    background-position: 50%;
+    z-index: 599;
+    cursor: pointer;
+    display: block;
+    &:active {
+        display:none;
+        ${caja_dispositivo_panel} {
+            display: block;
+        }
+}
+`
+
 export const opcion_derecha = styled.button`
     position: absolute;
     border: none;
@@ -263,4 +274,10 @@ export const opcion_derecha = styled.button`
     background-repeat: no-repeat;
     background-position: 50%;
     cursor: pointer;
+    &:hover{
+        display: none;
+        ${caja_dispositivo_pequena}{
+            display: block;
+        }
+    }
 `
