@@ -20,6 +20,10 @@ import ProveedorServicios from '../ProveedorServicios/ProveedorServicios';
 import ModificarPassword from '../ModificarPassword/ModificarPassword';
 import RegistroSesion from '../RegistroSesion/RegistroSesion';
 import ManualUsuario from '../ManualUsuario/ManualUsuario';
+import Mensajes from '../Mensajes/Mensajes';
+import Preferencias from '../Preferencias/Preferencias';
+import ApiGoogle from '../ApiGoogle/ApiGoogle';
+import Notificaciones from '../Notificaciones/Notificaciones';
 Modal.setAppElement('#root');
 
 const BarraLateral = (props) => {
@@ -89,6 +93,10 @@ const BarraLateral = (props) => {
     const [modalModPassword, setModalModPassword] = useState(false);
     const [modalRegistroSesion, setModalRegistroSesion] = useState(false);
     const [modalManualUsuario, setModalManualUsuario] = useState(false);
+    const [modalMensajes, setModalMensajes] = useState(false);
+    const [modalPreferencias, setModalPreferencias] = useState(false);
+    const [modalApiGoogle, setModalApiGoogle] = useState(false);
+    const [modalNotificaciones, setModalNotificaciones] = useState(false);
 
     return (
         <Router>
@@ -486,28 +494,136 @@ const BarraLateral = (props) => {
                 <s.opciones>
                     <s.icono_opciones />
                     <s.submenu_opciones tabIndex="-1">
-                        <s.submenu_opciones_item>
+                        <s.submenu_opciones_item onClick={() => setModalPreferencias(true)}>
                             <s.submenu_opciones_item_icono><ic.HiCog /></s.submenu_opciones_item_icono> &nbsp;
                             Preferencias
                         </s.submenu_opciones_item>
                     
 
-                        <s.submenu_opciones_item>
+                        <s.submenu_opciones_item onClick={() => setModalNotificaciones(true)}>
                             <s.submenu_opciones_item_icono><ic.BsBellFill /></s.submenu_opciones_item_icono> &nbsp;
                             Notificación de la aplicación
                         </s.submenu_opciones_item>
 
-                        <s.submenu_opciones_item>
+                        <s.submenu_opciones_item onClick={() => setModalApiGoogle(true)}>
                             <s.submenu_opciones_item_icono><ic.GoKey /></s.submenu_opciones_item_icono> &nbsp;
                             Llave API de Google Maps
                         </s.submenu_opciones_item>
                     </s.submenu_opciones>
                 </s.opciones>
+                {/* Modals */}
+                    <Modal 
+                        isOpen={modalPreferencias}
+                        onRequestClose={() => setModalPreferencias(false)}
+                        style={{
+                            overlay: {
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                            },
+                            content: {
+                                width: 650,
+                                height: 478
+                            }
+                        }}
+                    >
+                        <s.HeaderModal>
+                            <s.TituloModal><ic.FiSettings /> Preferencias</s.TituloModal>
+                            <s.CerrarModal onClick={() => setModalPreferencias(false)}>+</s.CerrarModal>
+                        </s.HeaderModal>
+                        <Preferencias/>
+                        <s.DivBotones>
+                            <s.BotonCancelar onClick={() => setModalPreferencias(false)}>Cancelar</s.BotonCancelar>
+                            <s.BotonGuardar>Guardar</s.BotonGuardar>
+                        </s.DivBotones>
+                    </Modal>
 
-                <s.mensajes>
+                    <Modal 
+                        isOpen={modalNotificaciones}
+                        onRequestClose={() => setModalNotificaciones(false)}
+                        style={{
+                            overlay: {
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                            },
+                            content: {
+                                width: 650,
+                                height: 478
+                            }
+                        }}
+                    >
+                        <s.HeaderModal>
+                            <s.TituloModal><ic.BsBellFill/> Notificaciones de la Aplicación</s.TituloModal>
+                            <s.CerrarModal onClick={() => setModalNotificaciones(false)}>+</s.CerrarModal>
+                        </s.HeaderModal>
+                        <Notificaciones/>
+                        <s.DivBotones>
+                            <s.BotonCancelar onClick={() => setModalNotificaciones(false)}>Cancelar</s.BotonCancelar>
+                            <s.BotonGuardar>Guardar</s.BotonGuardar>
+                        </s.DivBotones>
+                    </Modal>
+
+                    <Modal 
+                        isOpen={modalApiGoogle}
+                        onRequestClose={() => setModalApiGoogle(false)}
+                        style={{
+                            overlay: {
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                            },
+                            content: {
+                                width: 650,
+                                height: 478
+                            }
+                        }}
+                    >
+                        <s.HeaderModal>
+                            <s.TituloModal><ic.GoKey /> Clave API de Google Maps</s.TituloModal>
+                            <s.CerrarModal onClick={() => setModalApiGoogle(false)}>+</s.CerrarModal>
+                        </s.HeaderModal>
+                        <ApiGoogle/>
+                    </Modal>
+
+                <s.mensajes onClick={() => setModalMensajes(true)}>
                     <s.icono_mensajes />
-                    <s.tooltip_mensaje role="tooltip" aria-hidden="true">Mensaje</s.tooltip_mensaje>
+                    <s.tooltip_mensaje role="tooltip" aria-hidden="true" >Mensaje</s.tooltip_mensaje>
                 </s.mensajes>
+                {/* Modal */}
+                <Modal 
+                    isOpen={modalMensajes}
+                    onRequestClose={() => setModalMensajes(false)}
+                    style={{
+                        overlay: {
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'rgba(15, 15, 15, 0.507)'
+                        },
+                        content: {
+                            width: 850,
+                            height: 427
+                        }
+                    }}
+                >
+                    <s.HeaderModal>
+                        <s.TituloModal><ic.FiMail /> Mensajes</s.TituloModal>
+                        <s.CerrarModal onClick={() => setModalMensajes(false)}>+</s.CerrarModal>
+                    </s.HeaderModal>
+                    <Mensajes/>
+                </Modal>
 
                 <s.salir>
                     <s.icono_salir onClick={handleSalir}/>
