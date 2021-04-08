@@ -4,6 +4,7 @@ import * as s from './ContenidoAdminDashboard.styles';
 
 import BarraLateralAdmin from '../BarraLateralAdmin/BarraLateralAdmin';
 import BarraSuperior from '../BarraSuperiorAdmin/BarraSuperior';
+import ContenidoAdmin from '../ContenidoAdmin/ContenidoAdmin';
 
 const ContenidoAdminDashboard = (props) => {
     return(
@@ -20,6 +21,7 @@ const ContenidoAdminDashboard = (props) => {
 
             <s.main_cointainer>
                         <BarraSuperior />
+                        <ContenidoAdmin />
             </s.main_cointainer>
         </s.body>
     )

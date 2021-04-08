@@ -29,7 +29,7 @@ export const header_top = styled.div`
     padding: 0;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 225px;
     right: 0;
 `
 
