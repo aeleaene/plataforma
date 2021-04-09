@@ -3,9 +3,9 @@ import * as s from './Notificaciones.styles';
 
 const Notificaciones = () => {
     return (
-        <div>
+        <s.Contenedor>
             
-        </div>
+        </s.Contenedor>
     )
 }
 

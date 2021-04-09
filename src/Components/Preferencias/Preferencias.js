@@ -3,9 +3,9 @@ import * as s from './Preferencias.styles';
 
 const Preferencias = () => {
     return (
-        <div>
+        <s.Contenedor>
             
-        </div>
+        </s.Contenedor>
     )
 }
 
