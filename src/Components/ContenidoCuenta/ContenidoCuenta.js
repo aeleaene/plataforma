@@ -18,7 +18,7 @@ const ContenidoCuenta = () => {
                     </s.InputGroup>
                 </s.ContentOneInside>
                 <s.ContentImage>
-                <s.InputGroup>
+                <s.InputGroup style={{ paddingRight: 0}}>
                     <s.Label>Retrato:</s.Label>
                     <s.Img src={perfil}/>
                     <s.EditButon><ic.FiEdit3 /></s.EditButon>

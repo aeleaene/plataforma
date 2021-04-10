@@ -554,8 +554,8 @@ const BarraLateral = (props) => {
                                 backgroundColor: 'rgba(15, 15, 15, 0.507)'
                             },
                             content: {
-                                width: 650,
-                                height: 478
+                                width: 600,
+                                height: 612
                             }
                         }}
                     >
