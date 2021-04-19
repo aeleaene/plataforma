@@ -19,6 +19,13 @@ import * as sapp from '../../App.styles'
 
 const ContenidoMonitor = () => {
     const [contador, setContador] = React.useState(10);
+    const [toggle, setToggle] = React.useState(false);
+
+    const handleToggle = () => {
+        setToggle(!toggle)
+        console.log(toggle);
+    }
+
     React.useEffect(()=> {
         contador > 0 && setTimeout(() => setContador(contador -1), 1000);
         if(contador == 0) {
@@ -40,20 +47,20 @@ const ContenidoMonitor = () => {
                 </span>
             </s.refrescar>
 
-            <s.caja_dispositivo_pequena>
-
-            <s.opcion_derecha  onClick={() => {console.log('Hola')}} />
+            <s.caja_dispositivo_pequena visibility={toggle} onClick={handleToggle}/>
 
             
             <Draggable bounds="parent">
-            <s.caja_dispositivo_panel style={{left:'0px', top:'0px'}}>
+            <s.caja_dispositivo_panel visibility={toggle} style={{left:'0px', top:'0px'}}>
                 
-                <s.caja_dispositivo_titulo>
+                <s.caja_dispositivo_titulo >
+                
                     <s.barra_arrastable />
                     <s.barra_superior_titulo>
                     &nbsp;
                          &nbsp;<fa.FaLaptop />&nbsp;&nbsp;Mis Metas
                     </s.barra_superior_titulo>
+                    <s.opcion_derecha onClick={handleToggle} visibility={toggle}/>
                 </s.caja_dispositivo_titulo>
 
                 <s.contenido_panel_dispositivo>
@@ -87,7 +94,6 @@ const ContenidoMonitor = () => {
             </s.caja_dispositivo_panel>
             
             </Draggable> 
-            </s.caja_dispositivo_pequena>
             
 
             <MainView />
