@@ -6,17 +6,23 @@ import iconoBusqueda from '../../assets/images/search.svg';
 
 
 export const herramienta_mapa = styled.div`
-    height: 35px;
-    position: absolute;
+    height: auto;
     left: 0;
     bottom: 0;
     right: 0;
-    margin: 0 auto;
-    paddding:0;
+    margin: 0;
     background-color: #192c3e;
     padding: 8px 0;
-    z-index: 1001;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    margin-left: 4.5rem;
+
 `
+export const caja_izquierda = styled.div`
+    /* width: 100%; */
+    
+`;
 
 export const icono_distancia = styled.span`
     width: 34px;
@@ -166,7 +172,7 @@ export const capa_mapa = styled.div`
     margin: 0;
     padding: 0;
     position: absolute;
-    bottom: 42px;
+    bottom: 44px;
     width: 190px;
     background-color: #fff;
     left: -80px;
@@ -251,12 +257,12 @@ export const slider_button_wrapper = styled.div`
     height: 36px;
     width: 36px;
     z-index: 1001;
-    transform: translateX(-50%);
+    transform: translateX(-40%);
     background-color: transparent;
     text-align: center;
     user-select: none;
     line-height: normal;
-    top: 16.18px;
+    bottom: -1px;
 `
 
 export const slider_button = styled.div`
@@ -299,12 +305,16 @@ export const icono_zoom_mas = styled.div`
 `
 
 export const caja_derecha = styled.div`
-    margin: 0;
+/*     margin: 0;
     padding: 0;
     display: inline;
     float: left;
     margin-left: 920px;
-    position: fixed;
+    position: fixed; */
+    /* width: 100%; */
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
 `
 
 export const icono_POI = styled.span`

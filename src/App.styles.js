@@ -9,7 +9,6 @@ export const App = styled.div`
     font-family: Avenir,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
     color: #2c3e50;
-    min-width: 1200px;
 `
 
 export const content_box = styled.div`
@@ -32,6 +31,7 @@ export const contenido_derecho = styled.div`
     height: 100%;
     width: 100%;
     overflow-y: auto;
+    overflow-x: scroll;
     position: fixed;
 `
 

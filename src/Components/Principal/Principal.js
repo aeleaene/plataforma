@@ -15,7 +15,7 @@ const Principal = () => {
 
                 <s.contenido_derecho>
                     <ContenidoMonitor />
-                <BarraInferior/>
+                    <BarraInferior/>
                 </s.contenido_derecho>
             </s.content_box>
         </s.App>

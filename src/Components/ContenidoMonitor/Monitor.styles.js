@@ -6,11 +6,15 @@ import header from '../../assets/images/dialog-header.cc6302f.png';
 
 
 export const contenido_monitor = styled.div`
-    position: relative;
+    position: fixed;
     height: 100%;
-    overflow-y: hidden;
+    width: 100%
+    /* overflow-y: hidden; */
 ` 
-
+export const App = styled.div`
+    width: 100%;
+    height: 100%;
+`;
 export const caja_direccion_dispositivo = styled.div`
     min-height: 25px;
     line-height: 25px;

@@ -27,7 +27,7 @@ const ContenidoMonitor = () => {
     }, [contador])
 
     return(
-        <sapp.App>
+        <s.App>
             <sapp.content_box>
         <s.contenido_monitor>
 
@@ -94,7 +94,7 @@ const ContenidoMonitor = () => {
             
         </s.contenido_monitor>
         </sapp.content_box>
-        </sapp.App>
+        </s.App>
     );
 
 }

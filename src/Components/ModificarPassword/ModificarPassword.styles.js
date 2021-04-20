@@ -1,5 +1,5 @@
 import styled from '@emotion/styled/macro';
-import header from '../../assets/images/dialog-header.cc6302f.png';
+
 
 export const BodyContent = styled.div`
     padding: 10px 20px;
