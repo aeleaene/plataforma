@@ -77,7 +77,7 @@ export const caja_dispositivo_panel = styled.div`
     left: 475px;
     top: 15px;
     height: 852px;
-    display:none;
+    display: ${props => props.visibility? 'none':'block'};
 `
 
 export const caja_dispositivo_titulo = styled.div`
@@ -243,7 +243,6 @@ export const icono_fondo = styled.i`
     -webkit-font-smoothing: antialiased;
 `
 
-
 export const caja_dispositivo_pequena = styled.button`
     border: none;
     background: none;
@@ -257,13 +256,7 @@ export const caja_dispositivo_pequena = styled.button`
     background-position: 50%;
     z-index: 599;
     cursor: pointer;
-    display: block;
-    &:active {
-        display:none;
-        ${caja_dispositivo_panel} {
-            display: block;
-        }
-}
+    display: ${props => props.visibility? 'block':'none'};
 `
 
 export const opcion_derecha = styled.button`
@@ -278,10 +271,4 @@ export const opcion_derecha = styled.button`
     background-repeat: no-repeat;
     background-position: 50%;
     cursor: pointer;
-    &:hover{
-        display: none;
-        ${caja_dispositivo_pequena}{
-            display: block;
-        }
-    }
 `

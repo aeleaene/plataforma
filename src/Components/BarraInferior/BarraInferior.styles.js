@@ -17,6 +17,12 @@ export const herramienta_mapa = styled.div`
     justify-content: space-between;
     position: fixed;
     margin-left: 4.5rem;
+    
+    @media screen and (max-width: 998px){
+        min-width: 1024px;
+        overflow-x: scroll;
+        position: absolute;
+    }
 
 `
 export const caja_izquierda = styled.div`

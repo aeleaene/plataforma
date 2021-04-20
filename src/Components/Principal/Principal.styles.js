@@ -10,7 +10,7 @@ export const App = styled.div`
     -webkit-font-smoothing: antialiased;
     color: #2c3e50;
     /* min-width: 1200px; */
-    position: fixed;
+/*     position: fixed; */
 `
 
 export const content_box = styled.div`
@@ -27,6 +27,8 @@ export const menu_izquierdo = styled.div`
     z-index: 3000; */
     box-shadow: 1px 1px 1px #24313d; 
     height: 100vh;
+    position: fixed;
+    z-index:1;
 `
 
 export const contenido_derecho = styled.div`
@@ -38,8 +40,8 @@ export const contenido_derecho = styled.div`
     /* position: fixed; */ 
     display: flex;
     flex-direction: column;
-    min-width: 998px;
-    overflow-x: scroll;
+    height: 100%;
+    margin-left: 4.5rem;
 `
 
 export const Header = styled.h1`

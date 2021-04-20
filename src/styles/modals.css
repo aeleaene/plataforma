@@ -9,6 +9,7 @@
     padding: 0 !important;
     border-radius: 0px !important;
     border: none !important;
+
 }
 .ReactModal__Overlay {
     opacity: 0;
@@ -17,8 +18,13 @@
 
 .ReactModal__Overlay--after-open{
     opacity: 1;
+    overflow: scroll;
 }
 
 .ReactModal__Overlay--before-close{
     opacity: 0;
+}
+.ReactModalPortal{
+    position: absolute !important;
+    z-index: 1;
 }

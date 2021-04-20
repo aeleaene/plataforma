@@ -17,7 +17,6 @@ export const content_box = styled.div`
 
 export const menu_izquierdo = styled.div`
     width: 72px;
-    position: fixed;
     left: 0;
     top: 0;
     z-index: 3000;
@@ -32,7 +31,6 @@ export const contenido_derecho = styled.div`
     width: 100%;
     overflow-y: auto;
     overflow-x: scroll;
-    position: fixed;
 `
 
 export const Header = styled.h1`
