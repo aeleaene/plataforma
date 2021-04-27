@@ -164,6 +164,7 @@ export const capa_mapa_item = styled.div`
     cursor: pointer;
     padding-left: 15px;
     font-size: 13px;
+    
     &:hover{
         background-color: #ffb771;
     }
@@ -183,13 +184,12 @@ export const capa_mapa = styled.div`
     background-color: #fff;
     left: -80px;
     box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
-    display: none;
+    display: ${props => props.visibility? 'block':'none'};
 `
 
 export const icono_mapa = styled.buton`
     width: 34px;
     height: 34px;
-    display: inline-block;
     background-repeat: no-repeat;
     margin-left: 18px;
     float: left;
@@ -198,11 +198,9 @@ export const icono_mapa = styled.buton`
     background-image: url(${menus});
     background-position: -120px -120px;
     position: relative;
+    display: inline-block;
     &:hover{ 
         background-position: -180px -120px;
-            ${capa_mapa}{
-                display: block;
-            }
     }
 `
 

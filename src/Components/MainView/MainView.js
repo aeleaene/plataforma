@@ -2,7 +2,7 @@ import React from 'react';
 import * as s from './MainView.styles';
 
 //Componentes
-import Mapa from '../Mapa/Mapa'
+import Mapa from '../BarraInferior/Mapa'
 
 const MainView = () => {
     return (
