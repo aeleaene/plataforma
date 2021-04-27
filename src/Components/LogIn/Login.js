@@ -38,10 +38,15 @@ const Login = (props) => {
 
     const handleEnviar = (e) => {
         e.preventDefault();
-        if (usuario.password != "") {
+        if (usuario.password == "") {
+            /* iniciarSesion(); */
+            alert('Por favor, introduzca la contraseña');
+        }
+        else if(usuario.email == "") {
+            alert('Por favor ingrese la cuenta.');
+        }
+        else{
             iniciarSesion();
-        } else {
-            alert('🥱');
         }
     }
 
