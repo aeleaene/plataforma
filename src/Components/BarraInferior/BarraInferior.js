@@ -12,6 +12,7 @@ const BarraInferior = () => {
 
     const [toggle, setToggle] = React.useState(false);
     const [layer, setLayer] = React.useState(false);
+    const [zoom, setZoom] = React.useState(5);
 
     const handleToggle = () => {
         setToggle(!toggle)
@@ -50,6 +51,16 @@ const BarraInferior = () => {
         setLayer(!layer);
         window.valorCapaBing = layer;
     }
+
+    const handleZoomMin = () => {
+        setZoom(zoom-1);
+        window.zoom = zoom;
+    }
+
+    const handleZoomMax = () => {
+        setZoom(zoom+1);
+        window.zoom = zoom;
+    }
     
 
 
@@ -76,7 +87,7 @@ const BarraInferior = () => {
             </s.icono_mapa>
     {/* El valor es de -13 a 47*/}
             <s.caja_zoom>
-                    <s.icono_zoom_menos/>
+                    <s.icono_zoom_menos onClick={handleZoomMin}/>
                     <s.zoom_slider>
                         <s.slider role={"slider"} aria-valuemin={"0"} aria-valuemax={"21"} aria-orientation={"horizontal"} aria-valuetext={"13"} aria-label={"slider entre 0 y 21"}>
                             <s.slider_runway>
@@ -89,7 +100,7 @@ const BarraInferior = () => {
                             </s.slider_runway>
                         </s.slider>
                     </s.zoom_slider>
-                    <s.icono_zoom_mas/>
+                    <s.icono_zoom_mas onClick={handleZoomMax}/>
             </s.caja_zoom>
 
                 <s.direccion_mapa>
