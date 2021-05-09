@@ -12,9 +12,6 @@ import {
     useHistory,
 } from "react-router-dom";
 
-import { setSessionCookie } from '../../sessions';
-import Xhr from 'xhr';
-
 
 const Login = (props) => {
 
@@ -46,7 +43,8 @@ const Login = (props) => {
             alert('Por favor ingrese la cuenta.');
         }
         else{
-            iniciarSesion();
+            handleLogin();
+            //iniciarSesion();
         }
     }
 
@@ -65,48 +63,30 @@ const Login = (props) => {
         setLoading(false);
     }
 
-
-    const iniciarSesion = async () => {
-
-        setLoading(true);
-        const myHeaders = new Headers();
-
-        myHeaders.append("Authorization", "Basic Og==");
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("email", usuario.email);
-        urlencoded.append("password", usuario.password);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            credentials: 'same-origin',
-            redirect: 'manual',
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
         }
-
-
-        trackPromise(
-            fetch("http://52.36.58.203:7082/api/session", requestOptions)
-                .then((response) => {
-                    for(let entry of response.headers.entries()) {
-                        console.log('header', entry);
-                      }
-                    if (response.ok) {
-                        console.log('Cookie: '+response.headers.get('set-cookie'))
-                        Cookies.set('session', response.headers.get('set-cookie'), { expires: 2, path: '/'})
-                        console.log('Cookie: '+Cookies.get('session'))
-                        redireccionar();
-                    } else {
-                        alert('There was a problem');
-                    }
-                })
-                .catch(error => console.log('error', error))
-        );
+        return null;
     }
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const response = await fetch('https://www.protrack.ad105.net/api/session', {credentials: 'include',method: 'POST', body: new URLSearchParams(`email=${usuario.email}&password=${usuario.password}`)});
+    
+        if(response.ok) {
+            console.log('valor -> ', document.cookie);
+            const user = await response.json();
+            console.log(user);
+            redireccionar();
+        }else{
+            alert('No OK');
+        }
+    }
 
 
     return (
@@ -131,7 +111,7 @@ const Login = (props) => {
                     <s.wrap style={{ width: '1100px', visibility: 'visible' }}>
                         <s.caja_login>
                             <s.container>
-                                <s.formulario onSubmit={handleEnviar}>
+                                <s.formulario onSubmit={handleLogin}>
                                     <s.formulatio_titulo>Iniciar Sesión</s.formulatio_titulo>
                                     <s.formulario_contenido>
                                         <s.formulario_contenido_cuenta>

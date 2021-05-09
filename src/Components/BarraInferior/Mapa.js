@@ -24,7 +24,7 @@ const Mapa = (props) => {
     <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true}>
         <LayersControl position="bottomright">
         <SetZoom />
-          <LayersControl.BaseLayer checked={window.valorCapaGs} name="Google">
+          <LayersControl.BaseLayer checked name="Google">
           <TileLayer
           url="http://www.google.cn/maps/vt?lyrs=m@189,traffic&gl=cn&x={x}&y={y}&z={z}"
           attribution="Datos del mapa &copy; 2020 INEGI México"/>

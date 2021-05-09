@@ -34,7 +34,6 @@ const BarraLateral = (props) => {
     const handleSalir = (e) => {
         e.preventDefault();
         salir();
-        setSesion(true);
     }
 
     const Probar = () => {
@@ -73,18 +72,19 @@ const BarraLateral = (props) => {
         var requestOptions = {
             method: 'DELETE',
             headers: myHeaders,
-            redirect: 'follow'
+            redirect: 'follow',
+            credentials: 'include'
         };
 
-        fetch("http://52.36.58.203:7082/api/session", requestOptions)
+        fetch("https://www.protrack.ad105.net/api/session", requestOptions)
         .then((response) => {
             console.log('Estado'+response.status)
-        if(response.ok){
-            alert('SALIR');
-        }else{
-            alert('Hubo un problema');
-            redireccionar();
-        }
+            if(response.status === 204){
+                alert('Sesión finalizada')
+                redireccionar();
+            }else{
+                alert('Ocurrió un error')
+            }
         }).catch(error => console.log('error: ', error))
     }
     /* State Modal */
