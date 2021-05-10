@@ -36,6 +36,29 @@ const BarraLateral = (props) => {
         salir();
     }
 
+    const consultarDispositivos = async() => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Accept", "*/*");
+
+        var requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+          
+           await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+    const handleDevices = () =>{
+        consultarDispositivos();
+    }
+
     const Probar = () => {
         var requestOptions = {
             method: 'GET',
@@ -485,9 +508,9 @@ const BarraLateral = (props) => {
 
             <s.menu_inferior>
 
-                <s.anterior>
+                <s.anterior onClick={handleDevices}>
                     <s.icono_anterior />
-                    <s.tooltip_anterior role="tooltip" aria-hidden="true">Versión Anterior</s.tooltip_anterior>
+                    <s.tooltip_anterior role="tooltip" aria-hidden="true" >Versión Anterior</s.tooltip_anterior>
                 </s.anterior>
 
 

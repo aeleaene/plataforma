@@ -79,7 +79,6 @@ const Login = (props) => {
         const response = await fetch('https://www.protrack.ad105.net/api/session', {credentials: 'include',method: 'POST', body: new URLSearchParams(`email=${usuario.email}&password=${usuario.password}`)});
     
         if(response.ok) {
-            console.log('valor -> ', document.cookie);
             const user = await response.json();
             console.log(user);
             redireccionar();
