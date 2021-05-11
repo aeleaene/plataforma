@@ -1,22 +1,61 @@
-import React, { useEffect } from 'react'
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect, useState } from 'react'
 import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl, useMap} from 'react-leaflet';
-import  {Icon} from 'leaflet';
+import  L from 'leaflet';
+
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
+import 'leaflet/dist/leaflet.css';
 import '../../styles/mapa.css';
 
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 
 const Mapa = (props) => {
+
+
+  const [marker, setMarker] = useState([])
+  useEffect(() => {
+    Marcador()
+  }, [])
+
 
   function SetZoom(){
     const mapInstance = useMap()
     React.useEffect(() => {
       const zoom = window.zoom;
       mapInstance.setZoom(zoom)
+      
+    
     }, [])
 
     return null
+  }
+  const Marcador = async() =>{
+    var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Accept", "*/*");
+
+        var requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+          
+           const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
+            /* .then(response => response.json())
+            .catch(error => console.log('error', error)); */
+            const markerData = await resultado.json();
+            console.log(markerData)
+            setMarker(markerData);
+            console.log(marker)
   }
 
   return (
@@ -60,6 +99,12 @@ const Mapa = (props) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
           </LayersControl.BaseLayer>
         </LayersControl>
+        {
+          marker.map(item => (
+            <Marker key={item.id} position={[item.latitude, item.longitude]}>
+            </Marker>
+          ))
+        }
         <EsriLeafletGeoSearch useMapBound={false} position="bottomright" placeholder="Ingresa tu búsqueda"/>
     </MapContainer>
   );
