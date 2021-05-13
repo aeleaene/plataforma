@@ -102,6 +102,7 @@ const Mapa = (props) => {
         {
           marker.map(item => (
             <Marker key={item.id} position={[item.latitude, item.longitude]}>
+
             </Marker>
           ))
         }

@@ -129,6 +129,7 @@ export const busqueda_en_linea = styled.div`
 
 export const sufijo_entrada = styled.div`
     width: 100%;
+
 `
 export const entrada_interna = styled.input`
    -webkit-font-smoothing: antialiased;
@@ -272,3 +273,136 @@ export const opcion_derecha = styled.button`
     background-position: 50%;
     cursor: pointer;
 `
+
+export const submenu1 = styled.div`
+    border-bottom: 1px solid #E4E4E4;
+    padding: 6px 10px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+export const submenu2 = styled.div`
+    border-bottom: 1px solid #E4E4E4;
+    padding: 6px 10px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+export const submenu2opciones = styled.ul`
+    margin: 0;
+    width: 100%;
+    padding: 0px 10px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     list-style: none;
+`;
+export const submenu2opcionesli = styled.li`
+    padding: 10px 10px;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    &:hover{
+        border-bottom: 2px solid #ff9934;
+    }
+`;
+export const submenu1left = styled.div`
+    display: flex;
+    align-items: center;
+`;
+export const seguirSpan = styled.span`
+    cursor: pointer;
+    font-size: 20px;
+    color: #a3a3a3;
+`;
+export const listado = styled.button`
+    margin: 0px 0px 0px 10px;
+    width: 40px;
+    height: 24px;
+    cursor: pointer;
+    border: 1px solid #ff9934;
+    background-color: transparent;
+    color: #ff9934;
+    font-size: 18px;
+    font-weight: bold;
+`;
+export const submenu1right = styled.div`
+    display: flex;
+    align-items: center;
+`;
+export const ordenarList = styled.select`
+    width: 77px;
+    height: 24px;
+    color: #999999;
+    border: 1px solid #999999;
+`;
+export const objetivo = styled.button`
+    margin: 0px 0px 0px 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: 1px solid #ff9934;
+    background-color: transparent;
+    color: #ff9934;
+    font-size: 18px;
+    font-weight: bold;`;
+export const rastreador = styled.button`
+    margin: 0px 0px 0px 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: 1px solid #a3a3a3;
+    background-color: transparent;
+    color: #a3a3a3;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 2px 2px;
+`;
+export const deviceonlist = styled.div`
+    padding: 8px 8px 8px 30px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    &:hover{
+        background-color: #e4e4e4;
+    }
+`;
+export const deviceonlistsub1 = styled.div`
+    display: flex;
+    align-items: center;
+`;
+export const deviceonlistsub2 = styled.div`
+    display: flex;
+    align-items: center;
+`;
+export const deviceChebox = styled.input`
+    width: 16px;
+    height: 16px;
+    margin: 2px 0px 0px;
+    border-color: red;
+`;
+export const deviceName = styled.span`
+    font-size: 13.3px;
+    color: #4e8dc2;
+    padding-left: 5px;
+`;
+export const deviceTime = styled.span`
+    font-size: 13.3px;
+    color: #4e8dc2;
+    padding-left: 5px;
+`;
+export const deviceStatus = styled.span`
+    width: 30px;
+    margin-left: -10px;
+    padding-top: 4px;
+`;
+export const deviceOptions = styled.span`
+    text-align: center;
+    color: #999999;
+    padding-top: 4px;
+`;

@@ -6,6 +6,7 @@ import ContenidoMonitor from '../ContenidoMonitor/Monitor';
 import BarraInferior from '../BarraInferior/BarraInferior';
 
 const Principal = () => {
+
     return(
         <s.App>
             <s.content_box>
@@ -14,7 +15,7 @@ const Principal = () => {
                 </s.menu_izquierdo>
 
                 <s.contenido_derecho>
-                    <ContenidoMonitor />
+                    <ContenidoMonitor/>
                     <BarraInferior/>
                 </s.contenido_derecho>
             </s.content_box>

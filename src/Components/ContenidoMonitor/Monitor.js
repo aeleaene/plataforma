@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as s from './Monitor.styles';
 
@@ -11,15 +11,43 @@ import BarraLateral from '../BarraLateral/BarraLateral';
 
 import * as fa from 'react-icons/fa';
 import * as ai from 'react-icons/ai';
+import {GiFootprint} from "react-icons/gi";
+import {VscThreeBars} from "react-icons/vsc";
+import {BiTargetLock} from "react-icons/bi";
+import {BsThreeDotsVertical, BsDot} from "react-icons/bs";
 
 import * as sapp from '../../App.styles'
 
 
 
 
-const ContenidoMonitor = () => {
+const ContenidoMonitor = (props) => {
     const [contador, setContador] = React.useState(10);
     const [toggle, setToggle] = React.useState(false);
+    const [device, setDevice] = useState([])
+    useEffect(() => {
+        Devices()
+    }, [])
+    const Devices = async() =>{
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "*/*");
+
+            var requestOptions = {
+                method: 'GET',
+                credentials: 'include',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+            
+            const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                /* .then(response => response.json())
+                .catch(error => console.log('error', error)); */
+                const deviceData = await resultado.json();
+                console.log(deviceData)
+                setDevice(deviceData);
+                console.log(device)
+    }
 
     const handleToggle = () => {
         setToggle(!toggle)
@@ -82,6 +110,45 @@ const ContenidoMonitor = () => {
                             </s.sufijo_entrada>
                         </s.busqueda_en_linea>
                     </s.busqueda_dispositivo>
+                    <s.submenu1>
+                        <s.submenu1left>
+                            <s.seguirSpan><GiFootprint/></s.seguirSpan>
+                            <s.listado><VscThreeBars/></s.listado>
+                        </s.submenu1left>
+                        <s.submenu1right>
+                            <s.ordenarList>
+                                <option value="name">Nombre</option>
+                                <option value="status">Estado</option>
+                                <option value="speed">Velocidad</option>
+                            </s.ordenarList>
+                            <s.objetivo>T</s.objetivo>
+                            <s.rastreador><BiTargetLock/></s.rastreador>
+                        </s.submenu1right>
+                    </s.submenu1>
+                    <s.submenu2>
+                        <s.submenu2opciones>
+                            <s.submenu2opcionesli>Todos ({device.length})</s.submenu2opcionesli>
+                            <s.submenu2opcionesli>En Linea ({device.length})</s.submenu2opcionesli>
+                            <s.submenu2opcionesli>Fuera de Linea</s.submenu2opcionesli>
+                        </s.submenu2opciones>
+                    </s.submenu2>
+                    {
+                        device.map(item => (
+                            <s.deviceonlist key={item.id}>
+                                <s.deviceonlistsub1>
+                                    <s.deviceChebox type="checkbox"/>
+                                    <s.deviceName>{item.name}</s.deviceName>
+                                </s.deviceonlistsub1>
+                                <s.deviceonlistsub2>
+                                    <s.deviceTime>2d+</s.deviceTime>
+                                    <s.deviceStatus>{
+                                        item.status === "online" ? <BsDot style={{color: "#0795fb", fontSize: 45}}/> : <BsDot style={{color: "#999999", fontSize: 45}}/>
+                                    }</s.deviceStatus>
+                                    <s.deviceOptions><BsThreeDotsVertical /></s.deviceOptions>
+                                </s.deviceonlistsub2>
+                            </s.deviceonlist>
+                        ))
+                    }
                 </s.contenido_panel_dispositivo>
 
                 <s.arbol_caja_monitor>
