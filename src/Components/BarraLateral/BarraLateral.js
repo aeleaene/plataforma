@@ -162,7 +162,7 @@ const BarraLateral = (props) => {
                 </s.HeaderModal>
                 <ContenidoCuenta/>
                 <s.DivBotones>
-                    <s.BotonCancelar onClick={() => setModalModPassword(false)}>Cancelar</s.BotonCancelar>
+                    <s.BotonCancelar onClick={() => setModalCuenta(false)}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar>Guardar</s.BotonGuardar>
                 </s.DivBotones>
             </Modal>

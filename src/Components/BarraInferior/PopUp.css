@@ -1,0 +1,13 @@
+.leaflet-popup-content-wrapper {
+    border-radius: 0px;
+}
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+    padding: 5px 10px 0px;
+    margin: 0px;
+}
+.inout-popup{
+    font-family: 'Times New Roman', Times, serif;
+}
+.arrow-popup{
+    font-size: 18px !important;
+}
