@@ -6,6 +6,10 @@ import * as s from '../ContenidoAdminDashboard/ContenidoAdminDashboard.styles';
 import BarraSuperior from '../BarraSuperiorAdmin/BarraSuperior';
 import ContenidoAdmin from '../ContenidoAdmin/ContenidoAdmin';
 
+import BarraLateralAdmin from '../BarraLateralAdmin/BarraLateralAdmin';
+
+import T from './t';
+
 
 
 
@@ -38,28 +42,15 @@ const AgregarUsuario = (props) => {
         <s.body>
             <s.app id="app">
                 <s.app_main>
-
+                <s.sidebar_container>
+                    <BarraLateralAdmin />
+                </s.sidebar_container>
                 </s.app_main>
             </s.app>
             <s.main_cointainer>
                 <BarraSuperior />
                 <ContenidoAdmin />
-                <form>     
-                <label>
-                Nombre:
-                <input type="text" onChange={event => setName(event.target.value)} />
-                </label>
-                <label>
-                Contraseña:
-                <input type="password" onChange={event => setPassword(event.target.value)}/>
-                </label>
-                <label>
-                Email:
-                <input type="email" onChange={event => setEmail(event.target.value)} />
-                </label>
-                <button value="enviar" onClick={enviar} >Enviar</button>
-                </form>
-
+                <T/>
             </s.main_cointainer>
         </s.body>          
     )
