@@ -1,4 +1,4 @@
-import React, {useState} from 'react'; 
+import React, {useState, useEffect} from 'react'; 
 
 import * as ri from 'react-icons/all';
 
@@ -17,8 +17,9 @@ const T = (props) => {
     const [model, setModel] = useState('');
     const [uniqueId, setUniqueId] = useState('');
     const [attributes, setAttributes] = useState('');
+    const [users, setUsers] = useState([]);
 
-    const [users, setUsers] = useState('');
+
 
     const handleMostarar = async() => {
         const response = await fetch('/api/users', {
@@ -28,19 +29,19 @@ const T = (props) => {
                 'Credentials': 'include',
                 'Accept':'*/*',
             }
-        });
-        if(response.ok){
-            console.log(response.status);
-        }else{
-            console.log('Algo salió mal')
-        }
+        }).then(response =>response.json()
+        .then(data=>{setUsers(JSON.stringify(data))})
+        );
     }
+
+    useEffect(() => {
+        console.log(users);
+        handleMostarar();
+    }, []);
 
     const mostrar = (e) => {
         e.preventDefault();
-        var datos = JSON.stringify({name, uniqueId, model});
-        console.log(datos);
-        handleEnviar();
+        console.log(users);
         {/*console.log('Mostrando usuarios');
     handleMostarar();*/}
     }
@@ -100,8 +101,11 @@ const T = (props) => {
                                 <sd.user_tree_select>
                                     <sd.data_tips>
                                         <sd.el_autocomplete>
+                                            
                                             <sd.el_input>
-                                                <sd.select type="text" onChange={event => setName(event.target.value)}></sd.select>
+                                                <sd.select type="text" onChange={event => setName(event.target.value)}>
+
+                                                </sd.select>
                                                 <sd.el_input_group_append>
                                                     <sd.el_button onClick={mostrar}>< ri.RiArrowDownSLine/></sd.el_button>
                                                 </sd.el_input_group_append>

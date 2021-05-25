@@ -149,7 +149,104 @@ vertical-align: top;
 width: 240px;
 `
 
-export const select = styled.input`
+export const expanded_el_tree_node = styled.span`
+    font: 400 14px Arial;
+    white-space: nowrap;
+    font-family: element-icons!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    color: #c0c4cc;
+    font-size: 12px;
+    transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+    background-repeat: no-repeat;
+    height: 4px;
+    width: 4px;
+    margin-left: 10px;
+    float: left;
+    background-size: 14px;
+    padding: 6px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk0Qjg1QkJGOTA5MzExRTg4MEEzOEZEQzI5MzkxREZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk0Qjg1QkMwOTA5MzExRTg4MEEzOEZEQzI5MzkxREZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTRCODVCQkQ5MDkzMTFFODgwQTM4RkRDMjkzOTFERkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTRCODVCQkU5MDkzMTFFODgwQTM4RkRDMjkzOTFERkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz73BvjgAAAAN0lEQVR42mJcvvEQAyWABYj/U6CfkYmBQjBqABUMYEHmRPjZEtSwYtNh1HgEJqTRdDDkDQAIMAC8/AlX9PqLuQAAAABJRU5ErkJggg==);
+    transform: none;
+`
+
+export const el_tree_node_content = styled.div`
+        font: 400 14px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 37px;
+    color: #606266;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    min-height: 34px;
+    height: auto;
+    background-color: #e8f2f9;
+    padding-left: 0px;
+`
+
+export const custom_tree_node_f1 = styled.div`
+        font: 400 14px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 37px;
+    color: #606266;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1;
+`
+
+export const custom_tree_node_cont = styled.div`
+        font: 400 14px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #606266;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    font-size: 13px;
+    line-height: 18px;
+    padding-right: 15px;
+`
+
+
+export const tree_node_word = styled.option`
+font: 400 14px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #606266;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 18px;
+    margin-left: 26px;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    display: inline-block;
+`
+
+export const select = styled.select`
 -webkit-font-smoothing: antialiased;
 border-collapse: separate;
 border-spacing: 0;
