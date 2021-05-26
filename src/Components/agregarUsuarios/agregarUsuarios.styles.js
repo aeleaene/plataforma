@@ -11,6 +11,35 @@ export const add_user_page_h100b = styled.div`
     padding: 15px;
 `
 
+export const select = styled.select`
+-webkit-font-smoothing: antialiased;
+border-collapse: separate;
+border-spacing: 0;
+margin: 0;
+-webkit-appearance: none;
+background-color: #fff;
+background-image: none;
+border: 1px solid #dbe1e5;
+box-sizing: border-box;
+color: #606266;
+font-size: inherit;
+outline: none;
+padding: 0 15px;
+transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+width: 100%;
+border-color: #dbe1e5;
+height: 36px;
+line-height: 36px;
+border-radius: 2px;
+font-family: Avenir,Helvetica,Arial,sans-serif;
+padding-right: 30px;
+vertical-align: middle;
+display: table-cell;
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+`
+
+
 export const block_titlebar = styled.h3`
     font: 400 14px Arial;
     font-family: Avenir,Helvetica,Arial,sans-serif;

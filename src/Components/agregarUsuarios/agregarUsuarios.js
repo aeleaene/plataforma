@@ -12,7 +12,6 @@ import T from './t';
 
 
 
-
 const AgregarUsuario = (props) => {
 
     const [name, setName] = useState('');
