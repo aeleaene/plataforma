@@ -10,6 +10,10 @@ import {
 import Login from './Components/LogIn/Login';
 import Principal from './Components/Principal/Principal';
 import AdminDashboard from './Components/AdminDashboard/AdminDashboard';
+import AgregarDispositivo from './Components/agregarDispositivos/agregarDispositivos';
+import T from './Components/agregarDispositivos/t';
+import AgregarUsuario from './Components/agregarUsuarios/agregarUsuarios';
+
 import { getSessionCookie, SessionContext } from './sessions';
 
 
@@ -35,7 +39,10 @@ function App() {
         <Route exact={true} path="/dealer2/" component={AdminDashboard} />
         <Route exact={true} path="/" component={Login}/>
         <Route path="/mapa" component={Principal}/>
-     </Switch> 
+        <Route exact={true} path="/dealer2/adddevice" component={AgregarDispositivo} />
+        <Route exact={true} path="/dealer2/adduser" component={AgregarUsuario} />
+        <Route exact={true} path="/t" component={T} />
+    </Switch> 
     </Router>
   );
 }
