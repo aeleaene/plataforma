@@ -1,0 +1,14 @@
+.scrollArrowLeft{
+    cursor: pointer;
+    padding-right: 10px;
+}
+.scrollArrowRight{
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.seleccionComand{
+    border-bottom: 2px solid #ff9934 !important;
+    color: #ff9934;
+    transition: all .3s linear;
+}

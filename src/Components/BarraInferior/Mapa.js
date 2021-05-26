@@ -23,6 +23,12 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import './PopUp.css';
 import '../../styles/modals.css';
 
+/* MODALS */
+import Comando from '../Comando/Comando';
+import Compartir from '../Compartir/Compartir';
+import ConfigDevice from '../ConfigDevice/ConfigDevice';
+import ConfigInOut from '../ConfigInOut/ConfigInOut';
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -173,7 +179,7 @@ const Mapa = (props) => {
                     <s.TituloModal><BsTerminal/> Comando</s.TituloModal>
                     <s.CerrarModal onClick={() => setModalComando(false)}>+</s.CerrarModal>
                 </s.HeaderModal>
-                
+                <Comando/>
             </Modal>
             {/* MODAL SHARE */}
             <Modal 
@@ -198,7 +204,7 @@ const Mapa = (props) => {
                     <s.TituloModal><FaShareAlt/> Compartir Link</s.TituloModal>
                     <s.CerrarModal onClick={() => setModalShare(false)}>+</s.CerrarModal>
                 </s.HeaderModal>
-                
+                <Compartir/>
                 <s.DivBotones>
                     <s.BotonCancelar onClick={() => setModalShare(false)}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar>Confirmar</s.BotonGuardar>
@@ -227,7 +233,7 @@ const Mapa = (props) => {
                     <s.TituloModal><ic.FaCar /> Configuración del dispositivo</s.TituloModal>
                     <s.CerrarModal onClick={() => setModalDetalle(false)}>+</s.CerrarModal>
                 </s.HeaderModal>
-                
+                <ConfigDevice/>
                 <s.DivBotones>
                     <s.BotonCancelar onClick={() => setModalDetalle(false)}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar>Guardar</s.BotonGuardar>
@@ -248,7 +254,7 @@ const Mapa = (props) => {
                     },
                     content: {
                         width: 550,
-                        height: 378
+                        height: 385
                     }
                 }}
             >
@@ -256,7 +262,7 @@ const Mapa = (props) => {
                     <s.TituloModal><BsGearFill /> Configuración de E/S</s.TituloModal>
                     <s.CerrarModal onClick={() => setModalConfiguraciones(false)}>+</s.CerrarModal>
                 </s.HeaderModal>
-                
+                <ConfigInOut/>
                 <s.DivBotones>
                     <s.BotonCancelar onClick={() => setModalConfiguraciones(false)}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar>Guardar</s.BotonGuardar>
