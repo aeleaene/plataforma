@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import * as s from './Opciones.styles';
 
 const ConfigAlarma = () => {
+
+   const [alarma, setAlarma] = useState(false)
+
     return (
         <s.Contenedor>
             <s.Container>
@@ -30,7 +33,7 @@ const ConfigAlarma = () => {
             </s.Container>
             <s.Container>
                 <s.InputGroup>
-                    <s.LabelCheckbox><s.InputCheckBox type="checkbox"/> Exceso de velocidad de alarma:</s.LabelCheckbox>
+                    <s.LabelCheckbox><s.InputCheckBox type="checkbox" /> Exceso de velocidad de alarma:</s.LabelCheckbox>
                 </s.InputGroup>
                 <s.InputGroup>
                     <s.LabelCheckbox><s.InputCheckBox type="checkbox"/> Ralentí Mínimo:</s.LabelCheckbox>

@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const InputGroup = styled.div`
     display: flex;
     flex-direction: column;
-    width: 240px;
+    width: 300px;
     margin-bottom: 5px;
 `;
 export const Label = styled.label`
@@ -82,3 +82,64 @@ export const InputCheckBox = styled.input`
     padding: 0px 8px 0px 8px;
     margin-right: 10px;
 `;
+export const DivIcons = styled.ul`
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+`;
+export const IconItem = styled.li`
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    &:hover{
+        background-color: #ffe4c6c1;
+    }
+    &:active{
+        outline: 1px solid #ff9934;
+    }
+`;
+export const Icons = styled.img`
+    margin-right: 1px;
+`;
+
+export const ContentCombustible = styled.div`
+`;
+export const MainCombustible = styled.div`
+    display: flex;
+    flex-direction: column;
+    color: #606266;
+    border: 1px solid #dcdfe6;
+`;
+export const NavCombustible = styled.nav`
+    background-color: #f5f7fa;
+`;
+export const MenuCombustible = styled.ul`
+    list-style: none;
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+`;
+export const MenuCombustibleItem = styled.li`
+    width: 30%;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: all .3s ease;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    &:hover{
+        color: #ff9934;
+    }
+    &:first-of-type{
+        
+        padding-right: 0;
+    }
+`;
+export const MenuCombustibleContent = styled.div``;
