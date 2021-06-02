@@ -459,12 +459,14 @@ const T = (props) => {
                                                     <sd.el_auto_complete aria-haspopup="listbox" role="combobox" aria-owns="el_auto_complete_5676">
                                                         <sd.el_input_group>
                                                             <sd.select onChange={event => setClient(event.target.value)}>
+                                                            <optgroup label="admin">
                                                             {users.length > 0 &&
                                                             users.map(item => (
                                                             <option key={item._id} value={item.name}>
                                                             {item.name}
                                                              </option>
                                                             ))}
+                                                            </optgroup>
                                                             </sd.select>
                                                             <sd.el_input_group_append><sd.el_button_select_btn><ri.MdKeyboardArrowDown/></sd.el_button_select_btn></sd.el_input_group_append>
                                                         </sd.el_input_group>
