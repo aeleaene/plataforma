@@ -5,6 +5,8 @@ import * as s from './ContenidoAdminDashboard.styles';
 import BarraLateralAdmin from '../BarraLateralAdmin/BarraLateralAdmin';
 import BarraSuperior from '../BarraSuperiorAdmin/BarraSuperior';
 import ContenidoAdmin from '../ContenidoAdmin/ContenidoAdmin';
+import TarjetaUsuarios from '../cards/TarjetaUsuarios'
+import TarjetaDashboard from '../cards/TarjetaDashboard';
 
 const ContenidoAdminDashboard = (props) => {
     return(
@@ -16,12 +18,14 @@ const ContenidoAdminDashboard = (props) => {
                     </s.sidebar_container_>
 
                 </s.app_main>
-                {/* />*/}
+
             </s.app>
 
             <s.main_cointainer>
                         <BarraSuperior />
                         <ContenidoAdmin />
+                        <TarjetaUsuarios />
+                        <TarjetaDashboard />
             </s.main_cointainer>
         </s.body>
     )
