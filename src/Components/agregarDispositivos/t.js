@@ -6043,12 +6043,14 @@ const T = (props) => {
                                             
                                             <sd.el_input>
                                                 <sd.select onChange={event => setClient(event.target.value)}>
+                                                <optgroup label="admin">
                                                 {users.length > 0 &&
                                                  users.map(item => (
                                                    <option key={item._id} value={item.name}>
                                                      {item.name}
                                                    </option>
                                                  ))}
+                                                 </optgroup>
                                                 </sd.select>
 
                                                 <sd.el_input_group_append>
@@ -6102,7 +6104,7 @@ const T = (props) => {
                                 </sd.user_tree_select>
                                 
                             </sd.el_form_item_content>
-                            <sd.link_dev>Dispositivos soportados >></sd.link_dev>
+                            <sd.link_dev>Dispositivos soportados</sd.link_dev>
                         </sd.el_form_item_is_required>
 
                         <sd.el_form_item_is_required>
