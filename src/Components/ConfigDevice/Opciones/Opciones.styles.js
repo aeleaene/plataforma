@@ -46,7 +46,7 @@ export const InputOtraInfo = styled.input`
     height: 28px;
     background-color: #fff;
     border: 1px solid #dcdfe6;
-    color: #C2C6CD;
+    color: #8a8a8a;
     margin-bottom: 5px;
     padding: 0px 8px 0px 8px;
     &:focus{
@@ -64,7 +64,8 @@ export const TextArea = styled.textarea`
     height: 68px;
     background-color: #fff;
     border: 1px solid #dcdfe6;
-    color: #C2C6CD;
+    color: #8a8a8a;
+    font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 5px;
     padding: 0px 30px 0px 8px;
     &:focus{

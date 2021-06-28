@@ -22,13 +22,21 @@ import ic18 from '../../../assets/images/ModalIcons/26.a2c51c4.png';
 import ic19 from '../../../assets/images/ModalIcons/33.ea4f203.png';
 import ic20 from '../../../assets/images/ModalIcons/23.d89de37.png';
 
-const InfoDispositivo = () => {
+const InfoDispositivo = ({dataDis, dataPos}) => {
+    const Fecha = (fecha) => {
+        const fecha1 = new Date();
+        const date = new Date(fecha);
+        if (fecha1.getDate() === date.getDate()) {
+            return date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
+        }
+        return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+    }
     return (
         <s.Contenedor>
             <s.Container>
                 <s.InputGroup>
                     <s.Label>Nombre:</s.Label>
-                    <s.InputOtraInfo type="text" style={{ width: '240px' }}/>
+                    <s.InputOtraInfo value={dataDis.name} type="text" style={{ width: '240px' }}/>
                 </s.InputGroup>
                 <s.InputGroup>
                     <s.Label>Número de placa del vehículo:</s.Label>
@@ -37,10 +45,10 @@ const InfoDispositivo = () => {
             </s.Container>
             <s.Container>
                 <s.InputGroup>
-                    <s.Label>IMEI:</s.Label>
+                    <s.Label>IMEI: {(dataDis.uniqueId).replace((dataDis.uniqueId).substr(2,11), '***********')}</s.Label>
                 </s.InputGroup>
                 <s.InputGroup>
-                    <s.Label>Tipo:</s.Label>
+                    <s.Label>Tipo: {dataDis.model}</s.Label>
                 </s.InputGroup>
             </s.Container>
             <s.Container>
@@ -50,7 +58,7 @@ const InfoDispositivo = () => {
             </s.Container>
             <s.Container>
                 <s.InputGroup>
-                    <s.Label>Tiempo Online:</s.Label>
+                    <s.Label>Tiempo Online: {Fecha(dataPos.serverTime)}</s.Label>
                 </s.InputGroup>
                 <s.InputGroup>
                     <s.Label>Fecha de Vencimiento:</s.Label>
@@ -58,7 +66,7 @@ const InfoDispositivo = () => {
             </s.Container>
             <s.Container>
                 <s.InputGroup>
-                    <s.Label>Última Actualización:</s.Label>
+                    <s.Label>Última Actualización: {Fecha(dataDis.lastUpdate)}</s.Label>
                 </s.InputGroup>
             </s.Container>
             <s.Container>
@@ -94,7 +102,7 @@ const InfoDispositivo = () => {
             </s.Container>
             <s.InputGroupTextArea>
                     <s.Label>Observación:</s.Label>
-                    <s.TextArea></s.TextArea>
+                    <s.TextArea>{dataDis.attributes.observation}</s.TextArea>
             </s.InputGroupTextArea>
         </s.Contenedor>
     )

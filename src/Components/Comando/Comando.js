@@ -8,15 +8,16 @@ import Historial from './Historial';
 
 import './styles.css';
 
-const Comando = () => {
+const Comando = ({datos}) => {
 
     const [valor, setValor] = useState(1);
     const mostrarContent = () =>{
         if(valor === 1){ 
-            return <EnviarComando/> 
+            /* console.log(props.name) */
+            return <EnviarComando datosDis={datos}/> 
         }
         if(valor === 2){ 
-            return <Historial /> 
+            return <Historial/> 
         }
     }
 

@@ -11,16 +11,15 @@ import OtraInformacion from './Opciones/OtraInformacion';
 import ConfigAlarma from './Opciones/ConfigAlarma';
 
 
-const ConfigDevice = () => {
+const ConfigDevice = ({datos, datos2}) => {
 
     const scroll = (scrollOffset) => {
         var elem = document.getElementById('scrollItems')
         elem.scrollLeft = scrollOffset;
       };
-
     const [valor, setValor] = useState(1);
     const mostrarContent = () =>{
-        if(valor === 1){ return <InfoDispositivo/> }
+        if(valor === 1){ return <InfoDispositivo dataDis={datos} dataPos={datos2}/> }
         if(valor === 2){ return <InfoInstalacion /> }
         if(valor === 3){ return <Combustible /> }
         if(valor === 4){ return <OtraInformacion /> }

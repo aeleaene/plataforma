@@ -201,3 +201,5 @@ export const SpanInput2 = styled.span`
     display: flex;
     align-items: center;
 `;
+
+export const DivCondi = styled.div``;

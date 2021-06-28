@@ -15,19 +15,19 @@ import Comandos from './Comandos/Comandos';
 
 import './styles.css';
 
-const EnviarComando = () => {
+const EnviarComando = ({datosDis}) => {
     const [valor, setValor] = useState(1);
     const mostrarContent = () =>{
-        if(valor === 1){ return <Ubicacion/> }
-        if(valor === 2){ return <Apagar /> }
-        if(valor === 3){ return <Restaurar /> }
-        if(valor === 4){ return <Numero /> }
-        if(valor === 5){ return <Status /> }
-        if(valor === 6){ return <Parametros /> }
-        if(valor === 7){ return <Gprs /> }
-        if(valor === 8){ return <Version /> }
-        if(valor === 9){ return <Reset /> }
-        if(valor === 10){ return <Comandos /> }
+        if(valor === 1){ return <Ubicacion objetivo={datosDis}/> }
+        if(valor === 2){ return <Apagar objetivo={datosDis}/> }
+        if(valor === 3){ return <Restaurar objetivo={datosDis}/> }
+        if(valor === 4){ return <Numero objetivo={datosDis}/> }
+        if(valor === 5){ return <Status objetivo={datosDis}/> }
+        if(valor === 6){ return <Parametros objetivo={datosDis}/> }
+        if(valor === 7){ return <Gprs objetivo={datosDis}/> }
+        if(valor === 8){ return <Version objetivo={datosDis}/> }
+        if(valor === 9){ return <Reset objetivo={datosDis}/> }
+        if(valor === 10){ return <Comandos objetivo={datosDis}/> }
     }
     return (
         <s.Contenedor>

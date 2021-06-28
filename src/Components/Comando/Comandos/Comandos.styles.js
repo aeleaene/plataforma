@@ -48,7 +48,7 @@ export const InputDis = styled.input`
     padding: 0px 8px;
     background-color: #F5F7F8;
     border: 1px solid #dcdfe6;
-    color: #c0c4cc;
+    color: #797979;
 
 `;
 export const Button = styled.button`

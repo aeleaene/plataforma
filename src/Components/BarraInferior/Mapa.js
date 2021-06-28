@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl, useMap} from 'react-leaflet';
 import  L from 'leaflet';
+import "leaflet-rotatedmarker";
 import Modal from 'react-modal';
 
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
@@ -29,6 +30,8 @@ import Compartir from '../Compartir/Compartir';
 import ConfigDevice from '../ConfigDevice/ConfigDevice';
 import ConfigInOut from '../ConfigInOut/ConfigInOut';
 
+import * as icmap from './Marcadores/MapIcon';
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -39,25 +42,26 @@ L.Marker.prototype.options.icon = DefaultIcon;
 Modal.setAppElement('#root');
 const Mapa = (props) => {
 
-
-  const [marker, setMarker] = useState([])
-  useEffect(() => {
-    Marcador()
-  }, [])
-
-
-  function SetZoom(){
-    const mapInstance = useMap()
-    React.useEffect(() => {
-      const zoom = window.zoom;
-      mapInstance.setZoom(zoom)
-      
-    
+    const [deviceInfo, setDeviceInfo] = useState([])
+    const [marker, setMarker] = useState([])
+    useEffect(() => {
+        const interval = setInterval(() => {
+            Marcador()
+        }, 10000);
+        return () => clearInterval(interval);
     }, [])
 
-    return null
-  }
-  const Marcador = async() =>{
+
+    function SetZoom(){
+        const mapInstance = useMap()
+        React.useEffect(() => {
+            const zoom = window.zoom;
+            mapInstance.setZoom(zoom)
+        }, [])
+        return null
+    }
+
+const Marcador = async() =>{
     var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Accept", "*/*");
@@ -67,92 +71,135 @@ const Mapa = (props) => {
             credentials: 'include',
             headers: myHeaders,
             redirect: 'follow'
-          };
-          
-           const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
-            /* .then(response => response.json())
-            .catch(error => console.log('error', error)); */
-            const markerData = await resultado.json();
-            console.log(markerData)
-            setMarker(markerData);
-            console.log(marker)
-  }
+        };
+        const responseDevice = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+        const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
+        /* .then(response => response.json())
+        .catch(error => console.log('error', error)); */
+        const deviceData = await responseDevice.json();
+        const markerData = await resultado.json();
+        /* console.log(markerData)
+        console.log(deviceData); */
+        setDeviceInfo(deviceData)
+        setMarker(markerData);
+        /* console.log(marker) */
+        /* console.log(deviceInfo) */
+    
+}
+const Fecha = (fecha) => {
+    const fecha1 = new Date();
+    const date = new Date(fecha);
+    if (fecha1.getDate() === date.getDate()) {
+        return date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
+    }
+    return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+}
 
   /* State Modal */
-  const [modalComando, setModalComando] = useState(false);
-  const [modalShare, setModalShare] = useState(false);
-  const [modalDetalle, setModalDetalle] = useState(false);
-  const [modalConfiguraciones, setModalConfiguraciones] = useState(false);
+    const [modalComando, setModalComando] = useState(false);
+    const [modalShare, setModalShare] = useState(false);
+    const [modalDetalle, setModalDetalle] = useState(false);
+    const [modalConfiguraciones, setModalConfiguraciones] = useState(false);
+    const [data, setData] = useState({})
+    const [data2, setData2] = useState({})
 
-  return (
-  
+    /* Funcion modals */
+    const ActiveModal = (modAct, objeto, objeto2) => {
+        console.log(modAct);
+        if (modAct === 1) {setModalComando(true)}
+        if (modAct === 2) {setModalShare(true)}
+        if (modAct === 3) {setModalDetalle(true)}
+        if (modAct === 4) {setModalConfiguraciones(true)}
+        setData(objeto);
+        setData2(objeto2);
+    }
+    return (
+
     <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true}>
         <LayersControl position="bottomright">
         <SetZoom />
-          <LayersControl.BaseLayer checked name="Google">
-          <TileLayer
-          url="http://www.google.cn/maps/vt?lyrs=m@189,traffic&gl=cn&x={x}&y={y}&z={z}"
-          attribution="Datos del mapa &copy; 2020 INEGI México"/>
-          </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked name="Google">
+            <TileLayer
+            url="http://www.google.cn/maps/vt?lyrs=m@189,traffic&gl=cn&x={x}&y={y}&z={z}"
+            attribution="Datos del mapa &copy; 2020 INEGI México"/>
+            </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer checked={window.valorCapaGh} name="Híbrido">
-          <TileLayer
-          url="http://www.google.com/maps/vt?lyrs=s@189,traffic&gl=cn&x={x}&y={y}&z={z}"
-          attribution="Datos del mapa &copy; 2020 INEGI México"/>
-          </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked={window.valorCapaGh} name="Híbrido">
+            <TileLayer
+            url="http://www.google.com/maps/vt?lyrs=s@189,traffic&gl=cn&x={x}&y={y}&z={z}"
+            attribution="Datos del mapa &copy; 2020 INEGI México"/>
+            </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer checked={window.valorCapaGt} name="Terreno">
-          <TileLayer
-          url="http://www.google.cn/maps/vt?lyrs=p@189,traffic&gl=cn&x={x}&y={y}&z={z}"
-          attribution="Datos del mapa &copy; 2020 INEGI México"/>
-          </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked={window.valorCapaGt} name="Terreno">
+            <TileLayer
+            url="http://www.google.cn/maps/vt?lyrs=p@189,traffic&gl=cn&x={x}&y={y}&z={z}"
+            attribution="Datos del mapa &copy; 2020 INEGI México"/>
+            </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer checked={window.valorCapaOsm} name="Open Street Maps">
-          <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
-          </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked={window.valorCapaOsm} name="Open Street Maps">
+            <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
+            </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer checked={window.valorCapaOsmBn} name="Open Street Maps Blanco y Negro">
-          <TileLayer
-          url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
-          </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked={window.valorCapaOsmBn} name="Open Street Maps Blanco y Negro">
+            <TileLayer
+            url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
+            </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer checked={window.valorCapaBing}  name="Bing">
-          <TileLayer
-          url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
-          </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked={window.valorCapaBing}  name="Bing">
+            <TileLayer
+            url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contribuidores'/>
+            </LayersControl.BaseLayer>
         </LayersControl>
         {
-          marker.map(item => (
-            <Marker key={item.id} position={[item.latitude, item.longitude]}>
-              <Popup style={{ color: "#e4e4e4" }}>
-                <s.PopUpContainer>
-                  <s.PopUpCon1>
-                    <s.PopoUpDeviceName>Nombre Vehiculo</s.PopoUpDeviceName>
-                    <s.PopUpDeviceData>Estado:</s.PopUpDeviceData>
-                    <s.PopUpDeviceData>Dispositivo:</s.PopUpDeviceData>
-                    <s.PopUpDeviceData>Motor:</s.PopUpDeviceData>
-                    <s.PopUpDeviceData>Voltaje Externo:</s.PopUpDeviceData>
-                    <s.PopUpDeviceData>IMEI:</s.PopUpDeviceData>
-                    <s.PopUpDeviceData>Coordinar: <s.PopUpDeviceLink href={`http://map.google.com/maps?q=${item.latitude},${item.longitude}`} target="_blank">{item.latitude},{item.longitude}</s.PopUpDeviceLink></s.PopUpDeviceData>
-                  </s.PopUpCon1>
-                  <s.PopUpCon2>
-                    <s.PopUpDevicesOptionLink><MdReplay/></s.PopUpDevicesOptionLink>
-                    <s.PopUpDevicesOptionLink className="arrow-popup"><TiLocationArrowOutline/></s.PopUpDevicesOptionLink>
-                    <s.PopUpDevicesOption onClick={() => setModalComando(true)}><BsTerminal/></s.PopUpDevicesOption>
-                    <s.PopUpDevicesOption><GiWoodenFence/></s.PopUpDevicesOption>
-                    <s.PopUpDevicesOption onClick={() => setModalShare(true)}><FaShareAlt/></s.PopUpDevicesOption>
-                    <s.PopUpDevicesOptionLink className="arrow-popup" href={`https://www.google.com/maps?q&layer=c&cbll=${item.latitude},${item.longitude}`} target="_blank"><BiMapPin/></s.PopUpDevicesOptionLink>
-                    <s.PopUpDevicesOption onClick={() => setModalDetalle(true)}><ImFileText2/></s.PopUpDevicesOption>
-                    <s.PopUpDevicesOption className="inout-popup" onClick={() => setModalConfiguraciones(true)}>I/O</s.PopUpDevicesOption>
-                  </s.PopUpCon2>
-                </s.PopUpContainer>
-              </Popup>
-            </Marker>
-          ))
+            deviceInfo.map(item => (
+                marker.map(item2 =>(
+                    item.id === item2.deviceId ?
+                        <Marker key={item2.id} position={[item2.latitude, item2.longitude]} icon={ item.status === 'online' ? icmap.gray_24 : icmap.white_21 } rotationAngle={item2.course}>
+                            <Popup style={{ color: "#e4e4e4" }}>
+                                <s.PopUpContainer>
+                                <s.PopUpCon1>
+                                    <s.PopoUpDeviceName>{item.name}{item.model !== "" ? '(' + item.model + ")" : null }</s.PopoUpDeviceName>
+                                    <s.PopUpDeviceData>Estado: {item.status === "online" ? 'Estatico ' : 'Fuera de Linea '}({Fecha(item.lastUpdate)})</s.PopUpDeviceData>
+                                    {
+                                        item2.deviceTime ?
+                                            <s.PopUpDeviceData>Tiempo de Posición: {Fecha(item2.deviceTime)}</s.PopUpDeviceData>
+                                        : null
+                                    }
+                                    {
+                                        item2.serverTime ? 
+                                            <s.PopUpDeviceData>Tiempo de Servidor: {Fecha(item2.serverTime)}</s.PopUpDeviceData>
+                                        : null
+                                    }
+                                    {
+                                        item2.attributes.ignition ? 
+                                            <s.PopUpDeviceData>Motor: {item2.attributes.ignition === true ? 'Encendido ' : 'Apagado '}({item2.fixTime})</s.PopUpDeviceData>
+                                        : null
+                                    }
+                                    <s.PopUpDeviceData>Velocidad: {((item2.speed)*1.852).toFixed(2)+' Km/h'}</s.PopUpDeviceData>
+                                    <s.PopUpDeviceData>IMEI: {(item.uniqueId).replace((item.uniqueId).substr(2,11), '***********')}</s.PopUpDeviceData>
+                                    <s.PopUpDeviceData>Coordinar: <s.PopUpDeviceLink href={`http://map.google.com/maps?q=${item2.latitude},${item2.longitude}`} target="_blank">{item2.latitude},{item2.longitude}</s.PopUpDeviceLink></s.PopUpDeviceData>
+                                </s.PopUpCon1>
+                                <s.PopUpCon2>
+                                    <s.PopUpDevicesOptionLink><MdReplay/></s.PopUpDevicesOptionLink>
+                                    <s.PopUpDevicesOptionLink className="arrow-popup"><TiLocationArrowOutline/></s.PopUpDevicesOptionLink>
+                                    <s.PopUpDevicesOption onClick={() => ActiveModal(1, item, item2)}><BsTerminal/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption><GiWoodenFence/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption onClick={() => ActiveModal(2, item, item2)}><FaShareAlt/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOptionLink className="arrow-popup" href={`https://www.google.com/maps?q&layer=c&cbll=${item2.latitude},${item2.longitude}`} target="_blank"><BiMapPin/></s.PopUpDevicesOptionLink>
+                                    <s.PopUpDevicesOption onClick={() => ActiveModal(3, item, item2)}><ImFileText2/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption className="inout-popup" onClick={() => ActiveModal(4, item, item2)}>I/O</s.PopUpDevicesOption>
+                                </s.PopUpCon2>
+                                </s.PopUpContainer>
+                            </Popup>
+                        </Marker>
+                    :
+                    null
+                ))
+            ))
         }
         <EsriLeafletGeoSearch useMapBound={false} position="bottomright" placeholder="Ingresa tu búsqueda"/>
         {/* MODALS */}
@@ -179,7 +226,9 @@ const Mapa = (props) => {
                     <s.TituloModal><BsTerminal/> Comando</s.TituloModal>
                     <s.CerrarModal onClick={() => setModalComando(false)}>+</s.CerrarModal>
                 </s.HeaderModal>
-                <Comando/>
+                <Comando 
+                    datos={data}
+                />
             </Modal>
             {/* MODAL SHARE */}
             <Modal 
@@ -233,7 +282,10 @@ const Mapa = (props) => {
                     <s.TituloModal><ic.FaCar /> Configuración del dispositivo</s.TituloModal>
                     <s.CerrarModal onClick={() => setModalDetalle(false)}>+</s.CerrarModal>
                 </s.HeaderModal>
-                <ConfigDevice/>
+                <ConfigDevice 
+                    datos={data}
+                    datos2={data2}
+                />
                 <s.DivBotones>
                     <s.BotonCancelar onClick={() => setModalDetalle(false)}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar>Guardar</s.BotonGuardar>

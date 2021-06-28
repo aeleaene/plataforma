@@ -18,6 +18,11 @@ import {BsThreeDotsVertical, BsDot} from "react-icons/bs";
 
 import * as sapp from '../../App.styles'
 
+import './submenustyles.css';
+
+import Todos from './Todos';
+import Online from './Online';
+import Offline from './Offline';
 
 
 
@@ -25,8 +30,20 @@ const ContenidoMonitor = (props) => {
     const [contador, setContador] = React.useState(10);
     const [toggle, setToggle] = React.useState(false);
     const [device, setDevice] = useState([])
+    const [deviceOption, setDeviceOption] = useState(1)
+    var disponibles = 0;
+    device.forEach((data) => {
+        /* console.log(data) */
+        if (data.status === "online") {
+            disponibles = disponibles + 1;
+            /* console.log(disponibles) */
+        }
+    })
     useEffect(() => {
-        Devices()
+        const interval = setInterval(() => {
+            Devices()
+        }, 10000);
+        return () => clearInterval(interval);
     }, [])
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -44,14 +61,20 @@ const ContenidoMonitor = (props) => {
                 /* .then(response => response.json())
                 .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
-                console.log(deviceData)
+                /* console.log(deviceData) */
                 setDevice(deviceData);
-                console.log(device)
+                /* console.log(device) */
+    }
+
+    const DeviceOpt = () => {
+        if (deviceOption === 1) { return <Todos/> }
+        if (deviceOption === 2) { return <Online />}
+        if (deviceOption === 3) { return <Offline />}
     }
 
     const handleToggle = () => {
         setToggle(!toggle)
-        console.log(toggle);
+        /* console.log(toggle); */
     }
 
     React.useEffect(()=> {
@@ -127,27 +150,13 @@ const ContenidoMonitor = (props) => {
                     </s.submenu1>
                     <s.submenu2>
                         <s.submenu2opciones>
-                            <s.submenu2opcionesli>Todos ({device.length})</s.submenu2opcionesli>
-                            <s.submenu2opcionesli>En Linea ({device.length})</s.submenu2opcionesli>
-                            <s.submenu2opcionesli>Fuera de Linea</s.submenu2opcionesli>
+                            <s.submenu2opcionesli onClick={() => setDeviceOption(1)} className={deviceOption === 1 ? 'submenuclass' : ''}>Todos ({device.length})</s.submenu2opcionesli>
+                            <s.submenu2opcionesli onClick={() => setDeviceOption(2)} className={deviceOption === 2 ? 'submenuclass' : ''}>En Linea ({disponibles})</s.submenu2opcionesli>
+                            <s.submenu2opcionesli onClick={() => setDeviceOption(3)} className={deviceOption === 3 ? 'submenuclass' : ''}>Fuera de Linea</s.submenu2opcionesli>
                         </s.submenu2opciones>
                     </s.submenu2>
                     {
-                        device.map(item => (
-                            <s.deviceonlist key={item.id}>
-                                <s.deviceonlistsub1>
-                                    <s.deviceChebox type="checkbox"/>
-                                    <s.deviceName>{item.name}</s.deviceName>
-                                </s.deviceonlistsub1>
-                                <s.deviceonlistsub2>
-                                    <s.deviceTime>2d+</s.deviceTime>
-                                    <s.deviceStatus>{
-                                        item.status === "online" ? <BsDot style={{color: "#0795fb", fontSize: 45}}/> : <BsDot style={{color: "#999999", fontSize: 45}}/>
-                                    }</s.deviceStatus>
-                                    <s.deviceOptions><BsThreeDotsVertical /></s.deviceOptions>
-                                </s.deviceonlistsub2>
-                            </s.deviceonlist>
-                        ))
+                        DeviceOpt()
                     }
                 </s.contenido_panel_dispositivo>
 
