@@ -7,7 +7,6 @@ import BarraInferior from '../BarraInferior/BarraInferior';
 import {MenContext} from '../../Context/MenuContext';
 import Reportes from '../Reportes/Reportes';
 import Dispositivo from '../Dispositivo/Dispositivo';
-import GeneReportes from '../GenerarReportes/GeneReportes';
 
 
 const Principal = () => {
