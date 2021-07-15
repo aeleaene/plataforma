@@ -15,6 +15,7 @@ import T from './Components/agregarDispositivos/t';
 import AgregarUsuario from './Components/agregarUsuarios/agregarUsuarios';
 
 import { getSessionCookie, SessionContext } from './sessions';
+import {MenuContext} from './Context/MenuContext';
 
 
 function App() {
@@ -38,7 +39,9 @@ function App() {
      <Switch>
         <Route exact={true} path="/dealer2/" component={AdminDashboard} />
         <Route exact={true} path="/" component={Login}/>
-        <Route path="/mapa" component={Principal}/>
+        <MenuContext>
+          <Route path="/mapa" component={Principal}/>
+        </MenuContext>
         <Route exact={true} path="/dealer2/adddevice" component={AgregarDispositivo} />
         <Route exact={true} path="/dealer2/adduser" component={AgregarUsuario} />
         <Route exact={true} path="/t" component={T} />

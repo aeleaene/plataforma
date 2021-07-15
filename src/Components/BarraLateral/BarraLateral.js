@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import '../../styles/modals.css';
 import {
@@ -24,6 +24,9 @@ import Mensajes from '../Mensajes/Mensajes';
 import Preferencias from '../Preferencias/Preferencias';
 import ApiGoogle from '../ApiGoogle/ApiGoogle';
 import Notificaciones from '../Notificaciones/Notificaciones';
+
+import {MenContext} from '../../Context/MenuContext';
+
 Modal.setAppElement('#root');
 
 const BarraLateral = (props) => {
@@ -121,6 +124,9 @@ const BarraLateral = (props) => {
     const [modalApiGoogle, setModalApiGoogle] = useState(false);
     const [modalNotificaciones, setModalNotificaciones] = useState(false);
 
+
+    /* useContext */
+    const { setMenuOp, setSubmenuOp } = useContext(MenContext);
     return (
         <Router>
         <s.menu_caja>
@@ -271,91 +277,49 @@ const BarraLateral = (props) => {
 
             <s.menu_superior>
 
-                <s.monitor>
+                <s.monitor onClick={() => setMenuOp(1)}>
                     <s.icono_monitor />
                     <s.texto_elemento_menu>Monitor</s.texto_elemento_menu>
                     <s.tooltip_monitor>Monitor</s.tooltip_monitor>
                 </s.monitor>
 
-                <s.reportes>
-                    <s.icono_reportes />
-                    <s.texto_elemento_menu>Reportes</s.texto_elemento_menu>
+                <s.reportes >
+                    <s.icono_reportes onClick={() => {setMenuOp(2); setSubmenuOp(1)}}/>
+                    <s.texto_elemento_menu onClick={() => {setMenuOp(2); setSubmenuOp(1)}}>Reportes</s.texto_elemento_menu>
                     <s.submenu_reportes tabIndex="-1">
                         <s.submenu_reportes_grupo>Informes generales</s.submenu_reportes_grupo>
                         <s.submenu_reportes_grupo_contenido_operacion>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                <span> Estadísticas de Operación &nbsp; &nbsp; &nbsp;</span>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(1)}}> Estadísticas de Operación &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
 
                                 <s.submenu_reportes_submenu>
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Visión general del comportamiento de conducción</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(1)}}> Informe General de Movimiento</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Informe sobre el kilometraje</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(2)}}> Informe sobre el kilometraje</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Detalles de exceso de velocidad</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(3)}}> Detalles de exceso de velocidad</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Detalles de estadias</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Visión general del ACC</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Reporte del ACC (encendido)</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Informe de inactividad del motor</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Reporte de viaje</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Informe de viaje de exceso de velocidad</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Informe de combustible</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(4)}}> Detalles de estadias</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
                                 </s.submenu_reportes_submenu>
@@ -367,51 +331,22 @@ const BarraLateral = (props) => {
                         <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                <span> Informe OBD &nbsp; &nbsp; &nbsp;</span>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(5)}}> Reporte de viaje &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Visión general del comportamiento de conducción</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(5)}}> Reporte de viaje</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Informe de comportamiento de conducción</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(6)}}> Informe de viaje de exceso de velocidad</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Detalles del comportamiento de conducción</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Resumen de consumo de combustible de viaje</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Detalles de consumo de combustible de viaje</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
-                                    <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
-                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Informe DTC</span>
-                                        </s.submenu_reportes_grupo_dos>
-                                    </s.submenu_reportes_grupo_contenido>
-
                                 </s.submenu_reportes_submenu>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
@@ -419,31 +354,150 @@ const BarraLateral = (props) => {
                         <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                <span> Estadística de Alarma &nbsp; &nbsp; &nbsp;</span>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(7)}}> Informe de comportamiento de conducción &nbsp; &nbsp; &nbsp;</span>
+                                <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
+                                <s.submenu_reportes_submenu>
+                                <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(7)}}> Visión general del comporamiento de conducción</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(8)}}> Informe de comportamiento de conducción</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(9)}}> Detalles de comportamiento de conducción</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+                                </s.submenu_reportes_submenu>
+                            </s.submenu_reportes_grupo_dos>
+                        </s.submenu_reportes_grupo_contenido>
+
+                        <s.submenu_reportes_grupo_contenido>
+                            <s.submenu_reportes_grupo_dos>
+                                <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(10)}}> Reporte de ACC (Encendido) &nbsp; &nbsp; &nbsp;</span>
+                                <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
+                                <s.submenu_reportes_submenu>
+                                <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(10)}}> Visión general de ACC</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(11)}}> Reporte de ACC (Enciendido)</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(12)}}> Informe de Ralentí Mínimo</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+                                </s.submenu_reportes_submenu>
+                            </s.submenu_reportes_grupo_dos>
+                        </s.submenu_reportes_grupo_contenido>
+
+                        <s.submenu_reportes_grupo_contenido>
+                            <s.submenu_reportes_grupo_dos>
+                                <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(13)}}> Reporte de información del vehículo &nbsp; &nbsp; &nbsp;</span>
+                                <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
+                                <s.submenu_reportes_submenu>
+                                <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(13)}}> Informe de combustible</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(14)}}> Informe de presión de neúmaticos</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(15)}}> Temperature Report</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+                                </s.submenu_reportes_submenu>
+                            </s.submenu_reportes_grupo_dos>
+                        </s.submenu_reportes_grupo_contenido>
+
+                        <s.submenu_reportes_grupo_contenido>
+                            <s.submenu_reportes_grupo_dos>
+                                <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(16)}}> Informe OBD &nbsp; &nbsp; &nbsp;</span>
+                                <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
+                                <s.submenu_reportes_submenu>
+                                <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(16)}}> Resumen de consumo de combustible de viaje</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(17)}}> Detalles de consumo de combustible de viaje</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+
+                                    <s.submenu_reportes_grupo_contenido>
+                                        <s.submenu_reportes_grupo_dos>
+                                            <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(18)}}> Informe DTC</span>
+                                        </s.submenu_reportes_grupo_dos>
+                                    </s.submenu_reportes_grupo_contenido>
+                                </s.submenu_reportes_submenu>
+                            </s.submenu_reportes_grupo_dos>
+                        </s.submenu_reportes_grupo_contenido>
+
+                        <s.submenu_reportes_grupo_contenido>
+                            <s.submenu_reportes_grupo_dos>
+                                <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(19)}}> Estadística de Alarma &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Descripción general de alarma</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(19)}}> Descripción general de alarma</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Estadística de alarma</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(20)}}> Estadística de alarma</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
                                         <s.submenu_reportes_grupo_dos>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                            <span> Detalle de Alarma</span>
+                                            <span onClick={() => {setMenuOp(2); setSubmenuOp(21)}}> Detalle de Alarma</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
-
                                 </s.submenu_reportes_submenu>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
@@ -452,14 +506,14 @@ const BarraLateral = (props) => {
                         <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                <span> Tareas de informe | Nuevo</span>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(22)}}> Tareas de informe | Nuevo</span>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
-                                <span> Buscar reporte</span>
+                                <span onClick={() => {setMenuOp(2); setSubmenuOp(23)}}> Buscar reporte</span>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
 
@@ -468,36 +522,36 @@ const BarraLateral = (props) => {
 
 
 
-                <s.dispositivo>
-                    <s.icono_dispositivos />
-                    <s.texto_elemento_menu>Dispositivo</s.texto_elemento_menu>
+                <s.dispositivo >
+                    <s.icono_dispositivos onClick={() => {setMenuOp(3); setSubmenuOp(24)}}/>
+                    <s.texto_elemento_menu onClick={() => {setMenuOp(3); setSubmenuOp(24)}}>Dispositivo</s.texto_elemento_menu>
                     <s.submenu_dispositivo tabIndex="-1">
-                        <s.submenu_dispositivo_contenido_item>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(24)}}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.FaCarAlt /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Configuración del Dispositivo
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(25)}}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.TiFlag /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Detalle de Alarma
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item_dividido>
+                        <s.submenu_dispositivo_contenido_item_dividido onClick={() => {setMenuOp(3); setSubmenuOp(26)}}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.GoTerminal /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Horario para Comando
                         </s.submenu_dispositivo_contenido_item_dividido>
 
-                        <s.submenu_dispositivo_contenido_item>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(27)}}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.BsBellFill /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Administración de notificaciones de vencimiento
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(28)}}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.AiFillTool /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Gestión de mantenimiento
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(29)}}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.FaShareAlt /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Gestionar link`s compartidos
                         </s.submenu_dispositivo_contenido_item>
