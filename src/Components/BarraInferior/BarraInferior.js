@@ -7,15 +7,20 @@ import * as ic from 'react-icons/all';
 
 import Draggable from 'react-draggable';
 
+import GeoCercas from './GeoCercas';
 
 const BarraInferior = () => {
 
     const [toggle, setToggle] = React.useState(false);
+    const [toggleGeo, setToggleGeo] = React.useState(false);
     const [layer, setLayer] = React.useState(false);
     const [zoom, setZoom] = React.useState(5);
 
     const handleToggle = () => {
         setToggle(!toggle)
+    }
+    const handleToggleGeo = () => {
+        setToggleGeo(!toggleGeo)
     }
 
     const handleLayerGs = () => {
@@ -61,7 +66,10 @@ const BarraInferior = () => {
         setZoom(zoom+1);
         window.zoom = zoom;
     }
-    
+    const zoomByRange = (val) => {
+        setZoom(val);
+        window.zoom = zoom;
+    }
 
 
     return (
@@ -88,8 +96,8 @@ const BarraInferior = () => {
     {/* El valor es de -13 a 47*/}
             <s.caja_zoom>
                     <s.icono_zoom_menos onClick={handleZoomMin}/>
-                    <s.zoom_slider>
-                        <s.slider role={"slider"} aria-valuemin={"0"} aria-valuemax={"21"} aria-orientation={"horizontal"} aria-valuetext={"13"} aria-label={"slider entre 0 y 21"}>
+                    <s.zoom_slider type="range" defaultValue={zoom} min="0" max="21" step="1" onChange={(e) => zoomByRange(e.target.value)}>
+                        {/* <s.slider role={"slider"} aria-valuemin={"0"} aria-valuemax={"21"} aria-orientation={"horizontal"} aria-valuetext={"13"} aria-label={"slider entre 0 y 21"}>
                             <s.slider_runway>
                                 <s.slider_bar style={{width: '9.52381%', left: '0%'}}></s.slider_bar>
                                 <Draggable axis="x" defaultPosition={{x:-13, y:0}} bounds={{left:-13, right:47}}>
@@ -98,7 +106,7 @@ const BarraInferior = () => {
                                 </s.slider_button_wrapper>
                                 </Draggable>
                             </s.slider_runway>
-                        </s.slider>
+                        </s.slider> */}
                     </s.zoom_slider>
                     <s.icono_zoom_mas onClick={handleZoomMax}/>
             </s.caja_zoom>
@@ -112,12 +120,21 @@ const BarraInferior = () => {
            </s.caja_izquierda>
 
             <s.caja_derecha>
-                <s.icono_POI/>
-                <s.icono_Ruta/>
-                <s.icono_GEO/>
-                <s.icono_Alertas/>
-                <s.icono_Recorrido/>
+                <s.icono_POI></s.icono_POI>
+                <s.icono_Ruta></s.icono_Ruta>
+                <s.icono_GEO visibility={toggleGeo} onClick={handleToggleGeo}>
+                </s.icono_GEO>
+                <s.icono_Alertas></s.icono_Alertas>
+                <s.icono_Recorrido></s.icono_Recorrido>
             </s.caja_derecha>
+            <s.geofences visibility={toggleGeo}>
+                <s.capa_mapa_titulo onClick={handleToggleGeo}>
+                    <s.capa_mapa_titulo_icono_izquierdaGeo />
+                    GeoCercas
+                    <s.capa_mapa_titulo_icono_derecha><ic.AiOutlineMinus/></s.capa_mapa_titulo_icono_derecha>
+                </s.capa_mapa_titulo>
+                <GeoCercas />
+            </s.geofences>
 
 
         </s.herramienta_mapa>

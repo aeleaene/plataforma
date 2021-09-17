@@ -98,10 +98,10 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(1)}>Información General de Moviemiento</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(2)}>Informe sobre Kilometraje</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(3)}>Detalles de exceso de velocidad</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(4)}>Detalles de Estadia</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(1)} className={submenuOp === 1 ? 'menumenu' : ''}>Información General de Moviemiento</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(2)} className={submenuOp === 2 ? 'menumenu' : ''}>Informe sobre Kilometraje</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(3)} className={submenuOp === 3 ? 'menumenu' : ''}>Detalles de exceso de velocidad</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(4)} className={submenuOp === 4 ? 'menumenu' : ''}>Detalles de Estadia</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
@@ -111,8 +111,8 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(5)}>Reporte de Viaje</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(6)}>Informe de viaje en exceso de velocidad</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(5)} className={submenuOp === 5 ? 'menumenu' : ''}>Reporte de Viaje</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(6)} className={submenuOp === 6 ? 'menumenu' : ''}>Informe de viaje en exceso de velocidad</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
@@ -122,9 +122,9 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(7)}>Visión general del comportamiento de conducción</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(8)}>Informe de comportamiento de conducción</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(9)}>Detalles del comportamiento de conducción</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(7)} className={submenuOp === 7 ? 'menumenu' : ''}>Visión general del comportamiento de conducción</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(8)} className={submenuOp === 8 ? 'menumenu' : ''}>Informe de comportamiento de conducción</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(9)} className={submenuOp === 9 ? 'menumenu' : ''}>Detalles del comportamiento de conducción</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
@@ -134,9 +134,9 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(10)}>Visión general del ACC</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(11)}>Reporte de ACC (Encendido)</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(12)}>Informe de Ralenté Mínimo</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(10)} className={submenuOp === 10 ? 'menumenu' : ''}>Visión general del ACC</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(11)} className={submenuOp === 11 ? 'menumenu' : ''}>Reporte de ACC (Encendido)</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(12)} className={submenuOp === 12 ? 'menumenu' : ''}>Informe de Ralenté Mínimo</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
@@ -146,9 +146,9 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(13)}>Informe de Combustible</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(14)}>Informe de presión de neúmaticos</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(15)}>Temperature Report</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(13)} className={submenuOp === 13 ? 'menumenu' : ''}>Informe de Combustible</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(14)} className={submenuOp === 14 ? 'menumenu' : ''}>Informe de presión de neúmaticos</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(15)} className={submenuOp === 15 ? 'menumenu' : ''}>Temperature Report</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
@@ -158,9 +158,9 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(16)}>Resumen de consumo de combustible de viaje</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(17)}>Detalles de consumo de combustible de viaje</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(18)}>Informe DTC</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(16)} className={submenuOp === 16 ? 'menumenu' : ''}>Resumen de consumo de combustible de viaje</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(17)} className={submenuOp === 17 ? 'menumenu' : ''}>Detalles de consumo de combustible de viaje</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(18)} className={submenuOp === 18 ? 'menumenu' : ''}>Informe DTC</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
@@ -170,9 +170,9 @@ const Reportes = () => {
                             </AccordionItemHeading>
                             <AccordionItemPanel>
                                 <s.submenu2opciones style={{ listStyle:'none' }}>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(19)}>Descripción General de Alarma</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(20)}>Estadística de Alarma</s.submenu2opcionesli>
-                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(21)}>Detalle de Alarma</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(19)} className={submenuOp === 19 ? 'menumenu' : ''}>Descripción General de Alarma</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(20)} className={submenuOp === 20 ? 'menumenu' : ''}>Estadística de Alarma</s.submenu2opcionesli>
+                                    <s.submenu2opcionesli onClick={() => setSubmenuOp(21)} className={submenuOp === 21 ? 'menumenu' : ''}>Detalle de Alarma</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>

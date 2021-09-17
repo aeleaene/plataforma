@@ -89,6 +89,88 @@ export const hr = styled.div`
 `;
 export const SwitchBtn = styled.label`
 `;
-export const Switch = styled.input`
+export const Switch1 = styled.input`
+    --webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    border: 2px solid #d9d9d9;
+    outline: none;
+    border-radius: 30px;
+    transition: .3s;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 334px;
+        left: 23px;
+        width: 20px;
+        height: 20px;
+        background: #cccccc;
+        border-radius: 50%;
+        transition: .3s ease;
+    }
+    &:checked::before{
+        transform: translateX(20px);
+        background: #ff9934;
+    }
+    &:checked{
+        border-color: #ff9934;
+    }
+`;
+export const Switch2 = styled.input`
+    --webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    border: 2px solid #d9d9d9;
+    outline: none;
+    border-radius: 30px;
+    transition: .3s;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 334px;
+        left: 355px;
+        width: 20px;
+        height: 20px;
+        background: #cccccc;
+        border-radius: 50%;
+        transition: .3s ease;
+    }
+    &:checked::before{
+        transform: translateX(20px);
+        background: #ff9934;
+    }
+    &:checked{
+        border-color: #ff9934;
+    }
+`;
+export const Switch3 = styled.input`
+    --webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    border: 2px solid #d9d9d9;
+    outline: none;
+    border-radius: 30px;
+    transition: .3s;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 393px;
+        left: 23px;
+        width: 20px;
+        height: 20px;
+        background: #cccccc;
+        border-radius: 50%;
+        transition: .3s ease;
+    }
+    &:checked::before{
+        transform: translateX(20px);
+        background: #ff9934;
+    }
+    &:checked{
+        border-color: #ff9934;
+    }
 `;
 export const SwitchRound = styled.div``;

@@ -115,7 +115,23 @@ export const capa_mapa_titulo_icono_izquierda = styled.i`
     left: 6px;
     top: 8px;
 `
-
+export const capa_mapa_titulo_icono_izquierdaGeo = styled.i`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    color: #fff;
+    line-height: 35px;
+    font-size: 14px;
+    background-image: url(${menus}); 
+    background-position: -126px -68px;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 6px;
+    top: 8px;
+`
 export const capa_mapa_titulo_icono_derecha = styled.i`
     font: 400 13.3333px Arial;
     cursor: pointer;
@@ -186,6 +202,22 @@ export const capa_mapa = styled.div`
     box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
     display: ${props => props.visibility? 'block':'none'};
 `
+export const geofences = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 52px;
+    width: 320px;
+    height: 450px;
+    background-color: #fff;
+    right: 1px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
+    display: ${props => props.visibility? 'block':'none'};
+`
 
 export const icono_mapa = styled.buton`
     width: 34px;
@@ -224,12 +256,31 @@ export const icono_zoom_menos = styled.i`
     background-position: 0 -415px;
 `
 
-export const zoom_slider = styled.span`
+export const zoom_slider = styled.input`
+    appearance: none;
+    background-color: #d3d3d3;
+    outline: none;
     display: inline-block;
-    height: 34px;
+    height: 12px;
     width: 72px;
     float: left;
-    margin: 0 10px;
+    border-radius: 5px;
+    margin: 10px 10px;
+    &:hover{
+        opacity: 1;
+    }
+    &::-webkit-slider-thumb{
+        position: relative;
+        appearance: none;
+        cursor: grab;
+        background: #9c9c9c;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+    }
+    &::-webkit-slider-thumb:active{
+        cursor: grabbing;
+    }
 `
 
 export const slider = styled.div`

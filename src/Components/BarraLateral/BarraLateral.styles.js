@@ -110,31 +110,6 @@ export const tooltip_monitor = styled.div`
     top: 12px;
 `
 
-export const monitor = styled.div`
-    font: 400 13.3333px Arial;
-    font-family: Avenir,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    white-space: nowrap;
-    font-size: 14px;
-    cursor: pointer;
-    transition: border-color .3s,background-color .3s,color .3s;
-    box-sizing: border-box;
-    height: 60px;
-    text-align: center;
-    line-height: normal;
-    padding: 0;
-    color: #ff9934;
-    background-color: #233645!important;
-    &:hover{
-        ${tooltip_monitor}{
-            display:block;
-        }
-    }
-`
-
 export const icono_monitor = styled.i`
     font-style: normal;
     font-weight: 400;
@@ -152,10 +127,41 @@ export const icono_monitor = styled.i`
     font-size: 18px;
     vertical-align: middle;
     margin-top: 10px;
-    color: inherit;
-    background-position: -180px -480px;
+    color: #babec1;
+    background-position: -120px -480px;
     &:hover{
         background-position: -180px -480px;
+    }
+`
+
+export const monitor = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .3s,background-color .3s,color .3s;
+    box-sizing: border-box;
+    height: 60px;
+    text-align: center;
+    line-height: normal;
+    padding: 0;
+    color: #babec1;
+    /* color: #ff9934; */
+    /* background-color: #233645!important; */
+    &:hover{
+        ${tooltip_monitor}{
+            display:block;
+        }
+        color: #ff9934;
+        background-color: #2c3e50;
+        ${icono_monitor}{
+            background-position: -180px -480px;
+        }
     }
 `
 
@@ -306,7 +312,27 @@ export const submenu_reportes_grupo_contenido = styled.a`
     text-decoration: none;
     color: #fff;
 `
-
+export const icono_reportes = styled.i`
+    font: 400 13.3333px Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    color: #909399;
+    background-repeat: no-repeat;
+    background-image: url(${menus});
+    height: 24px;
+    background-position: 0 -600px;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+    vertical-align: middle;
+    margin-top: 10px;
+`
 
 export const reportes = styled.div`
     font: 400 13.3333px Arial;
@@ -326,9 +352,13 @@ export const reportes = styled.div`
     padding: 0;
     color: #babec1;
     &:hover{
+        color: #ff9934;
         background-color: #2c3e50;
         ${submenu_reportes}{
             display: block;
+        }
+        ${icono_reportes}{
+            background-position: -60px -600px;
         }
     }
 `
@@ -410,55 +440,6 @@ export const submenu_dispositivo_contenido_item_icono = styled.i`
     -webkit-font-smoothing: antialiased;
     font-size: 12px;
 `
-
-
-export const dispositivo = styled.div`
-    font: 400 13.3333px Arial;
-    font-family: Avenir,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    white-space: nowrap;
-    font-size: 14px;
-    cursor: pointer;
-    transition: border-color .3s,background-color .3s,color .3s;
-    box-sizing: border-box;
-    height: 60px;
-    text-align: center;
-    line-height: normal;
-    padding: 0;
-    color: #babec1;
-    &:hover{
-        background-color: #2c3e50;
-        ${submenu_dispositivo}{
-            display: block;
-        }
-    }
-`
-
-
-export const icono_reportes = styled.i`
-    font: 400 13.3333px Arial;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    display: inline-block;
-    -webkit-font-smoothing: antialiased;
-    color: #909399;
-    background-repeat: no-repeat;
-    background-image: url(${menus});
-    height: 24px;
-    background-position: 0 -600px;
-    margin-right: 5px;
-    width: 24px;
-    text-align: center;
-    font-size: 18px;
-    vertical-align: middle;
-    margin-top: 10px;
-`
 export const icono_dispositivos = styled.i`
     font-style: normal;
     font-weight: 400;
@@ -478,6 +459,35 @@ export const icono_dispositivos = styled.i`
     font-size: 18px;
     vertical-align: middle;
     margin-top: 10px;
+`
+
+export const dispositivo = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .3s,background-color .3s,color .3s;
+    box-sizing: border-box;
+    height: 60px;
+    text-align: center;
+    line-height: normal;
+    padding: 0;
+    color: #babec1;
+    &:hover{
+        color: #ff9934;
+        background-color: #2c3e50;
+        ${submenu_dispositivo}{
+            display: block;
+        }
+        ${icono_dispositivos}{
+            background-position: -180px -300px;
+        }
+    }
 `
 
 export const menu_inferior = styled.div`

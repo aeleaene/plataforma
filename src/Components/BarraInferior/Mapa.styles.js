@@ -60,9 +60,6 @@ export const PopUpDevicesOption = styled.span`
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
-    &:hover{
-        color: #ffb711;
-    }
 `;
 export const HeaderModal = styled.div`
     color: #fff;
@@ -119,5 +116,20 @@ export const BotonGuardar = styled.button`
         cursor: pointer;
         border: 1px solid #fcac5d;
         background-color: #fcac5d;
+    }
+`;
+export const DivDropDown = styled.div``;
+export const FenceList = styled.ul`
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 4px;
+`;
+export const FenceObj = styled.li`
+    font-size: 12px;
+    font-style: italic;
+    &:hover{
+        color: #ffb711;
     }
 `;

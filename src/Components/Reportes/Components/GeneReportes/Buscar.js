@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as s from '../../Reportes.styles';
 
 import { AiOutlinePlus } from "react-icons/ai";
@@ -12,11 +12,60 @@ import DataTable from 'react-data-table-component';
 import '../../styles.css';
 
 const Buscar = () => {
+    const [device, setDevice] = useState([]); //SE GUARDAN LOS JSON MEZCALDOS
+    const [dateFrom, setDateFrom] = useState("");
+    const [dateTo, setDateTo] = useState("");
+    const Datos = () => {
+        Devices()
+    }
+    const Devices = async() =>{
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "*/*");
+
+            var requestOptions = {
+                method: 'GET',
+                credentials: 'include',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+            
+            if (dateFrom === "" && dateTo === "") {
+                const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions`, requestOptions)
+                /* .then(response => response.json())
+                .catch(error => console.log('error', error)); */
+                const deviceData = await resultado.json();
+                const deviceData2 = await resultado2.json();
+
+                var full = [] //JSONS MEZClados
+                Object.keys(deviceData).forEach(k=>{full[k] = Object.assign(deviceData[k],deviceData2[k])});
+
+                console.log('full data')
+                console.log(full);
+                setDevice(full);
+            }
+            else{
+                const resultado = await fetch(`https://www.protrack.ad105.net/api/devices/`, requestOptions)
+                const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions?from=${dateFrom}:00.000z&to=${dateTo}:00.000z`, requestOptions)
+                /* .then(response => response.json())
+                .catch(error => console.log('error', error)); */
+                const deviceData = await resultado.json();
+                const deviceData2 = await resultado2.json();
+
+                var full = [] //JSONS MEZClados
+                Object.keys(deviceData).forEach(k=>{full[k] = Object.assign(deviceData[k],deviceData2[k])});
+
+                console.log('full data')
+                console.log(full);
+                setDevice(full);
+            }
+    }
     const data = [{ id: 1, objetivo: 'Vehiculo 1', kilometraje: '6.22', velocidad: '76', estadia: '2' }]
     const columns = [
         {
             name: '#',
-            selector: 'id',
+            selector: 'deviceId',
             sortable: true,
         },
         {
@@ -26,7 +75,7 @@ const Buscar = () => {
         },
         {
             name: 'Nombre',
-            selector: 'nombre',
+            selector: 'name',
             sortable: true,
         },
         {
@@ -66,14 +115,14 @@ const Buscar = () => {
         <s.contentReportesDiv>
                     <s.row1>
                         <s.LabelGral>Tipo de Reporte <s.selecttGral></s.selecttGral></s.LabelGral>
-                        <s.LabelGral>Periodo <s.inputGral type="date"/></s.LabelGral>
-                        <s.LabelGral>A <s.inputGral type="date"/></s.LabelGral>
-                        <s.InfoBoton>Comprobar</s.InfoBoton>
+                        <s.LabelGral>Periodo <s.inputGral type="datetime-local" onChange={(e) => setDateFrom(e.target.value)}/></s.LabelGral>
+                        <s.LabelGral>A <s.inputGral type="datetime-local" onChange={(e) => setDateTo(e.target.value)}/></s.LabelGral>
+                        <s.InfoBoton onClick={() => Datos()}>Comprobar</s.InfoBoton>
                     </s.row1>
                     <s.divTable>
                         <DataTable
                             columns={columns}
-                            data={data}
+                            data={device}
                             striped={true}
                             highlightOnHover={true}
                             pointerOnHover={true}

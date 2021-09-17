@@ -11,3 +11,100 @@
 .arrow-popup{
     font-size: 18px !important;
 }
+
+.fenceContent{
+    position: relative;
+    display: inline-block;
+}
+.dropdownContent{
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 40px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 30px;
+    right: 0px;
+    z-index: 1;
+}
+.fenceContent:hover .dropdownContent{
+    display: block;
+}
+.iconoPopUp:hover{
+    color: #ffb711 !important;
+}
+
+.accordion__button2{
+    cursor: pointer;
+    padding-left: 5px;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7dbbf !important;
+    color: #303133;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: 500;
+    border-bottom: 1px solid #f7dbbf !important;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+}
+.accordion__button3{
+    display: none;
+}
+
+.itemPanelGeo{
+    margin: 5px 5px;
+}
+
+/* CSS CHECKBOX */
+.contentCheck{
+    position: relative;
+    cursor: pointer;
+    font-size: 13px;
+    padding-left: 20px;
+    padding-right: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.contentCheck input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 3px;
+}
+
+.contentCheck input:checked ~ .checkmark{
+    background-color: #ffb711 ;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .contentCheck input:checked ~ .checkmark::after{
+      display: block;
+  }
+  .contentCheck .checkmark::after{
+    left: 5px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

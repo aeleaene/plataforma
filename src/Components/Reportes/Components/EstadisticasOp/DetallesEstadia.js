@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import * as s from '../../Reportes.styles';
 import {BiBarChart} from "react-icons/bi";
 import { AiFillCaretDown } from "react-icons/ai";
@@ -8,6 +8,36 @@ import DataTable from 'react-data-table-component';
 import '../../styles.css';
 
 const DetallesEstadia = () => {
+    const [device, setDevice] = useState([]);
+    const [fullData, setFullData] = useState([]);
+    useEffect(() => {
+        Devices()
+    }, [])
+    const Devices = async() =>{
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "*/*");
+
+            var requestOptions = {
+                method: 'GET',
+                credentials: 'include',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+            
+            const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+            const resultado2 = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
+                /* .then(response => response.json())
+                .catch(error => console.log('error', error)); */
+                const deviceData = await resultado.json();
+                const deviceData2 = await resultado2.json();
+                console.log('full data')
+                /* console.log(fulldata); */
+                /* console.log(deviceData) */
+                setDevice(deviceData);
+                setFullData(deviceData2);
+                /* console.log(device) */
+    }
     const data = [{ id: 1, objetivo: 'Vehiculo 1', kilometraje: '6.22', velocidad: '76', estadia: '2' }]
     const columns = [
         {
@@ -60,7 +90,7 @@ const DetallesEstadia = () => {
                             <s.SmallGral>El rango de tiempo máximo es de 30 días. Por favor, para más informes.<s.AGral> Programar Ahora</s.AGral></s.SmallGral>
                         </div>
                         <s.LabelGral>Duración Estadia <s.selecttGral></s.selecttGral></s.LabelGral>
-                        <s.LabelGral><s.CheckBox type="checkbox" name="indice"/>Indice de Cuenta </s.LabelGral>
+                        <s.LabelCheck><s.CheckBox1 type="checkbox" name="indice"/>Indice de Cuenta </s.LabelCheck>
                         <s.InfoBoton>Comprobar</s.InfoBoton>
                     </s.row1>
                     <s.row2>
@@ -72,7 +102,7 @@ const DetallesEstadia = () => {
                     <s.divTable>
                         <DataTable
                             columns={columns}
-                            data={data}
+                            data={device}
                             striped={true}
                             highlightOnHover={true}
                             pointerOnHover={true}

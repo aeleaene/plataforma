@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl, useMap} from 'react-leaflet';
+import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl, useMap, Circle, LayerGroup } from 'react-leaflet';
 import  L from 'leaflet';
 import "leaflet-rotatedmarker";
 import Modal from 'react-modal';
@@ -113,9 +113,82 @@ const Fecha = (fecha) => {
         setData(objeto);
         setData2(objeto2);
     }
+    /* GeoFence States */
+    const [fenceLat, setFenceLat] = useState(0);
+    const [fenceLon, setFenceLon] = useState(0);
+    const [fenceSize, setFenceSize] = useState(0);
+    const fillBlueOptions = { fillColor: 'blue' }
+    
+    const fechaiso = (date) => {
+        var fecha = new Date(date);
+        return fecha.toISOString();
+    }
+
+    const GeoCerca = async(id, item, lat, lon, size) =>{
+        /* console.log(id, lat, lon, size) */
+        setFenceLat(lat);
+        setFenceLon(lon);
+        setFenceSize(size);
+        /* State de la Geocerca */
+        var geofenceID = 0;
+        /* Crear Geocerca */
+
+        const dataGeofence = {
+            "id": 0,
+            "name": `${item.name}`,
+            "description": `Geocerca - ${item.name}`,
+            "area": `CIRCLE(${lat} ${lon}, ${size})`,
+            "calendarId": 0,
+            "attributes": { }
+        }
+        
+        const response = await fetch("https://www.protrack.ad105.net/api/geofences/", 
+                                    {
+                                        credentials: 'include',
+                                        method: 'POST',
+                                        headers:{
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(dataGeofence)
+                                    });
+        if(response.ok) {
+            const geofence = await response.json();
+            console.log(geofence.id);
+            geofenceID = geofence.id;
+        }else{
+            alert('No OK');
+        }
+        /* Conslutar geofence */
+        /* Actualizar Device */
+        console.log(`GEOFENCE ID ${geofenceID}`)
+        const dataDevice = {
+            "deviceId": item.id,
+            "geofenceId": geofenceID,
+        }
+        /* console.log(dataDevice) */
+        const responseDevice = await fetch(`https://www.protrack.ad105.net/api/permissions`,
+                                    {
+                                        credentials: 'include',
+                                        method: 'POST',
+                                        headers:{
+                                        'Content-Type': 'application/json',
+                                        },
+                                    body: JSON.stringify(dataDevice)
+                                    });
+        if(responseDevice.ok) {
+            console.log('hecho');
+        }else{
+            alert('NO OK')
+        }
+
+
+
+    }
+
     return (
 
     <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true}>
+        <Circle center={[fenceLat, fenceLon]} pathOptions={fillBlueOptions} radius={fenceSize} />
         <LayersControl position="bottomright">
         <SetZoom />
             <LayersControl.BaseLayer checked name="Google">
@@ -186,12 +259,21 @@ const Fecha = (fecha) => {
                                 <s.PopUpCon2>
                                     <s.PopUpDevicesOptionLink><MdReplay/></s.PopUpDevicesOptionLink>
                                     <s.PopUpDevicesOptionLink className="arrow-popup"><TiLocationArrowOutline/></s.PopUpDevicesOptionLink>
-                                    <s.PopUpDevicesOption onClick={() => ActiveModal(1, item, item2)}><BsTerminal/></s.PopUpDevicesOption>
-                                    <s.PopUpDevicesOption><GiWoodenFence/></s.PopUpDevicesOption>
-                                    <s.PopUpDevicesOption onClick={() => ActiveModal(2, item, item2)}><FaShareAlt/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption onClick={() => ActiveModal(1, item, item2)}><BsTerminal className="iconoPopUp"/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption className="fenceContent">
+                                        <GiWoodenFence className="iconoPopUp"/>
+                                        <s.DivDropDown className="dropdownContent">
+                                            <s.FenceList>
+                                                <s.FenceObj onClick={() => GeoCerca(item2.deviceId, item, item2.latitude, item2.longitude, 300)}>300m</s.FenceObj>
+                                                <s.FenceObj onClick={() => GeoCerca(item2.deviceId, item, item2.latitude, item2.longitude, 500)}>500m</s.FenceObj>
+                                                <s.FenceObj onClick={() => GeoCerca(item2.deviceId, item, item2.latitude, item2.longitude, 1000)}>1000m</s.FenceObj>
+                                            </s.FenceList>
+                                        </s.DivDropDown>
+                                    </s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption onClick={() => ActiveModal(2, item, item2)}><FaShareAlt className="iconoPopUp"/></s.PopUpDevicesOption>
                                     <s.PopUpDevicesOptionLink className="arrow-popup" href={`https://www.google.com/maps?q&layer=c&cbll=${item2.latitude},${item2.longitude}`} target="_blank"><BiMapPin/></s.PopUpDevicesOptionLink>
-                                    <s.PopUpDevicesOption onClick={() => ActiveModal(3, item, item2)}><ImFileText2/></s.PopUpDevicesOption>
-                                    <s.PopUpDevicesOption className="inout-popup" onClick={() => ActiveModal(4, item, item2)}>I/O</s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption onClick={() => ActiveModal(3, item, item2)}><ImFileText2 className="iconoPopUp"/></s.PopUpDevicesOption>
+                                    <s.PopUpDevicesOption className="inout-popup iconoPopUp" onClick={() => ActiveModal(4, item, item2)} >I/O</s.PopUpDevicesOption>
                                 </s.PopUpCon2>
                                 </s.PopUpContainer>
                             </Popup>
@@ -217,8 +299,8 @@ const Fecha = (fecha) => {
                         backgroundColor: 'rgba(15, 15, 15, 0.507)'
                     },
                     content: {
-                        width: 600,
-                        height: 464
+                        width: 716,
+                        height: 436
                     }
                 }}
             >

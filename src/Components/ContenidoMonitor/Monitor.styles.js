@@ -362,7 +362,7 @@ export const rastreador = styled.button`
     padding: 2px 2px;
 `;
 export const deviceonlist = styled.div`
-    padding: 8px 8px 8px 30px;
+    padding: 8px 8px 8px 20px;
     height: 20px;
     display: flex;
     align-items: center;
@@ -372,9 +372,10 @@ export const deviceonlist = styled.div`
         background-color: #e4e4e4;
     }
 `;
-export const deviceonlistsub1 = styled.div`
+export const deviceonlistsub1 = styled.label`
     display: flex;
     align-items: center;
+    cursor: pointer;
 `;
 export const deviceonlistsub2 = styled.div`
     display: flex;
@@ -405,4 +406,31 @@ export const deviceOptions = styled.span`
     text-align: center;
     color: #999999;
     padding-top: 4px;
+`;
+export const CheckBox1 = styled.input`
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    &:checked{
+        background-color: #ff9934;
+        border-color: #ff9934;
+    }
+    &:checked::after{
+        content: " ";
+        position: absolute;
+        width: 3px;
+        height: 10px;
+        left: 5px;
+        top: 0px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
 `;

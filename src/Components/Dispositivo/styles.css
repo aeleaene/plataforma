@@ -38,3 +38,32 @@
 .seleccionButton{
     background-color: #ffbf7f !important;
 }
+
+.rdt_Table input[type="checkbox"]{
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+}
+
+.rdt_Table input[type="checkbox"]:checked{
+    background-color: #ff9934;
+    border-color: #ff9934;
+}
+.rdt_Table input[type="checkbox"]:checked::after{
+    content: " ";
+    position: absolute;
+    width: 3px;
+    height: 10px;
+    left: 5px;
+    top: 0px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

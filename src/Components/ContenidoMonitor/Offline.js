@@ -47,7 +47,7 @@ const Offline = () => {
                     item.status === 'offline' ?
                         <s.deviceonlist key={item.id}>
                             <s.deviceonlistsub1>
-                                <s.deviceChebox type="checkbox"/>
+                                <s.CheckBox1 type="checkbox"/>
                                 <s.deviceName>{item.name}</s.deviceName>
                             </s.deviceonlistsub1>
                             <s.deviceonlistsub2>

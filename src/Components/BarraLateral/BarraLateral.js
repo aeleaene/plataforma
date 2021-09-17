@@ -14,6 +14,8 @@ import { getSessionCookie } from '../../sessions';
 
 import * as Cookies from 'js-cookie';
 
+import './styles.css'
+
 /* Modals */
 import ContenidoCuenta from '../ContenidoCuenta/ContenidoCuenta';
 import ProveedorServicios from '../ProveedorServicios/ProveedorServicios';
@@ -126,7 +128,7 @@ const BarraLateral = (props) => {
 
 
     /* useContext */
-    const { setMenuOp, setSubmenuOp } = useContext(MenContext);
+    const { menuOp, setMenuOp, submenuOp, setSubmenuOp } = useContext(MenContext);
     return (
         <Router>
         <s.menu_caja>
@@ -277,47 +279,47 @@ const BarraLateral = (props) => {
 
             <s.menu_superior>
 
-                <s.monitor onClick={() => setMenuOp(1)}>
+                <s.monitor onClick={() => setMenuOp(1)} className={menuOp === 1 ? 'seleccionMonitor' : ''}>
                     <s.icono_monitor />
                     <s.texto_elemento_menu>Monitor</s.texto_elemento_menu>
                     <s.tooltip_monitor>Monitor</s.tooltip_monitor>
                 </s.monitor>
 
-                <s.reportes >
+                <s.reportes className={menuOp === 2 ? 'seleccionReportes' : ''}>
                     <s.icono_reportes onClick={() => {setMenuOp(2); setSubmenuOp(1)}}/>
                     <s.texto_elemento_menu onClick={() => {setMenuOp(2); setSubmenuOp(1)}}>Reportes</s.texto_elemento_menu>
                     <s.submenu_reportes tabIndex="-1">
                         <s.submenu_reportes_grupo>Informes generales</s.submenu_reportes_grupo>
                         <s.submenu_reportes_grupo_contenido_operacion>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 1 || submenuOp === 2 || submenuOp === 3 || submenuOp === 4 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(1)}}> Estadísticas de Operación &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
 
                                 <s.submenu_reportes_submenu>
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 1 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(1)}}> Informe General de Movimiento</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 2 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(2)}}> Informe sobre el kilometraje</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 3 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(3)}}> Detalles de exceso de velocidad</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 4 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(4)}}> Detalles de estadias</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -329,20 +331,20 @@ const BarraLateral = (props) => {
                         </s.submenu_reportes_grupo_contenido_operacion>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 5 || submenuOp === 6 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(5)}}> Reporte de viaje &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 5 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(5)}}> Reporte de viaje</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 6 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(6)}}> Informe de viaje de exceso de velocidad</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -352,27 +354,27 @@ const BarraLateral = (props) => {
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 7 || submenuOp === 8 || submenuOp === 9 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(7)}}> Informe de comportamiento de conducción &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 7 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(7)}}> Visión general del comporamiento de conducción</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 8 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(8)}}> Informe de comportamiento de conducción</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 9 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(9)}}> Detalles de comportamiento de conducción</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -382,27 +384,27 @@ const BarraLateral = (props) => {
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 10 || submenuOp === 11 || submenuOp === 12 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(10)}}> Reporte de ACC (Encendido) &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 10 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(10)}}> Visión general de ACC</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 11 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(11)}}> Reporte de ACC (Enciendido)</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 12 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(12)}}> Informe de Ralentí Mínimo</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -412,27 +414,27 @@ const BarraLateral = (props) => {
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 13 || submenuOp === 14 || submenuOp === 15 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(13)}}> Reporte de información del vehículo &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 13 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(13)}}> Informe de combustible</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 14 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(14)}}> Informe de presión de neúmaticos</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 15 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(15)}}> Temperature Report</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -442,27 +444,27 @@ const BarraLateral = (props) => {
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 16 || submenuOp === 17 || submenuOp === 18 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(16)}}> Informe OBD &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 16 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(16)}}> Resumen de consumo de combustible de viaje</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 17 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(17)}}> Detalles de consumo de combustible de viaje</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 18 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(18)}}> Informe DTC</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -472,28 +474,28 @@ const BarraLateral = (props) => {
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 19 || submenuOp === 20 || submenuOp === 21 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(19)}}> Estadística de Alarma &nbsp; &nbsp; &nbsp;</span>
                                 <s.submenu_reportes_grupo_dos_icono_derecha><ic.AiOutlineRight /></s.submenu_reportes_grupo_dos_icono_derecha>
                                 
                                 <s.submenu_reportes_submenu>
                                 <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 19 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(19)}}> Descripción general de alarma</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 20 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(20)}}> Estadística de alarma</span>
                                         </s.submenu_reportes_grupo_dos>
                                     </s.submenu_reportes_grupo_contenido>
 
                                     <s.submenu_reportes_grupo_contenido>
-                                        <s.submenu_reportes_grupo_dos>
+                                        <s.submenu_reportes_grupo_dos className={submenuOp === 21 ? 'subMenus' : ''}>
                                             <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                             <span onClick={() => {setMenuOp(2); setSubmenuOp(21)}}> Detalle de Alarma</span>
                                         </s.submenu_reportes_grupo_dos>
@@ -504,14 +506,14 @@ const BarraLateral = (props) => {
 
                         <s.submenu_reportes_grupo>Generar Reporte</s.submenu_reportes_grupo>
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 22 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(22)}}> Tareas de informe | Nuevo</span>
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
 
                         <s.submenu_reportes_grupo_contenido>
-                            <s.submenu_reportes_grupo_dos>
+                            <s.submenu_reportes_grupo_dos className={submenuOp === 23 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(23)}}> Buscar reporte</span>
                             </s.submenu_reportes_grupo_dos>
@@ -522,36 +524,36 @@ const BarraLateral = (props) => {
 
 
 
-                <s.dispositivo >
+                <s.dispositivo className={menuOp === 3 ? 'seleccionDispos' : ''}>
                     <s.icono_dispositivos onClick={() => {setMenuOp(3); setSubmenuOp(24)}}/>
                     <s.texto_elemento_menu onClick={() => {setMenuOp(3); setSubmenuOp(24)}}>Dispositivo</s.texto_elemento_menu>
                     <s.submenu_dispositivo tabIndex="-1">
-                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(24)}}>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(24)}} className={submenuOp === 24 ? 'subMenus' : ''}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.FaCarAlt /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Configuración del Dispositivo
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(25)}}>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(25)}} className={submenuOp === 25 ? 'subMenus' : ''}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.TiFlag /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Detalle de Alarma
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item_dividido onClick={() => {setMenuOp(3); setSubmenuOp(26)}}>
+                        <s.submenu_dispositivo_contenido_item_dividido onClick={() => {setMenuOp(3); setSubmenuOp(26)}} className={submenuOp === 26 ? 'subMenus' : ''}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.GoTerminal /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Horario para Comando
                         </s.submenu_dispositivo_contenido_item_dividido>
 
-                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(27)}}>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(27)}} className={submenuOp === 27 ? 'subMenus' : ''}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.BsBellFill /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Administración de notificaciones de vencimiento
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(28)}}>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(28)}} className={submenuOp === 28 ? 'subMenus' : ''}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.AiFillTool /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Gestión de mantenimiento
                         </s.submenu_dispositivo_contenido_item>
 
-                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(29)}}>
+                        <s.submenu_dispositivo_contenido_item onClick={() => {setMenuOp(3); setSubmenuOp(29)}} className={submenuOp === 29 ? 'subMenus' : ''}>
                             <s.submenu_dispositivo_contenido_item_icono><ic.FaShareAlt /></s.submenu_dispositivo_contenido_item_icono> &nbsp;
                             Gestionar link`s compartidos
                         </s.submenu_dispositivo_contenido_item>

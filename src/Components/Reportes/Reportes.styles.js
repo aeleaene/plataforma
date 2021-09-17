@@ -481,6 +481,11 @@ export const row2 = styled.div`
 export const LabelGral = styled.label`
     font-size: 14px;
 `;
+export const LabelCheck = styled.label`
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+`;
 export const SpanCheck = styled.span``;
 export const CheckBox = styled.input``;
 export const inputGral = styled.input`
@@ -587,7 +592,7 @@ export const divCard = styled.div`
     border-radius: 8px;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
     width: 100%;
-    height: 83px;
+    height: 50px;
     display: flex;
     flex-direction: column;
 `;
@@ -598,6 +603,7 @@ export const LabelCard = styled.label`
 export const LabelCard2 = styled.label`
     color: #606266;
     font-size: 24px;
+    font-weight: 600;
 `;
 export const divTable = styled.div`
     margin: 0px 10px;
@@ -681,5 +687,32 @@ export const tabButton = styled.label`
     color: #606266;
     &:hover{
         color: #ff9934;
+    }
+`;
+export const CheckBox1 = styled.input`
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    &:checked{
+        background-color: #ff9934;
+        border-color: #ff9934;
+    }
+    &:checked::after{
+        content: " ";
+        position: absolute;
+        width: 3px;
+        height: 10px;
+        left: 5px;
+        top: 0px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
 `;

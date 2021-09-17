@@ -710,3 +710,31 @@ export const tabButton = styled.label`
         color: #ff9934;
     }
 `;
+
+export const CheckBox1 = styled.input`
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    &:checked{
+        background-color: #ff9934;
+        border-color: #ff9934;
+    }
+    &:checked::after{
+        content: " ";
+        position: absolute;
+        width: 3px;
+        height: 10px;
+        left: 5px;
+        top: 0px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+`;

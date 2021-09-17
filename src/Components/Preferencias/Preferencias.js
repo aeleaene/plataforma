@@ -1,6 +1,6 @@
 import React from 'react'
 import * as s from './Preferencias.styles';
-import './Switch.css';
+/* import './Switch.css'; */
 
 const Preferencias = () => {
     return (
@@ -74,15 +74,15 @@ const Preferencias = () => {
                 <s.InputGroup>
                     <s.Label>Ralentí Mínimo:</s.Label>
                     <s.SwitchBtn className="switchBtn">
-                        <s.Switch type="checkbox" name="check1" id="check1"/>
-                        <s.SwitchRound className="slide round"></s.SwitchRound>
+                        <s.Switch1 type="checkbox" name="check1" id="check1"/>
+         {/*                <s.SwitchRound className="slide round"></s.SwitchRound> */}
                     </s.SwitchBtn>
                 </s.InputGroup>
                 <s.InputGroup>
                     <s.Label>Contraseña CMD:</s.Label>
                     <s.SwitchBtn className="switchBtn">
-                        <s.Switch type="checkbox" name="check2" id="check2"/>
-                        <s.SwitchRound className="slide round"></s.SwitchRound>
+                        <s.Switch2 type="checkbox" name="check2" id="check2"/>
+                       {/*  <s.SwitchRound className="slide round"></s.SwitchRound> */}
                     </s.SwitchBtn>
                 </s.InputGroup>
             </s.ContentTwo>
@@ -91,8 +91,8 @@ const Preferencias = () => {
                     <s.InputGroup>
                         <s.Label>Habilitar el inicio de sesión de IMEI:</s.Label>
                             <s.SwitchBtn className="switchBtn">
-                                <s.Switch type="checkbox"name="check3" id="check3"/>
-                                <s.SwitchRound className="slide round"></s.SwitchRound>
+                                <s.Switch3 type="checkbox"name="check3" id="check3"/>
+                                {/* <s.SwitchRound className="slide round"></s.SwitchRound> */}
                             </s.SwitchBtn>
                     </s.InputGroup>
                 </s.ContentOneInside>
