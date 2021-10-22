@@ -55,6 +55,9 @@
 .itemPanelGeo{
     margin: 5px 5px;
 }
+.geofence-scroll{
+    overflow: scroll;
+}
 
 /* CSS CHECKBOX */
 .contentCheck{
@@ -108,3 +111,42 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+  .iconsGeoFence{
+    font-size: 25px;
+    color: #ffffff;
+    margin: 0 2px;
+}
+.iconsGeoFenceForm{
+    font-size: 25px;
+    color: #ffffff;
+    margin: 0 2px;
+    cursor: pointer;
+}
+.numberFormGeo{
+    margin-left: 56px !important;
+    margin-right: 38px !important;
+}
+.numberFormGeo input{
+    padding-right: 0px !important;
+}
+.dateFormGeo{
+    margin-left: 56px !important;
+    margin-right: 70px !important;
+}
+.dateFormGeo input{
+    padding-right: 0px !important;
+}
+
+.buttonFormGeo{
+    
+}
+.sr-only {
+    display: none;
+  }
+.leaflet-bottom{
+    display: none !important;
+}
+.leaflet-right{
+    right: 70px !important;
+    margin-right: 0px !important;
+}

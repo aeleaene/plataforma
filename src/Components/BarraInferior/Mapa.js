@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl, useMap, Circle, LayerGroup } from 'react-leaflet';
+import React, { useEffect, useState, useRef, useContext, useMemo, useCallback } from 'react'
+import {MapContainer, Marker, Popup, TileLayer, ZoomControl, LayersControl, useMap, useMapEvents, Circle, FeatureGroup, Tooltip} from 'react-leaflet';
+import { EditControl } from 'react-leaflet-draw';
 import  L from 'leaflet';
 import "leaflet-rotatedmarker";
 import Modal from 'react-modal';
-
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-draw/dist/leaflet.draw.css';
+/* import './leaflet.css'; */
+/* import './leaflet.draw.css'; */
 import '../../styles/mapa.css';
 
 import * as s from './Mapa.styles';
@@ -32,6 +35,9 @@ import ConfigInOut from '../ConfigInOut/ConfigInOut';
 
 import * as icmap from './Marcadores/MapIcon';
 
+/* CONTEXT */
+import {MenContext} from '../../Context/MenuContext';
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -40,17 +46,30 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 Modal.setAppElement('#root');
-const Mapa = (props) => {
 
+
+const Mapa = (props) => {
+    const { drawClick, setDrawClick, colorValue, setLatFenceCircle, setLngFenceCirlce, setBounds, setRadiusFence } = useContext(MenContext);
+    const center = {
+        lat: 19.432680,
+        lng: -99.134209,
+    };
+    const [mapPos, setMapPos] = useState();
     const [deviceInfo, setDeviceInfo] = useState([])
     const [marker, setMarker] = useState([])
+    const [typeFence, setTypeFence] = useState("");
     useEffect(() => {
         const interval = setInterval(() => {
             Marcador()
         }, 10000);
         return () => clearInterval(interval);
     }, [])
+    useEffect(() => {
 
+        //PINTAR GEOCERCA
+        console.log(drawClick);
+
+    }, [drawClick])
 
     function SetZoom(){
         const mapInstance = useMap()
@@ -61,48 +80,47 @@ const Mapa = (props) => {
         return null
     }
 
-const Marcador = async() =>{
-    var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Accept", "*/*");
+    const Marcador = async() =>{
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "*/*");
 
-        var requestOptions = {
-            method: 'GET',
-            credentials: 'include',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-        const responseDevice = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-        const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
-        /* .then(response => response.json())
-        .catch(error => console.log('error', error)); */
-        const deviceData = await responseDevice.json();
-        const markerData = await resultado.json();
-        /* console.log(markerData)
-        console.log(deviceData); */
-        setDeviceInfo(deviceData)
-        setMarker(markerData);
-        /* console.log(marker) */
-        /* console.log(deviceInfo) */
-    
-}
-const Fecha = (fecha) => {
-    const fecha1 = new Date();
-    const date = new Date(fecha);
-    if (fecha1.getDate() === date.getDate()) {
-        return date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
+            var requestOptions = {
+                method: 'GET',
+                credentials: 'include',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+            const responseDevice = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+            const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
+            /* .then(response => response.json())
+            .catch(error => console.log('error', error)); */
+            const deviceData = await responseDevice.json();
+            const markerData = await resultado.json();
+            /* console.log(markerData)
+            console.log(deviceData); */
+            setDeviceInfo(deviceData)
+            setMarker(markerData);
+            /* console.log(marker) */
+            /* console.log(deviceInfo) */
+        
     }
-    return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
-}
+    const Fecha = (fecha) => {
+        const fecha1 = new Date();
+        const date = new Date(fecha);
+        if (fecha1.getDate() === date.getDate()) {
+            return date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
+        }
+        return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+    }
 
   /* State Modal */
     const [modalComando, setModalComando] = useState(false);
     const [modalShare, setModalShare] = useState(false);
     const [modalDetalle, setModalDetalle] = useState(false);
     const [modalConfiguraciones, setModalConfiguraciones] = useState(false);
-    const [data, setData] = useState({})
-    const [data2, setData2] = useState({})
-
+    const [data, setData] = useState({});
+    const [data2, setData2] = useState({});
     /* Funcion modals */
     const ActiveModal = (modAct, objeto, objeto2) => {
         console.log(modAct);
@@ -119,10 +137,10 @@ const Fecha = (fecha) => {
     const [fenceSize, setFenceSize] = useState(0);
     const fillBlueOptions = { fillColor: 'blue' }
     
-    const fechaiso = (date) => {
+/*     const fechaiso = (date) => {
         var fecha = new Date(date);
         return fecha.toISOString();
-    }
+    } */
 
     const GeoCerca = async(id, item, lat, lon, size) =>{
         /* console.log(id, lat, lon, size) */
@@ -139,7 +157,10 @@ const Fecha = (fecha) => {
             "description": `Geocerca - ${item.name}`,
             "area": `CIRCLE(${lat} ${lon}, ${size})`,
             "calendarId": 0,
-            "attributes": { }
+            "attributes": {
+                "shape": "circle",
+                "color": "#3699cf",
+            }
         }
         
         const response = await fetch("https://www.protrack.ad105.net/api/geofences/", 
@@ -180,14 +201,64 @@ const Fecha = (fecha) => {
         }else{
             alert('NO OK')
         }
-
-
-
     }
-
+    const _created = (e) => {
+        if (drawClick.shape === 'circle') {
+            console.log(e.layer)
+            setLatFenceCircle(e.layer._latlng.lat)
+            setLngFenceCirlce(e.layer._latlng.lng)
+            setRadiusFence(parseInt(e.layer._mRadius))
+        }
+        if (drawClick.shape === 'polygon') {
+            console.log(e.layer._latlngs)
+            setBounds(e.layer._latlngs);
+        }
+    }
     return (
 
-    <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true}>
+    <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true} onChange={(e) => setMapPos(e.target)}>
+        {drawClick.shape === 'circle' ?
+            <FeatureGroup>
+                <EditControl 
+                    position="topright" 
+                    onCreated={drawClick.shape === 'circle' ? _created : null}
+                    draw={{ 
+                        circle: {
+                            shapeOptions: {
+                                color: colorValue,
+                            }
+                        },
+                        polygon: false,
+                        rectangle: false,
+                        circlemarker: false,
+                        marker: false,
+                        polyline: false,
+                     }}
+                     edit={{ edit: false}}
+                />
+            </FeatureGroup>
+         : <></>}
+         { drawClick.shape === 'polygon' ?
+            <FeatureGroup>
+            <EditControl 
+                    position="topright" 
+                    onCreated={drawClick.shape === 'polygon' ? _created : null}
+                    draw={{ 
+                        polygon: {
+                            shapeOptions: {
+                                color: colorValue,
+                            }
+                        },
+                        rectangle: false,
+                        circlemarker: false,
+                        circle: false,
+                        marker: false,
+                        polyline: false,
+                     }}
+                     edit={{ edit: false}}
+                />
+            </FeatureGroup>
+        : <></>}
         <Circle center={[fenceLat, fenceLon]} pathOptions={fillBlueOptions} radius={fenceSize} />
         <LayersControl position="bottomright">
         <SetZoom />
@@ -277,6 +348,7 @@ const Fecha = (fecha) => {
                                 </s.PopUpCon2>
                                 </s.PopUpContainer>
                             </Popup>
+                            <Tooltip permanent direction="right">{item.name}</Tooltip>
                         </Marker>
                     :
                     null

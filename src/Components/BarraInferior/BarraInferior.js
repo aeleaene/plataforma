@@ -9,6 +9,8 @@ import Draggable from 'react-draggable';
 
 import GeoCercas from './GeoCercas';
 
+import './PopUp.css';
+
 const BarraInferior = () => {
 
     const [toggle, setToggle] = React.useState(false);
@@ -127,13 +129,13 @@ const BarraInferior = () => {
                 <s.icono_Alertas></s.icono_Alertas>
                 <s.icono_Recorrido></s.icono_Recorrido>
             </s.caja_derecha>
-            <s.geofences visibility={toggleGeo}>
+            <s.geofences visibility={toggleGeo} className="geofence-scroll">
                 <s.capa_mapa_titulo onClick={handleToggleGeo}>
                     <s.capa_mapa_titulo_icono_izquierdaGeo />
                     GeoCercas
                     <s.capa_mapa_titulo_icono_derecha><ic.AiOutlineMinus/></s.capa_mapa_titulo_icono_derecha>
                 </s.capa_mapa_titulo>
-                <GeoCercas />
+                <GeoCercas ver={toggleGeo} ocultar={setToggleGeo}/>
             </s.geofences>
 
 

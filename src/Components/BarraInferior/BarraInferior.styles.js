@@ -214,7 +214,7 @@ export const geofences = styled.div`
     width: 320px;
     height: 450px;
     background-color: #fff;
-    right: 1px;
+    right: 10px;
     box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
     display: ${props => props.visibility? 'block':'none'};
 `

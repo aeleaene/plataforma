@@ -206,3 +206,126 @@ export const SpanDisElemMain = styled.label`
     flex: 1;
 `;
 export const CheckMarkElem = styled.span``;
+
+export const geoFenceOptions = styled.div`
+    width: 102px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    display: ${props => props.visibility? 'block':'none'};
+    position: absolute;
+    top: 72px;
+    right: -5px;
+    box-shadow: 0px 0px 12px -4px rgba(0,0,0,0.75);
+    padding: 5px;
+`;
+export const geoFenceOpt = styled.span`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #606266;
+    font-size: 14px;
+    gap: 8px;
+    cursor: pointer;
+    &:hover{
+        background-color: #e7e7e7;
+    }
+`;
+
+export const geoForm = styled.div`
+    display: ${props => props.visibility? 'block':'none'};
+    position: absolute;
+    width: 100%;
+    height: 93%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+`;
+export const geoFormContent = styled.div`
+    width: 100%;
+    height: auto;
+    background-color: #ffc285;
+    margin-top: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+`;
+export const rowFenceForm = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 14px;
+    color: #ffff;
+`;
+export const rowFenceForm2 = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 14px;
+    color: #ffff;
+    display: ${props => props.visibility? 'block':'none'};
+`;
+export const FenceFormButtonAction = styled.button`
+    padding: 7px 15px;
+    background-color: #ff9934;
+    color: #fff;
+    border: 1px solid #ff9934;
+    border-radius: 5px;
+    margin: 0px 2px;
+    display: flex;
+    align-items: center;
+    &:hover{
+        background-color: #f5ac63;
+        border: 1px solid #f5ac63;
+    }
+`;
+export const FenceFormButtonCancel = styled.button`
+    padding: 7px 15px;
+    background-color: #ececec;
+    color: #606266;
+    border-radius: 5px;
+    border: 1px solid #dcdfe6;
+    margin: 0px 2px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover{
+        background-color: #f5ac63;
+        border: 1px solid #f5ac63;
+    }
+`;
+export const ColorPicker = styled.input`
+    appearance: none;
+    width: 30px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    border-color: transparent;
+`;
+export const CheckBoxFenceForm = styled.input`
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    width: 25px;
+    height: 17px;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    &:checked{
+        background-color: #ff9934;
+        border-color: #ff9934;
+    }
+    &:checked::after{
+        content: " ";
+        position: absolute;
+        width: 3px;
+        height: 10px;
+        left: 5px;
+        top: 0px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+`;
