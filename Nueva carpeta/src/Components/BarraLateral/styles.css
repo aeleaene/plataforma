@@ -1,0 +1,25 @@
+.seleccionMonitor{
+    color: #ff9934;
+    background-color: #2c3e50;
+}
+.seleccionMonitor i{
+    background-position: -180px -480px;
+}
+.seleccionReportes{
+    color: #ff9934;
+    background-color: #2c3e50;
+}
+.seleccionReportes i{
+    background-position: -60px -600px;
+}
+.seleccionDispos{
+    color: #ff9934;
+    background-color: #2c3e50;
+}
+.seleccionDispos i{
+    background-position: -180px -300px;
+}
+
+.subMenus{
+    background-color: #2c3e50 !important;
+}

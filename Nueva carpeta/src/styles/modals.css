@@ -1,0 +1,30 @@
+.ReactModal__Content{
+    font-family: Avenir,Helvetica,Arial,sans-serif !important;
+    min-width: 350px !important;
+    /* width: 350px !important; */
+    max-width: 850px !important;
+    min-height: 318px !important;
+    height: 318px;
+    margin: 15vh auto !important;
+    padding: 0 !important;
+    border-radius: 0px !important;
+    border: none !important;
+
+}
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+    overflow: scroll;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+.ReactModalPortal{
+    position: absolute !important;
+    z-index: 1;
+}

@@ -1,0 +1,9 @@
+.seleccionComand{
+    border-bottom: 2px solid #ff9934 !important;
+    color: #ff9934;
+    transition: all .3s linear;
+}
+
+.seleccionButton{
+    background-color: #ffbf7f !important;
+}

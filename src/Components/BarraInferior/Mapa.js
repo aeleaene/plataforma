@@ -38,6 +38,8 @@ import * as icmap from './Marcadores/MapIcon';
 /* CONTEXT */
 import {MenContext} from '../../Context/MenuContext';
 
+const Link = require("react-router-dom").Link;
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -328,7 +330,7 @@ const Mapa = (props) => {
                                     <s.PopUpDeviceData>Coordinar: <s.PopUpDeviceLink href={`http://map.google.com/maps?q=${item2.latitude},${item2.longitude}`} target="_blank">{item2.latitude},{item2.longitude}</s.PopUpDeviceLink></s.PopUpDeviceData>
                                 </s.PopUpCon1>
                                 <s.PopUpCon2>
-                                    <s.PopUpDevicesOptionLink><MdReplay/></s.PopUpDevicesOptionLink>
+                                    <s.PopUpDevicesOptionLink><Link to={{pathname: '/recorrido', state: item2, target:'_blank', rel:'noopener noreferrer'}}><MdReplay/></Link></s.PopUpDevicesOptionLink>
                                     <s.PopUpDevicesOptionLink className="arrow-popup"><TiLocationArrowOutline/></s.PopUpDevicesOptionLink>
                                     <s.PopUpDevicesOption onClick={() => ActiveModal(1, item, item2)}><BsTerminal className="iconoPopUp"/></s.PopUpDevicesOption>
                                     <s.PopUpDevicesOption className="fenceContent">
