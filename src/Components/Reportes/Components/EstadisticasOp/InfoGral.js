@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useMemo} from 'react'
 import * as s from '../../Reportes.styles';
 import {BiBarChart} from "react-icons/bi";
 import { AiFillCaretDown } from "react-icons/ai";
+import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
@@ -11,6 +12,12 @@ const InfoGral = () => {
     const [device, setDevice] = useState([]); //SE GUARDAN LOS JSON MEZCALDOS
     const [dateFrom, setDateFrom] = useState("");
     const [dateTo, setDateTo] = useState("");
+    //INSTANCIAS PARA EL EXCEL
+    const ExcelFile = ReactExport.ExcelFile;
+    const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+    const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+    const [filename, setFilename] = useState(``);
+
     const Datos = () => {
             Devices()
     }
@@ -42,6 +49,7 @@ const InfoGral = () => {
                 console.log('full data')
                 console.log(full);
                 setDevice(full);
+                setFilename(`Informacióngeneraldemovimiento`);
             }
             else{
                 const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
@@ -57,9 +65,14 @@ const InfoGral = () => {
                 console.log('full data')
                 console.log(full);
                 setDevice(full);
+                setFilename(`Informacióngeneraldemovimiento ${dateFrom} - ${dateTo}`);
             }
-
-                
+            
+    }
+    const FechaActual = () =>{
+        const fecha = new Date("DD-MM-YYYTHH:mm");
+        const fch = fecha.getDate();
+        return fch;
     }
     //TODO: https://www.protrack.ad105.net/api/positions?from=2021-08-06T21:48:56.000z&to=2021-08-06T21:48:56.000z
     const Fecha = (fecha) => {
@@ -70,7 +83,7 @@ const InfoGral = () => {
         }
         return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
     }
-    const data = [{ id: 1, objetivo: 'Vehiculo 1', kilometraje: '6.22', velocidad: '76', estadia: '2' }]
+    //const devi = [{ deviceId: 1, name: 'Vehiculo 1', speed: '6.22', estadia: '76'}]
     const columns = [
         {
             name: '#',
@@ -98,6 +111,69 @@ const InfoGral = () => {
             sortable: true,
         },
     ];
+    /* const actionsMemo = useMemo(() => <Export onExport={() => downloadCSV(device)} />, []); */
+    const csvEmptyData = [
+        {
+          foo: ""
+        }
+      ];
+    //Estructura para guardar en el excel
+    const data = [
+        {
+            xSteps: 2,
+            columns: [
+                { title: "INFORMACIÓN DE RECORRIDO", width: {wpx: 300}, height: {wpx: 40}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true, sz:14}, border: {top: {style: "none", color: "#fff"}, bottom: {style: "nono", color: "#fff"}, left: {style: "none", color: "#fff"}, right: {style: "none", color: "#fff"}}}}
+            ],
+            data: csvEmptyData.map((record, index) => {
+                return [
+                    { value: record.foo }
+                ];
+            }),
+        },
+        {
+            xSteps: 2,
+            ySteps: -1,
+            columns: [
+                { title: "RECORRIDO", width: {wpx: 520}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true, sz:12}} }
+            ],
+            data: csvEmptyData.map((record, index) => {
+                return [
+                    { value: record.foo }
+                ];
+            }),
+        },
+        {
+            xSteps: 2,
+            ySteps: -1,
+            columns: [
+                { title: "DESDE "+dateFrom+" A "+dateTo, width: {wpx: 520}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true, sz:12}} }
+            ],
+            data: csvEmptyData.map((record, index) => {
+                return [
+                    { value: record.foo }
+                ];
+            }),
+        },
+        {
+            ySteps: -1,
+            columns: [
+                { title: "#", width: {wpx: 40}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Objetivo", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Kilometraje (km)", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Exceso de Velocidad (Km/h)", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Estadia", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+            ],
+            data: device.map((dev, index) => {
+                return [
+                { value: dev.deviceId, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.name, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: ((dev.speed)*1.852).toFixed(2)+' Km/h', style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.speed, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.course, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                ];
+            }),
+        },
+    ];
     return (
         <div className="menuContent" style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
                 
@@ -118,8 +194,8 @@ const InfoGral = () => {
                         <s.LabelGral><s.CheckBox type="radio" name="infoGral"/>Detalles del Periodo</s.LabelGral>
                         <div>
                             <div>
-                            <s.LabelGral>Fecha <s.inputGral type="datetime-local" onChange={(e) => setDateFrom(e.target.value)}/></s.LabelGral>
-                            <s.LabelGral>A <s.inputGral type="datetime-local" onChange={(e) => setDateTo(e.target.value)}/></s.LabelGral>
+                            <s.LabelGral>Fecha <s.inputGral type="datetime-local"  onChange={(e) => setDateFrom(e.target.value)}/></s.LabelGral>
+                            <s.LabelGral>A <s.inputGral type="datetime-local"  onChange={(e) => setDateTo(e.target.value)}/></s.LabelGral>
                             </div>
                             <s.SmallGral>El rango de tiempo máximo es de 30 días. Por favor, para más informes.<s.AGral> Programar Ahora</s.AGral></s.SmallGral>
                         </div>
@@ -162,7 +238,11 @@ const InfoGral = () => {
                         />
                     </s.divTable>
                     <s.divButonsGral>
-                        <s.ExcelButon>Exportar Excel</s.ExcelButon>
+                        <ExcelFile element={<s.ExcelButon>Exportar Excel</s.ExcelButon>} filename={filename}>
+                            <ExcelSheet dataSet={data} name={filename}>
+                                <ExcelColumn label="INFORMACIÓN GENERAL DE MOVIMIENTO"/>
+                            </ExcelSheet>
+                        </ExcelFile>
                         <s.PrintButon>Imprimir</s.PrintButon>
                     </s.divButonsGral>
                 </s.contentReportesDiv>

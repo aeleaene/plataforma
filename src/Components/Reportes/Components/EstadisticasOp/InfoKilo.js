@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import * as s from '../../Reportes.styles';
 import {BiBarChart} from "react-icons/bi";
 import { AiFillCaretDown } from "react-icons/ai";
+import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
@@ -13,6 +14,12 @@ const InfoKilo = () => {
     const [dateTo, setDateTo] = useState("");
     const [devAll, setDevAll] = useState([]); //Id's de todos los dispositivos
     const [deviceId, setDeviceId] = useState("");
+    //INSTANCIAS PARA EL EXCEL
+    const ExcelFile = ReactExport.ExcelFile;
+    const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+    const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+    const [filename, setFilename] = useState(``);
+
     useEffect(() => {
         DevicesAll()
     }, [])
@@ -67,6 +74,7 @@ const InfoKilo = () => {
                 console.log('full data')
                 console.log(full);
                 setDevice(full);
+                setFilename(`Informaciónsobrekilometraje`);
             }
             else{
                     const resultado = await fetch(`https://www.protrack.ad105.net/api/devices/${deviceId}`, requestOptions)
@@ -84,6 +92,7 @@ const InfoKilo = () => {
                     console.log('full data')
                     console.log(full);
                     setDevice(full);
+                    setFilename(`Informaciónsobrekilometraje ${dateFrom} - ${dateTo}`);
             }
     }
     const Fecha = (fecha) => {
@@ -131,6 +140,72 @@ const InfoKilo = () => {
             name: 'Combustible (L)',
             selector: 'combustible',
             sortable: true,
+        },
+    ];
+    const csvEmptyData = [
+        {
+          foo: ""
+        }
+      ];
+    //Estructura para guardar en el excel
+    const data = [
+        {
+            xSteps: 3,
+            columns: [
+                { title: "INFORMACIÓN SOBRE KILOMETRAJE", width: {wpx: 300}, height: {wpx: 40}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true, sz:14}, border: {top: {style: "none", color: "#fff"}, bottom: {style: "nono", color: "#fff"}, left: {style: "none", color: "#fff"}, right: {style: "none", color: "#fff"}}}}
+            ],
+            data: csvEmptyData.map((record, index) => {
+                return [
+                    { value: record.foo }
+                ];
+            }),
+        },
+        {
+            xSteps: 3,
+            ySteps: -1,
+            columns: [
+                { title: "KILOMETRAJE", width: {wpx: 520}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true, sz:12}} }
+            ],
+            data: csvEmptyData.map((record, index) => {
+                return [
+                    { value: record.foo }
+                ];
+            }),
+        },
+        {
+            xSteps: 3,
+            ySteps: -1,
+            columns: [
+                { title: "DESDE "+dateFrom+" A "+dateTo, width: {wpx: 520}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true, sz:12}} }
+            ],
+            data: csvEmptyData.map((record, index) => {
+                return [
+                    { value: record.foo }
+                ];
+            }),
+        },
+        {
+            ySteps: -1,
+            columns: [
+                { title: "#", width: {wpx: 40}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Objetivo", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Fecha", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Kilometraje (km)", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Exceso de Velocidad (Tiempos)", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Estadia (Tiempos)", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { title: "Combustible (L)", width: {wpx: 120}, style: {alignment: {vertical: "center", horizontal: "center"}, font: {bold: true}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+            ],
+            data: device.map((dev, index) => {
+                return [
+                { value: dev.deviceId, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.name, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: Fecha(dev.serverTime), style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: ((dev.speed)*1.852).toFixed(2)+' Km/h', style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.speed, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.course, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                { value: dev.course, style: {alignment: {vertical: "center", horizontal: "center"}, border: {top: {style: "thin", color: "#000"}, bottom: {style: "thin", color: "#000"}, left: {style: "thin", color: "#000"}, right: {style: "thin", color: "#000"}}}},
+                ];
+            }),
         },
     ];
     return (
@@ -186,7 +261,11 @@ const InfoKilo = () => {
                         />
                     </s.divTable>
                     <s.divButonsGral>
-                        <s.ExcelButon>Exportar Excel</s.ExcelButon>
+                        <ExcelFile element={<s.ExcelButon>Exportar Excel</s.ExcelButon>} filename={filename}>
+                            <ExcelSheet dataSet={data} name={filename}>
+                                <ExcelColumn label="INFORMACIÓN GENERAL DE MOVIMIENTO"/>
+                            </ExcelSheet>
+                        </ExcelFile>
                         <s.PrintButon>Imprimir</s.PrintButon>
                     </s.divButonsGral>
                 </s.contentReportesDiv>

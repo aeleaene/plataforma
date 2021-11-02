@@ -622,6 +622,7 @@ export const ExcelButon = styled.button`
     color: #fff;
     font-size: 12px;
     padding: 7px 15px;
+    cursor: pointer;
     &:hover{
         background-color: #f1a64f;
     }
@@ -633,6 +634,7 @@ export const PrintButon = styled.button`
     color: #fff;
     font-size: 12px;
     padding: 7px 15px;
+    cursor: pointer;
     &:hover{
         background-color: #78cff5;
     }
