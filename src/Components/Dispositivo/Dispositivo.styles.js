@@ -628,6 +628,8 @@ export const LabelCard2 = styled.label`
 `;
 export const divTable = styled.div`
     margin: 0px 10px;
+    max-height: 650px;
+    overflow-y: scroll;
 `;
 export const divButonsGral = styled.div`
     display: flex;

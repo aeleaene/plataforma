@@ -116,7 +116,7 @@ const Reportes = () => {
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
                         </AccordionItem>
-                        <AccordionItem>
+                        {/* <AccordionItem>
                             <AccordionItemHeading>
                                 <AccordionItemButton><AiFillCaretDown/> Informe de Comportamiento de conducción</AccordionItemButton>
                             </AccordionItemHeading>
@@ -127,7 +127,7 @@ const Reportes = () => {
                                     <s.submenu2opcionesli onClick={() => setSubmenuOp(9)} className={submenuOp === 9 ? 'menumenu' : ''}>Detalles del comportamiento de conducción</s.submenu2opcionesli>
                                 </s.submenu2opciones>
                             </AccordionItemPanel>
-                        </AccordionItem>
+                        </AccordionItem> */}
                         <AccordionItem>
                             <AccordionItemHeading>
                                 <AccordionItemButton> <AiFillCaretDown/>Reporte de ACC (Encendido)</AccordionItemButton>

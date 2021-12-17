@@ -353,7 +353,7 @@ const BarraLateral = (props) => {
                             </s.submenu_reportes_grupo_dos>
                         </s.submenu_reportes_grupo_contenido>
 
-                        <s.submenu_reportes_grupo_contenido>
+                        {/* <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos className={submenuOp === 7 || submenuOp === 8 || submenuOp === 9 ? 'subMenus' : ''}>
                                 <s.submenu_reportes_grupo_dos_icono_izquierda><ic.IoIosStats /></s.submenu_reportes_grupo_dos_icono_izquierda>
                                 <span onClick={() => {setMenuOp(2); setSubmenuOp(7)}}> Informe de comportamiento de conducción &nbsp; &nbsp; &nbsp;</span>
@@ -381,7 +381,7 @@ const BarraLateral = (props) => {
                                     </s.submenu_reportes_grupo_contenido>
                                 </s.submenu_reportes_submenu>
                             </s.submenu_reportes_grupo_dos>
-                        </s.submenu_reportes_grupo_contenido>
+                        </s.submenu_reportes_grupo_contenido> */}
 
                         <s.submenu_reportes_grupo_contenido>
                             <s.submenu_reportes_grupo_dos className={submenuOp === 10 || submenuOp === 11 || submenuOp === 12 ? 'subMenus' : ''}>

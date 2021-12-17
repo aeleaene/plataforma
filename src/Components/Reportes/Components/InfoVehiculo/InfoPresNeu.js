@@ -39,11 +39,11 @@ const InfoPresNeu = () => {
             setDevAll(resDev);
     }
     const Devices = async() =>{
-        var myHeaders = new Headers();
+        /* var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "*/*");
+            myHeaders.append("Accept", ); */
 
-            var requestOptions = {
+            /* var requestOptions = {
                 method: 'GET',
                 credentials: 'include',
                 headers: myHeaders,
@@ -53,8 +53,6 @@ const InfoPresNeu = () => {
             if (dateFrom === "" && dateTo === "" && deviceId === "") {
                 const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
                 const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions`, requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
                 const deviceData2 = await resultado2.json();
 
@@ -68,8 +66,6 @@ const InfoPresNeu = () => {
             else{
                 const resultado = await fetch(`https://www.protrack.ad105.net/api/devices/${deviceId}`, requestOptions)
                 const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions?deviceid=${deviceId}&from=${dateFrom}:00.000z&to=${dateTo}:00.000z`, requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
                 const deviceData2 = await resultado2.json();
 
@@ -79,7 +75,7 @@ const InfoPresNeu = () => {
                 console.log('full data')
                 console.log(full);
                 setDevice(full);
-            }
+            } */
     }
     const Hora = (fecha) => {
         const fecha1 = new Date();
@@ -89,7 +85,7 @@ const InfoPresNeu = () => {
         }
         return date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
     }
-    const data = [{ id: 1, objetivo: 'Vehiculo 1', kilometraje: '6.22', velocidad: '76', estadia: '2' }]
+    const data = [{ id: '', objetivo: '', kilometraje: '', velocidad: '', estadia: '' }]
     const columns = [
         {
             name: '#',
@@ -98,8 +94,8 @@ const InfoPresNeu = () => {
         },
         {
             name: 'Hora',
+            selector: 'time',
             sortable: true,
-            cell: row => <span>{Hora(row.serverTime)}</span>
         },
         {
             name: 'Presión Ruedas',
@@ -121,19 +117,20 @@ const InfoPresNeu = () => {
         },
     ];
     const options = {
-        grid: { top: 8, right: 8, bottom: 24, left: 36 },
+        grid: { top: 8, right: 8, bottom: 24, left: 36, containLabel: true },
         xAxis: {
             type: 'category',
-            data: ['', '', '', '', '', 'Odometro'],
+            data: ['', '', '', '', '', '', 'Odometro'],
         },
         yAxis: {
             type: 'value',
         },
         series: [
             {
-                data: [820, 932, 901, 734, 1290, 1330, 1320],
+                data: ['Sin Datos'],
                 type: 'line',
                 smooth: true,
+                areaStyle: {normal: {}},
             },
         ],
         tooltip: {
@@ -178,7 +175,7 @@ const InfoPresNeu = () => {
                     <s.divTable>
                         <DataTable
                             columns={columns}
-                            data={device}
+                            data={data}
                             striped={true}
                             highlightOnHover={true}
                             pointerOnHover={true}

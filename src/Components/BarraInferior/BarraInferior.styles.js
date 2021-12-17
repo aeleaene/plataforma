@@ -132,6 +132,23 @@ export const capa_mapa_titulo_icono_izquierdaGeo = styled.i`
     left: 6px;
     top: 8px;
 `
+export const capa_mapa_titulo_icono_izquierdaAlert = styled.i`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    color: #fff;
+    line-height: 35px;
+    font-size: 14px;
+    background-image: url(${menus}); 
+    background-position: -126px -68px;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 6px;
+    top: 8px;
+`
 export const capa_mapa_titulo_icono_derecha = styled.i`
     font: 400 13.3333px Arial;
     cursor: pointer;
@@ -218,7 +235,22 @@ export const geofences = styled.div`
     box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
     display: ${props => props.visibility? 'block':'none'};
 `
-
+export const alarms = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 52px;
+    width: 320px;
+    height: 450px;
+    background-color: #fff;
+    right: 10px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
+    display: ${props => props.visibility? 'block':'none'};
+`
 export const icono_mapa = styled.buton`
     width: 34px;
     height: 34px;

@@ -607,6 +607,13 @@ export const LabelCard2 = styled.label`
 `;
 export const divTable = styled.div`
     margin: 0px 10px;
+    max-height: 650px;
+    overflow-y: scroll;
+`;
+export const divTableComb = styled.div`
+    margin: 0px 10px;
+    max-height: 297px;
+    overflow-y: scroll;
 `;
 export const divButonsGral = styled.div`
     display: flex;
@@ -717,4 +724,9 @@ export const CheckBox1 = styled.input`
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
     }
+`;
+
+export const GMapLink = styled.a`
+    text-decoration: none;
+    color: #0000ee;
 `;

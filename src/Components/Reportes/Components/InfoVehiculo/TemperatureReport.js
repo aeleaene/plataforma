@@ -37,11 +37,11 @@ const TemperatureReport = () => {
             setDevAll(resDev);
     }
     const Devices = async() =>{
-        var myHeaders = new Headers();
+        /* var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "*/*");
+            myHeaders.append("Accept", ); */
 
-            var requestOptions = {
+            /* var requestOptions = {
                 method: 'GET',
                 credentials: 'include',
                 headers: myHeaders,
@@ -51,8 +51,6 @@ const TemperatureReport = () => {
             if (dateFrom === "" && dateTo === "" && deviceId === "") {
                 const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
                 const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions`, requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
                 const deviceData2 = await resultado2.json();
 
@@ -66,8 +64,6 @@ const TemperatureReport = () => {
             else{
                 const resultado = await fetch(`https://www.protrack.ad105.net/api/devices/${deviceId}`, requestOptions)
                 const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions?deviceid=${deviceId}&from=${dateFrom}:00.000z&to=${dateTo}:00.000z`, requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
                 const deviceData2 = await resultado2.json();
 
@@ -77,7 +73,7 @@ const TemperatureReport = () => {
                 console.log('full data')
                 console.log(full);
                 setDevice(full);
-            }
+            } */
     }
     const Hora = (fecha) => {
         const fecha1 = new Date();
@@ -87,7 +83,7 @@ const TemperatureReport = () => {
         }
         return date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
     }
-    const data = [{ id: 1, objetivo: 'Vehiculo 1', kilometraje: '6.22', velocidad: '76', estadia: '2' }]
+    const data = [{ id: '', objetivo: '', kilometraje: '', velocidad: '', estadia: '' }]
     const columns = [
         {
             name: '#',
@@ -164,7 +160,7 @@ const TemperatureReport = () => {
                     <s.divTable>
                         <DataTable
                             columns={columns}
-                            data={device}
+                            data={data}
                             striped={true}
                             highlightOnHover={true}
                             pointerOnHover={true}

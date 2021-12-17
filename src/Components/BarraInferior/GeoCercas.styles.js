@@ -14,6 +14,16 @@ export const busqueda_dispositivo = styled.div`
     justify-content: space-between;
     align-items: center;
 `
+export const verAlertasDiv = styled.div`
+    background-color: #e4e4e4;
+    padding: 5px 5px;
+    height: 26px;
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+`
 export const busqueda_en_linea = styled.div`
     width: 100%;
 `
@@ -71,6 +81,21 @@ export const GeoAlarm = styled.button`
     cursor: pointer;
     &:hover{
         background-color: #f8ae63;
+    }
+`;
+export const AlarmIcons = styled.button`
+    border: none;
+    background-color: transparent;
+    border-radius: 0px;
+    color: #8b8b8b;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &:hover{
+        background-color: #bdbdbd;
     }
 `;
 export const BuutonDivGeo = styled.div`
@@ -328,4 +353,34 @@ export const CheckBoxFenceForm = styled.input`
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
     }
+`;
+export const VerAlertas = styled.span`
+    color: #8b8b8b;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+        color: #ff9934;
+    }
+`;
+export const ListAlerts = styled.ul`
+    margin: 10px 5px;
+    padding: 0;
+    list-style: none;
+`;
+export const ListAlertElem = styled.li`
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    padding: 5px 0px;
+    &:hover{
+        background-color: #e7e7e7;
+    }
+    border-bottom: 1px solid #c2c2c2;
+`;
+export const SpanAlarmData = styled.div`
+    display: flex;
+    flex-direction: column;
+
 `;

@@ -21,6 +21,28 @@ const InfoCombustible = () => {
     const Datos = () => {
         Devices()
     }
+    console.log(dateFrom)
+    console.log(dateTo);
+    const DateFromValue = e => {
+        let date = new Date(e);
+        setDateFrom(date.toISOString());
+        //console.log(date.toISOString());
+    }
+    const DateToValue = e => {
+        let date = new Date(e);
+        setDateTo(date.toISOString());
+        //console.log(date.toISOString());
+    }
+    const DateYesterday = () => {
+        let date = new Date();
+        date = date.setDate(date.getDate() -1);
+        let date2 = new Date(date);
+        date2 = date2.toISOString();
+        setDateFrom(date2);
+        setDateTo(date2);
+        console.log(date2)
+        Datos();
+    }
     const DevicesAll = async() =>{
         var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -39,11 +61,11 @@ const InfoCombustible = () => {
             setDevAll(resDev);
     }
     const Devices = async() =>{
-        var myHeaders = new Headers();
+        /* var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "*/*");
+            myHeaders.append("Accept", ); */
 
-            var requestOptions = {
+            /* var requestOptions = {
                 method: 'GET',
                 credentials: 'include',
                 headers: myHeaders,
@@ -53,8 +75,6 @@ const InfoCombustible = () => {
             if (dateFrom === "" && dateTo === "" && deviceId === "") {
                 const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
                 const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions`, requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
                 const deviceData2 = await resultado2.json();
 
@@ -68,8 +88,6 @@ const InfoCombustible = () => {
             else{
                 const resultado = await fetch(`https://www.protrack.ad105.net/api/devices/${deviceId}`, requestOptions)
                 const resultado2 = await fetch(`https://www.protrack.ad105.net/api/positions?deviceid=${deviceId}&from=${dateFrom}:00.000z&to=${dateTo}:00.000z`, requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
                 const deviceData = await resultado.json();
                 const deviceData2 = await resultado2.json();
 
@@ -79,13 +97,13 @@ const InfoCombustible = () => {
                 console.log('full data')
                 console.log(full);
                 setDevice(full);
-            }
+            } */
     }
     const Fecha = (fecha) => {
         const date = new Date(fecha);
         return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate()+' '+date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds();
     }
-    const data = [{ id: 1, objetivo: 'Vehiculo 1', kilometraje: '6.22', velocidad: '76', estadia: '2' }]
+    const data = [{ id: '', objetivo: '', kilometraje: '', velocidad: '', estadia: '' }]
     const columns = [
         {
             name: '#',
@@ -94,8 +112,8 @@ const InfoCombustible = () => {
         },
         {
             name: 'Fecha y Hora',
+            selector: 'time',
             sortable: true,
-            cell: row => <span>{Fecha(row.serverTime)}</span>
         },
         {
             name: 'Repostar/El consumo de combustible',
@@ -139,7 +157,7 @@ const InfoCombustible = () => {
         },
     ];
     const options = {
-        grid: { top: 8, right: 8, bottom: 24, left: 36 },
+        grid: { top: 8, right: 8, bottom: 24, left: 36, containLabel: true },
         xAxis: {
             type: 'category',
             data: ['', '', '', '', '', 'Odometro'],
@@ -149,9 +167,10 @@ const InfoCombustible = () => {
         },
         series: [
             {
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                data: ['Sin Datos'],
                 type: 'line',
                 smooth: true,
+                areaStyle: {normal: {}},
             },
         ],
         tooltip: {
@@ -182,8 +201,8 @@ const InfoCombustible = () => {
                         </s.selecttGral></s.LabelGral>
                         <div>
                             <div>
-                            <s.LabelGral>Hora <s.inputGral type="datetime-local" onChange={(e) => setDateFrom(e.target.value)}/></s.LabelGral>
-                            <s.LabelGral>A <s.inputGral type="datetime-local" onChange={(e) => setDateTo(e.target.value)}/></s.LabelGral>
+                            <s.LabelGral>Hora <s.inputGral type="datetime-local" onChange={(e) =>DateFromValue(e.target.value)}/></s.LabelGral>
+                            <s.LabelGral>A <s.inputGral type="datetime-local" onChange={(e) => DateToValue(e.target.value)}/></s.LabelGral>
                             </div>
                             <s.SmallGral>El rango de tiempo máximo es de 30 días. Por favor, para más informes.<s.AGral> Programar Ahora</s.AGral></s.SmallGral>
                         </div>
@@ -191,7 +210,7 @@ const InfoCombustible = () => {
                     </s.row1>
                     <s.row2>
                         <s.DivSpan>
-                            <s.SpanFechas>Ayer </s.SpanFechas>
+                            <s.SpanFechas onClick={DateYesterday}>Ayer </s.SpanFechas>
                         </s.DivSpan>
                     </s.row2>
                     {/* chart */}
@@ -207,7 +226,7 @@ const InfoCombustible = () => {
                     <s.divTable>
                         <DataTable
                             columns={columns}
-                            data={device}
+                            data={data}
                             striped={true}
                             highlightOnHover={true}
                             pointerOnHover={true}

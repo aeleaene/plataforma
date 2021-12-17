@@ -9,12 +9,15 @@ import Draggable from 'react-draggable';
 
 import GeoCercas from './GeoCercas';
 
+import Alarms from './Alarms';
+
 import './PopUp.css';
 
 const BarraInferior = () => {
 
     const [toggle, setToggle] = React.useState(false);
     const [toggleGeo, setToggleGeo] = React.useState(false);
+    const [toggleAlarm, setToggleAlarm] = React.useState(false);
     const [layer, setLayer] = React.useState(false);
     const [zoom, setZoom] = React.useState(5);
 
@@ -23,6 +26,9 @@ const BarraInferior = () => {
     }
     const handleToggleGeo = () => {
         setToggleGeo(!toggleGeo)
+    }
+    const handleToggleAlarm = () => {
+        setToggleAlarm(!toggleAlarm)
     }
 
     const handleLayerGs = () => {
@@ -126,7 +132,7 @@ const BarraInferior = () => {
                 <s.icono_Ruta></s.icono_Ruta>
                 <s.icono_GEO visibility={toggleGeo} onClick={handleToggleGeo}>
                 </s.icono_GEO>
-                <s.icono_Alertas></s.icono_Alertas>
+                <s.icono_Alertas visibility={toggleAlarm} onClick={handleToggleAlarm}></s.icono_Alertas>
                 <s.icono_Recorrido></s.icono_Recorrido>
             </s.caja_derecha>
             <s.geofences visibility={toggleGeo} className="geofence-scroll">
@@ -137,6 +143,15 @@ const BarraInferior = () => {
                 </s.capa_mapa_titulo>
                 <GeoCercas ver={toggleGeo} ocultar={setToggleGeo}/>
             </s.geofences>
+
+            <s.alarms visibility={toggleAlarm} className="geofence-scroll">
+                <s.capa_mapa_titulo onClick={handleToggleAlarm}>
+                    <s.capa_mapa_titulo_icono_izquierdaAlert />
+                    Alertas
+                    <s.capa_mapa_titulo_icono_derecha><ic.AiOutlineMinus/></s.capa_mapa_titulo_icono_derecha>
+                </s.capa_mapa_titulo>
+                <Alarms ver={toggleAlarm} ocultar={setToggleAlarm}/>
+            </s.alarms>
 
 
         </s.herramienta_mapa>

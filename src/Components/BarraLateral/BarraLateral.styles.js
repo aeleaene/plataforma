@@ -204,7 +204,8 @@ export const submenu_reportes_submenu = styled.div`
     z-index: 9999;
     background-color: #001529;
     top: 0px;
-    left: 327px;
+    /* left: 327px; */
+    left: 280px;
     display: none;
 `
 

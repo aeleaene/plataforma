@@ -19,6 +19,74 @@ const DetallesComp = () => {
     const Datos = () => {
         Devices()
     }
+    console.log(dateFrom)
+    console.log(dateTo);
+    const DateFromValue = e => {
+        let date = new Date(e);
+        setDateFrom(date.toISOString());
+        //console.log(date.toISOString());
+    }
+    const DateToValue = e => {
+        let date = new Date(e);
+        setDateTo(date.toISOString());
+        //console.log(date.toISOString());
+    }
+    const DateYesterday = () => {
+        let date = new Date();
+        date = date.setDate(date.getDate() -1);
+        let date2 = new Date(date);
+        date2 = date2.toISOString();
+        setDateFrom(date2);
+        setDateTo(date2);
+        console.log(date2)
+        Datos();
+    }
+    const DateWeek = () => {
+        var today = new Date();
+        var day = today.getDay() || 7; // Get current day number, converting Sun. to 7
+        if( day !== 1 )  today.setHours(-24 * (day - 1));   // Set the hours to day number minus 1//   multiplied by negative 24
+        let date2 = new Date(today);
+        date2 = date2.toISOString();
+
+        //Fecha actual
+        let dateToday = new Date();
+        dateToday = dateToday.toISOString();
+        //console.log(dateToday);
+        setDateFrom(date2);
+        setDateTo(dateToday);
+        Datos();
+    }
+    const DateLastWeek = () => {
+        var today = new Date();
+        var day = today.getDay() || 7; // Get current day number, converting Sun. to 7
+        if( day !== 1 )  today.setHours(-24 * (day - 1));   // Set the hours to day number minus 1//   multiplied by negative 24
+        let date2 = new Date(today);
+        date2 = date2.toISOString();
+        //Fecha actual
+        let dateToday = new Date();
+        dateToday = dateToday.toISOString();
+        //console.log(dateToday);
+        setDateFrom(date2);
+        setDateTo(dateToday);
+        Datos();
+    }
+    const DateMonth = () => {
+        let date = new Date();
+        let primerDia = new Date(date.getFullYear(), date.getMonth(), 1);
+        let diaActual = date;
+        setDateFrom(primerDia.toISOString());
+        setDateTo(diaActual.toISOString());
+        Datos();
+    }
+    const DateLastMonth = () => {
+        let dte = new Date();
+        var primerDia = new Date(dte.getFullYear(), dte.getMonth() -1, 1);
+        var ultimoDia = new Date(dte.getFullYear(), dte.getMonth(), 0);
+        setDateFrom(primerDia.toISOString());
+        //Fecha actual
+        setDateTo(ultimoDia.toISOString());
+        Datos();
+    }
     const DevicesAll = async() =>{
         var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -149,8 +217,8 @@ const DetallesComp = () => {
                         </s.selecttGral></s.LabelGral>
                         <div>
                             <div>
-                            <s.LabelGral>Hora <s.inputGral type="datetime-local" onChange={(e) => setDateFrom(e.target.value)}/></s.LabelGral>
-                            <s.LabelGral>A <s.inputGral type="datetime-local" onChange={(e) => setDateTo(e.target.value)}/></s.LabelGral>
+                            <s.LabelGral>Hora <s.inputGral type="datetime-local" onChange={(e) =>DateFromValue(e.target.value)}/></s.LabelGral>
+                            <s.LabelGral>A <s.inputGral type="datetime-local" onChange={(e) => DateToValue(e.target.value)}/></s.LabelGral>
                             </div>
                             <s.SmallGral>El rango de tiempo máximo es de 30 días. Por favor, para más informes.<s.AGral> Programar Ahora</s.AGral></s.SmallGral>
                         </div>
@@ -159,11 +227,11 @@ const DetallesComp = () => {
                     </s.row1>
                     <s.row2>
                         <s.DivSpan>
-                            <s.SpanFechas>Ayer </s.SpanFechas>|
-                            <s.SpanFechas>Esta Semana </s.SpanFechas>|
-                            <s.SpanFechas>La Semana Pasada</s.SpanFechas>|
-                            <s.SpanFechas>Este Mes</s.SpanFechas>|
-                            <s.SpanFechas>Mes Pasado</s.SpanFechas>
+                            <s.SpanFechas onClick={DateYesterday}>Ayer </s.SpanFechas>|
+                            <s.SpanFechas onClick={DateWeek}>Esta Semana </s.SpanFechas>|
+                            <s.SpanFechas onClick={DateLastWeek}>La Semana Pasada</s.SpanFechas>|
+                            <s.SpanFechas onClick={DateMonth}>Este Mes</s.SpanFechas>|
+                            <s.SpanFechas onClick={DateLastMonth}>Mes Pasado</s.SpanFechas>
                         </s.DivSpan>
                     </s.row2>
                     <s.divTable>
