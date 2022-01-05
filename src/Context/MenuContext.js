@@ -12,6 +12,8 @@ export const MenuContext = ({children}) => {
     const [lngFenceCirlce, setLngFenceCirlce] = useState(0);
     const [radiusFence, setRadiusFence] = useState(0)
     const [bounds, setBounds] = useState([]);
+    const [distanceLine, setDistanceLine] = useState(false);
+    const [areaLine, setAreaLine] = useState(false);
     return (
         <MenContext.Provider value={{ 
             menuOp,
@@ -30,6 +32,10 @@ export const MenuContext = ({children}) => {
             setBounds,
             radiusFence,
             setRadiusFence,
+            distanceLine,
+            setDistanceLine,
+            areaLine,
+            setAreaLine,
          }}>
             {children}
         </MenContext.Provider>

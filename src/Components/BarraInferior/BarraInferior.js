@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 
 import * as s from './BarraInferior.styles';
@@ -11,15 +11,25 @@ import GeoCercas from './GeoCercas';
 
 import Alarms from './Alarms';
 
+import DescargarRecorrido from './DescargarRecorrido';
+
 import './PopUp.css';
+
+/* CONTEXT */
+import {MenContext} from '../../Context/MenuContext';
 
 const BarraInferior = () => {
 
     const [toggle, setToggle] = React.useState(false);
     const [toggleGeo, setToggleGeo] = React.useState(false);
     const [toggleAlarm, setToggleAlarm] = React.useState(false);
+    const [toggleTrip, setToggleTrip] = React.useState(false);
+    const [toggleTraffic, setToggleTraffic] = React.useState(false);
+    const [togglePOI, setTogglePOI] = React.useState(false);
+    const [toggleRuta, setToggleRuta] = React.useState(false);
     const [layer, setLayer] = React.useState(false);
     const [zoom, setZoom] = React.useState(5);
+    const { distanceLine, areaLine, setDistanceLine, setAreaLine } = useContext(MenContext);
 
     const handleToggle = () => {
         setToggle(!toggle)
@@ -29,6 +39,24 @@ const BarraInferior = () => {
     }
     const handleToggleAlarm = () => {
         setToggleAlarm(!toggleAlarm)
+    }
+    const handleToggleLine = () => {
+        setDistanceLine(!distanceLine)
+    }
+    const handleToggleArea = () => {
+        setAreaLine(!areaLine)
+    }
+    const handleToggleTrip = () => {
+        setToggleTrip(!toggleTrip)
+    }
+    const handleToggleTraffic = () => {
+        setToggleTraffic(!toggleTraffic)
+    }
+    const handleTogglePOI = () => {
+        setTogglePOI(!togglePOI)
+    }
+    const handleToggleRuta = () => {
+        setToggleRuta(!toggleRuta)
     }
 
     const handleLayerGs = () => {
@@ -83,9 +111,9 @@ const BarraInferior = () => {
     return (
         <s.herramienta_mapa>
            <s.caja_izquierda>
-            <s.icono_distancia/>
-                <s.icono_area/>
-                <s.icono_trafico/>
+            <s.icono_distancia visibility={distanceLine} onClick={handleToggleLine}/>
+            <s.icono_area visibility={areaLine} onClick={handleToggleArea}/>
+            <s.icono_trafico visibility={toggleTraffic} onClick={handleToggleTraffic}/>
             <s.icono_mapa visibility={toggle} onClick={handleToggle}>
                 <s.capa_mapa visibility={toggle}>
                     <s.capa_mapa_titulo>
@@ -128,12 +156,12 @@ const BarraInferior = () => {
            </s.caja_izquierda>
 
             <s.caja_derecha>
-                <s.icono_POI></s.icono_POI>
-                <s.icono_Ruta></s.icono_Ruta>
+                <s.icono_POI visibility={togglePOI} onClick={handleTogglePOI}></s.icono_POI>
+                <s.icono_Ruta visibility={toggleRuta} onClick={handleToggleRuta}></s.icono_Ruta>
                 <s.icono_GEO visibility={toggleGeo} onClick={handleToggleGeo}>
                 </s.icono_GEO>
                 <s.icono_Alertas visibility={toggleAlarm} onClick={handleToggleAlarm}></s.icono_Alertas>
-                <s.icono_Recorrido></s.icono_Recorrido>
+                <s.icono_Recorrido visibility={toggleTrip} onClick={handleToggleTrip}></s.icono_Recorrido>
             </s.caja_derecha>
             <s.geofences visibility={toggleGeo} className="geofence-scroll">
                 <s.capa_mapa_titulo onClick={handleToggleGeo}>
@@ -152,6 +180,15 @@ const BarraInferior = () => {
                 </s.capa_mapa_titulo>
                 <Alarms ver={toggleAlarm} ocultar={setToggleAlarm}/>
             </s.alarms>
+
+            <s.trips visibility={toggleTrip} className="geofence-scroll">
+                <s.capa_mapa_titulo onClick={handleToggleTrip}>
+                    <s.capa_mapa_titulo_icono_izquierdaTrip />
+                    Descarga de Recorrido
+                    <s.capa_mapa_titulo_icono_derecha><ic.AiOutlineMinus/></s.capa_mapa_titulo_icono_derecha>
+                </s.capa_mapa_titulo>
+                <DescargarRecorrido ver={toggleAlarm} ocultar={setToggleAlarm}/>
+            </s.trips>
 
 
         </s.herramienta_mapa>

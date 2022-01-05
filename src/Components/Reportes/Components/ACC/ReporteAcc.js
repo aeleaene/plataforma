@@ -188,7 +188,7 @@ const ReporteAcc = () => {
                 }
                 full.push(
                     {
-                        id: deviceData.id,
+                        id: i,
                         name: deviceData.name,
                         time: deviceData2[i].serverTime,
                         type: deviceData2[i].type

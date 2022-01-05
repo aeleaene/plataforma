@@ -162,7 +162,7 @@ const DetallesVel = () => {
                     const resultado = await axios.get(url);
                     //return ubicacion.ShortLabel;
                     console.log(resultado.data.address.LongLabel)
-                    ubicacion.push({id: deviceData2[i].deviceId, lon: deviceData2[i].endLon, lat: deviceData2[i].endLat, address: resultado.data.address.LongLabel, name: deviceData2[i].deviceName, time: deviceData2[i].endTime, speed: deviceData2[i].averageSpeed});
+                    ubicacion.push({id: i, lon: deviceData2[i].endLon, lat: deviceData2[i].endLat, address: resultado.data.address.LongLabel, name: deviceData2[i].deviceName, time: deviceData2[i].endTime, speed: deviceData2[i].averageSpeed});
                  }
                  console.log(ubicacion);
                  setDatosTotal(ubicacion);
@@ -193,7 +193,7 @@ const DetallesVel = () => {
                     const resultado = await axios.get(url);
                     //return ubicacion.ShortLabel;
                     console.log(resultado.data.address.LongLabel)
-                    ubicacion.push({id: deviceData2[i].deviceId, lon: deviceData2[i].endLon, lat: deviceData2[i].endLat, address: resultado.data.address.LongLabel, name: deviceData2[i].deviceName, time: deviceData2[i].endTime, speed: deviceData2[i].averageSpeed});
+                    ubicacion.push({id: i, lon: deviceData2[i].endLon, lat: deviceData2[i].endLat, address: resultado.data.address.LongLabel, name: deviceData2[i].deviceName, time: deviceData2[i].endTime, speed: deviceData2[i].averageSpeed});
                  }
                
                 console.log(ubicacion)

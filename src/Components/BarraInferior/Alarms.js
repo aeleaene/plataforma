@@ -83,7 +83,7 @@ const Alarms = ({ver, ocultar}) => {
                     url = url+"deviceId="+devAll[i].id+"&";
                     groupId= devAll[i].groupId;
                 }
-                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo+'&daily=false&page=1&start=0&limit=25';
                 console.log(url)
                 const resultado2 = await fetch(`${url}`, requestOptions)
                 const deviceData2 = await resultado2.json();

@@ -384,3 +384,132 @@ export const SpanAlarmData = styled.div`
     flex-direction: column;
 
 `;
+export const ContentInfo = styled.div`
+    padding: 8px 16px;
+    background-color: #f4f4f5;
+    color: #909399;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 15px;
+`;
+export const ContentTripsDownload = styled.div`
+    padding: 8px 16px;
+    background-color: #f4f4f5;
+    color: #909399;
+    border-radius: 4px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin: 5px 15px;
+`;
+export const ContentButtonDownload = styled.div`
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+`;
+export const LabelTrips = styled.label`
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-align: justify;
+    flex: 1;
+    padding:  0px 8px;
+`;
+export const DivTrips = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    padding: 0px 15px;
+`;
+export const DivFormTrips = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+export const NameInputTrips = styled.label`
+    margin: 5px 0px;
+`;
+export const SelectDevTrips = styled.select`
+    height: 28px;
+    background-color: #fff;
+    border: 1px solid #dcdfe6;
+    color: #8a8a8a;
+    padding: 0px 8px 0px 8px;
+    &:focus{
+        outline: none;
+        border: 1px solid #ff9934
+    }
+`;
+export const InputTrips = styled.input`
+    height: 28px;
+    background-color: #fff;
+    border: 1px solid #dcdfe6;
+    color: #8a8a8a;
+    padding: 0px 8px 0px 8px;
+    &:focus{
+        outline: none;
+        border: 1px solid #ff9934
+    }
+`;
+export const DownloadButtonExcel = styled.button`
+    width: 170px;
+    border: none;
+    padding: 7px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: #67c23a;
+    border-color: #67c23a;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover{
+        background-color: #4e912d;
+        border-color: #4e912d;
+    }
+`;
+export const DownloadButtonTxt = styled.button`
+    width: 170px;
+    border: none;
+    padding: 7px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: #c4bfa7;
+    border-color: #c4bfa7;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover{
+        background-color: #a19e8a;
+    border-color: #a19e8a;
+    }
+`;
+export const DownloadButtonKml = styled.button`
+    width: 170px;
+    border: none;
+    padding: 7px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: #4775cc;
+    border-color: #4775cc;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover{
+        background-color: #355797;
+        border-color: #355797;
+    }
+`;

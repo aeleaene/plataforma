@@ -51,7 +51,7 @@ Modal.setAppElement('#root');
 
 
 const Mapa = (props) => {
-    const { drawClick, setDrawClick, colorValue, setLatFenceCircle, setLngFenceCirlce, setBounds, setRadiusFence } = useContext(MenContext);
+    const { drawClick, setDrawClick, colorValue, setLatFenceCircle, setLngFenceCirlce, setBounds, setRadiusFence, distanceLine, areaLine } = useContext(MenContext);
     const center = {
         lat: 19.432680,
         lng: -99.134209,
@@ -261,6 +261,48 @@ const Mapa = (props) => {
                 />
             </FeatureGroup>
         : <></>}
+        {distanceLine ?
+            <FeatureGroup>
+                <EditControl 
+                    position="topright" 
+                    onCreated={drawClick.shape === 'circle' ? _created : null}
+                    draw={{ 
+                        circle: {
+                            shapeOptions: {
+                                color: colorValue,
+                            }
+                        },
+                        polygon: false,
+                        rectangle: false,
+                        circlemarker: false,
+                        marker: false,
+                        polyline: false,
+                     }}
+                     edit={{ edit: false}}
+                />
+            </FeatureGroup>
+         : <></>}
+         {areaLine ?
+            <FeatureGroup>
+                <EditControl 
+                    position="topright" 
+                    onCreated={drawClick.shape === 'circle' ? _created : null}
+                    draw={{ 
+                        circle: {
+                            shapeOptions: {
+                                color: colorValue,
+                            }
+                        },
+                        polygon: false,
+                        rectangle: false,
+                        circlemarker: false,
+                        marker: false,
+                        polyline: false,
+                     }}
+                     edit={{ edit: false}}
+                />
+            </FeatureGroup>
+         : <></>}
         <Circle center={[fenceLat, fenceLon]} pathOptions={fillBlueOptions} radius={fenceSize} />
         <LayersControl position="bottomright">
         <SetZoom />

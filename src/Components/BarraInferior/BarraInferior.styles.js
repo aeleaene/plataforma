@@ -41,7 +41,8 @@ export const icono_distancia = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: 0 -120px;
+    /* background-position: 0 -120px; */
+    background-position: ${props => props.visibility? '-60px -120px':'0px -120px'};
     &:hover{
         background-position: -60px -120px;
     }
@@ -58,7 +59,8 @@ export const icono_area = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: 0 -60px;
+    /* background-position: 0 -60px; */
+    background-position: ${props => props.visibility? '-60px -60px':'0px -60px'};
     &:hover{
         background-position: -60px -60px;
     }
@@ -75,7 +77,8 @@ export const icono_trafico = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: 0 -300px;
+   /*  background-position: 0 -300px; */
+    background-position: ${props => props.visibility? '-60px -300px':'0px -300px'};
     &:hover{
         background-position: -60px -300px;
     }
@@ -141,10 +144,27 @@ export const capa_mapa_titulo_icono_izquierdaAlert = styled.i`
     line-height: 35px;
     font-size: 14px;
     background-image: url(${menus}); 
-    background-position: -126px -68px;
+    background-position: -5px -6px;
     background-repeat: no-repeat;
-    height: 16px;
-    width: 16px;
+    height: 21px;
+    width: 22px;
+    position: absolute;
+    left: 6px;
+    top: 8px;
+`
+export const capa_mapa_titulo_icono_izquierdaTrip = styled.i`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    color: #fff;
+    line-height: 35px;
+    font-size: 14px;
+    background-image: url(${menus}); 
+    background-position: -125px -6px;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 22px;
     position: absolute;
     left: 6px;
     top: 8px;
@@ -251,6 +271,22 @@ export const alarms = styled.div`
     box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
     display: ${props => props.visibility? 'block':'none'};
 `
+export const trips = styled.div`
+    font: 400 13.3333px Arial;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 52px;
+    width: 320px;
+    height: 450px;
+    background-color: #fff;
+    right: 10px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2),-2px -2px 4px rgba(0,0,0,.2);
+    display: ${props => props.visibility? 'block':'none'};
+`
 export const icono_mapa = styled.buton`
     width: 34px;
     height: 34px;
@@ -260,9 +296,10 @@ export const icono_mapa = styled.buton`
     cursor: pointer;
     outline: none;
     background-image: url(${menus});
-    background-position: -120px -120px;
+    /* background-position: -120px -120px; */
     position: relative;
     display: inline-block;
+    background-position: ${props => props.visibility? '-180px -120px':'-120px -120px'};
     &:hover{ 
         background-position: -180px -120px;
     }
@@ -419,7 +456,8 @@ export const icono_POI = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: -120px -180px;
+    /* background-position: -120px -180px; */
+    background-position: ${props => props.visibility? '-180px -180px':'-120px -180px'};
     &:hover{
         background-position: -180px -180px;
     }
@@ -440,7 +478,8 @@ export const icono_Ruta = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: 0px -240px;
+    /* background-position: 0px -240px; */
+    background-position: ${props => props.visibility? '-60px -240px':'0px -240px'};
     &:hover{
         background-position: -60px -240px;
     }
@@ -461,7 +500,8 @@ export const icono_GEO = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: -120px -60px;
+    /* background-position: -120px -60px; */
+    background-position: ${props => props.visibility? '-180px -60px':'-120px -60px'};
     &:hover{
         background-position: -180px -60px;
     }
@@ -482,7 +522,8 @@ export const icono_Alertas = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: 0px 0px;
+    /* background-position: 0px 0px; */
+    background-position: ${props => props.visibility? '-60px 0px':'0px 0px'};
     &:hover{
         background-position: -60px 0px;
     }
@@ -503,7 +544,8 @@ export const icono_Recorrido = styled.span`
     outline: none;
     position: relative;
     background-image: url(${menus});
-    background-position: -120px 0px;
+    /* background-position: -120px 0px; */
+    background-position: ${props => props.visibility? '-180px 0px':'-120px 0px'};
     &:hover{
         background-position: -180px 0px;
     }

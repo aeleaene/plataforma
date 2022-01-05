@@ -220,7 +220,7 @@ const GralAlarma = () => {
                     }
                 }
                 console.log(devAll[i].name+' '+accOn+' '+accOff);
-                ubicacion.push({id: devAll[i].id, name: devAll[i].name, alarm: alarm, powerCut: powerCut, lowBattery: lowBattery, sos: sos, geoExit: geoExit, geoEnter: geoEnter, overSpeed: overSpeed, accOn: accOn, accOff: accOff});
+                ubicacion.push({id: i, name: devAll[i].name, alarm: alarm, powerCut: powerCut, lowBattery: lowBattery, sos: sos, geoExit: geoExit, geoEnter: geoEnter, overSpeed: overSpeed, accOn: accOn, accOff: accOff});
                 //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
                 //console.log(devAll[i].name+' '+on+' '+off);
             }

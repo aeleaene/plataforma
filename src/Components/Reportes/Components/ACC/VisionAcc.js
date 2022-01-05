@@ -216,7 +216,7 @@ const VisionAcc = () => {
                         }
                     }
                     console.log(devAll[i].name+' '+on+' '+off);
-                    datosArray.push({id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off});
+                    datosArray.push({id: i, name: devAll[i].name, encendido: on, apagado: off});
                     //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
                     //console.log(devAll[i].name+' '+on+' '+off);
                 }

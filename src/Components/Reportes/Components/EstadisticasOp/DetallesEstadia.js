@@ -170,7 +170,7 @@ const DetallesEstadia = () => {
                 const resultado = await axios.get(url);
                 //return ubicacion.ShortLabel;
                 console.log(resultado.data.address.LongLabel)
-                ubicacion.push({id: deviceData2[i].deviceId, lon: deviceData2[i].longitude, lat: deviceData2[i].latitude, address: resultado.data.address.LongLabel, name: deviceData2[i].deviceName, startTime: deviceData2[i].startTime, endTime: deviceData2[i].endTime, duration: deviceData2[i].duration});
+                ubicacion.push({id: i, lon: deviceData2[i].longitude, lat: deviceData2[i].latitude, address: resultado.data.address.LongLabel, name: deviceData2[i].deviceName, startTime: deviceData2[i].startTime, endTime: deviceData2[i].endTime, duration: deviceData2[i].duration});
             }
             console.log(ubicacion);
             setDatosTotal(ubicacion);

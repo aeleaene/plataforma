@@ -196,7 +196,7 @@ const ResCombViaje = () => {
                     }
                 }
                 console.log(devAll[i].name+' '+velocidad+' '+combustible);
-                ubicacion.push({id: devAll[i].id, name: devAll[i].name, speed: velocidad, fuel: combustible, time: 0, medio: 0, ejecucion: 0,});
+                ubicacion.push({id: i, name: devAll[i].name, speed: velocidad, fuel: combustible, time: 0, medio: 0, ejecucion: 0,});
                 //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
                 //console.log(devAll[i].name+' '+on+' '+off);
             }
