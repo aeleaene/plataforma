@@ -2,7 +2,7 @@ import styled from '@emotion/styled/macro';
 import max from '../../assets/images/maximization.7a10253.png';
 import min from '../../assets/images/minimize.5127082.png';
 import header from '../../assets/images/dialog-header.cc6302f.png';
-
+import headerModal from '../../assets/images/dialog-header.cc6302f.png';
 
 
 export const contenido_monitor = styled.div`
@@ -464,9 +464,15 @@ export const row1 = styled.div`
     margin: 0px 15px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: baseline;
     gap: 1.5rem;
     flex-wrap: wrap;
+`;
+export const divRow1 = styled.div`
+    padding: 0px 30px;
+    display: flex;
+    gap: 10px;
 `;
 export const row1config = styled.div`
     width: 100%;
@@ -534,6 +540,28 @@ export const InfoBoton = styled.button`
     padding: 7px 15px;
     &:hover{
         background-color: #78cff5;
+    }
+`;
+export const AlertBoton = styled.button`
+    background-color: #46b459;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    padding: 7px 15px;
+    &:hover{
+        background-color: #3b964a;
+    }
+`;
+export const DestinationBoton = styled.button`
+    background-color: #ca6d2f;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    padding: 7px 15px;
+    &:hover{
+        background-color: #b6632c;
     }
 `;
 export const GenBoton = styled.button`
@@ -630,6 +658,14 @@ export const divTable = styled.div`
     margin: 0px 10px;
     max-height: 650px;
     overflow-y: scroll;
+`;
+export const divTableDisp = styled.div`
+    margin: 0px 10px;
+    max-height: 650px;
+    div:first-of-type{
+        overflow-x: inherit;
+        overflow-y: inherit;
+    }
 `;
 export const divButonsGral = styled.div`
     display: flex;
@@ -738,5 +774,88 @@ export const CheckBox1 = styled.input`
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+    }
+`;
+export const HeaderModal = styled.div`
+    color: #fff;
+    background: #596673 url(${headerModal}) no-repeat center 0;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+`;
+export const TituloModal = styled.h2`
+    font-size: 13px;
+`;
+export const CerrarModal = styled.p`
+    font-size: 20px;
+    transform: rotate(45deg);
+    transition: all .3s ease;
+    &:hover{
+        transform: rotate(135deg);
+    }
+`;
+export const DivBotones = styled.div`
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+`;
+export const BotonCancelar = styled.button`
+    font-size: 12px;
+    padding: 7px 15px;
+    margin-left: 10px;
+    color: #606266;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: background-color .3s ease;
+    &:hover{
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #fcac5d;
+        background-color: #fcac5d;
+    }
+`;
+export const BotonGuardar = styled.button`
+    font-size: 12px;
+    padding: 7px 15px;
+    margin-left: 10px;
+    color: #fff;
+    border: 1px solid #ff9934;
+    background-color: #ff9934;
+    border-radius: 3px;
+    transition: all .3s ease;
+    &:hover{
+        cursor: pointer;
+        border: 1px solid #fcac5d;
+        background-color: #fcac5d;
+    }
+`;
+export const modalDropOtions = styled.div`
+    width: 170px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    display: ${props => props.visibility? 'block':'none'};
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    box-shadow: 0px 0px 12px -4px rgba(0,0,0,0.75);
+    padding: 5px;
+    z-index: 1;
+`;
+export const modalDropOpt = styled.span`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #606266;
+    font-size: 14px;
+    gap: 8px;
+    cursor: pointer;
+    &:hover{
+        background-color: #e7e7e7;
     }
 `;

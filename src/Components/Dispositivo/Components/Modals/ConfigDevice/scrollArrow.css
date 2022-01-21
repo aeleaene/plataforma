@@ -1,0 +1,34 @@
+.scrollArrowLeft{
+    cursor: pointer;
+    padding-right: 10px;
+}
+.scrollArrowRight{
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.seleccionComand{
+    border-bottom: 2px solid #ff9934 !important;
+    color: #ff9934;
+    transition: all .3s linear;
+}
+.seleccionComb1{
+    background-color: #fff;
+    border-right: 1px solid #e4e7ed !important;
+    border-bottom: transparent !important;
+    color: #ff9934;
+}
+.seleccionComb2{
+    background-color: #fff;
+    border-right: 1px solid #e4e7ed !important;
+    border-left: 1px solid #e4e7ed !important;
+    border-bottom: transparent !important;
+    color: #ff9934;
+}
+.seleccionComb3{
+    background-color: #fff;
+    border-right: 1px solid #e4e7ed !important;
+    border-left: 1px solid #e4e7ed !important;
+    border-bottom: transparent !important;
+    color: #ff9934;
+}
