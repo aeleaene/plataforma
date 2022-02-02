@@ -6,6 +6,10 @@ import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css';
 
 const ResCombViaje = () => {
@@ -33,12 +37,12 @@ const ResCombViaje = () => {
     const DesdeForm = () =>{
         //validar
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -140,10 +144,14 @@ const ResCombViaje = () => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
-
-            setDevAll(resDev);
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -165,47 +173,52 @@ const ResCombViaje = () => {
                 url = url+"deviceId="+devAll[i].id+"&";
                 groupId= devAll[i].groupId;
             }
-            url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-            console.log(url)
-            const resultado2 = await fetch(`${url}`, requestOptions)
-            const deviceData2 = await resultado2.json();
-            
+            try{
+                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                console.log(url)
+                const resultado2 = await fetch(`${url}`, requestOptions)
+                const deviceData2 = await resultado2.json();
+                
 
-            console.log(deviceData2)
-            
-            console.log(ubicacion);
-            let viaje = 0;
-            let kilo = 0;
-            let fuel = 0;
-            for (let i = 0; i < deviceData2.length; i++) {
-                viaje = 0;
-                fuel = fuel + deviceData2[i].spentFuel;
-                kilo = kilo + deviceData2[i].averageSpeed;
-            }
-            settotalViaje(viaje);
-            settotalFuel(fuel);
-            settotalKilo(kilo);
-            for(let i = 0; i < devAll.length; i++){
-                let velocidad = 0;
-                let combustible = 0;
-                for(let j = 0; j < deviceData2.length; j++){
-                //console.log(devAll[i].id)
-                    if (devAll[i].id === deviceData2[j].deviceId) {
-                            velocidad = velocidad + deviceData2[j].averageSpeed;
-                            combustible = combustible + deviceData2[j].spentFuel;
-                    }
+                console.log(deviceData2)
+                
+                console.log(ubicacion);
+                let viaje = 0;
+                let kilo = 0;
+                let fuel = 0;
+                for (let i = 0; i < deviceData2.length; i++) {
+                    viaje = 0;
+                    fuel = fuel + deviceData2[i].spentFuel;
+                    kilo = kilo + deviceData2[i].averageSpeed;
                 }
-                console.log(devAll[i].name+' '+velocidad+' '+combustible);
-                ubicacion.push({id: i, name: devAll[i].name, speed: velocidad, fuel: combustible, time: 0, medio: 0, ejecucion: 0,});
-                //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
-                //console.log(devAll[i].name+' '+on+' '+off);
+                settotalViaje(viaje);
+                settotalFuel(fuel);
+                settotalKilo(kilo);
+                for(let i = 0; i < devAll.length; i++){
+                    let velocidad = 0;
+                    let combustible = 0;
+                    for(let j = 0; j < deviceData2.length; j++){
+                    //console.log(devAll[i].id)
+                        if (devAll[i].id === deviceData2[j].deviceId) {
+                                velocidad = velocidad + deviceData2[j].averageSpeed;
+                                combustible = combustible + deviceData2[j].spentFuel;
+                        }
+                    }
+                    console.log(devAll[i].name+' '+velocidad+' '+combustible);
+                    ubicacion.push({id: i, name: devAll[i].name, speed: velocidad, fuel: combustible, time: 0, medio: 0, ejecucion: 0,});
+                    //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
+                    //console.log(devAll[i].name+' '+on+' '+off);
+                }
+                console.log(ubicacion)
+                setDatosTotal(ubicacion);
+                
+                /* console.log(ubicacion)
+                setReportData(deviceData2); */
+                setFilename(`ResumenDeConsumoDeCombustibleDeViaje ${dateFrom} - ${dateTo}`);
             }
-            console.log(ubicacion)
-            setDatosTotal(ubicacion);
-            
-            /* console.log(ubicacion)
-            setReportData(deviceData2); */
-            setFilename(`ResumenDeConsumoDeCombustibleDeViaje ${dateFrom} - ${dateTo}`);
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const columns = [
         {
@@ -319,7 +332,18 @@ const ResCombViaje = () => {
     };
     return (
         <s.caja_dispositivo_panelGral style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
-                
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+
+            />
             <s.caja_dispositivo_titulo >
             
                 <s.barra_arrastable />

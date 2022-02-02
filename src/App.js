@@ -14,9 +14,11 @@ import AgregarDispositivo from './Components/agregarDispositivos/agregarDisposit
 import T from './Components/agregarDispositivos/t';
 import AgregarUsuario from './Components/agregarUsuarios/agregarUsuarios';
 import Recorrido from './Components/Recorrido/Recorrido';
+import ShareMap from './Components/ShareMap/ShareMap';
 
 import { getSessionCookie, SessionContext } from './sessions';
 import {MenuContext} from './Context/MenuContext';
+
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
         <Route exact={true} path="/dealer2/" component={AdminDashboard} />
         <Route exact={true} path="/recorrido" component={Recorrido} />
         <Route exact={true} path="/" component={Login}/>
+        <Route exact={true} path="/sharemap" component={ShareMap} />
         <MenuContext>
           <Route path="/mapa" component={Principal}/>
         </MenuContext>

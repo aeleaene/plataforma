@@ -10,6 +10,9 @@ import { BsCircle } from "react-icons/bs";
 import { HiOutlineViewGridAdd, HiOutlineDotsVertical } from "react-icons/hi";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {MenContext} from '../../Context/MenuContext';
 
 const Alarms = ({ver, ocultar}) => {
@@ -58,10 +61,14 @@ const Alarms = ({ver, ocultar}) => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
-
-            setDevAll(resDev);
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error("Hubo un problema, intentelo más tarde.");
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -85,19 +92,24 @@ const Alarms = ({ver, ocultar}) => {
                 }
                 url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo+'&daily=false&page=1&start=0&limit=25';
                 console.log(url)
-                const resultado2 = await fetch(`${url}`, requestOptions)
-                const deviceData2 = await resultado2.json();
+                try{
+                    const resultado2 = await fetch(`${url}`, requestOptions)
+                    const deviceData2 = await resultado2.json();
 
-                console.log(deviceData2)
-                for(let i = 0; i< deviceData2.length; i++){
-                    for (let j = 0; j < devAll.length; j++) {
-                        if(deviceData2[i].deviceId === devAll[j].id){
-                            ubicacion.push({id: devAll[j].id, name: devAll[j].name, type: deviceData2[i].type})
+                    console.log(deviceData2)
+                    for(let i = 0; i< deviceData2.length; i++){
+                        for (let j = 0; j < devAll.length; j++) {
+                            if(deviceData2[i].deviceId === devAll[j].id){
+                                ubicacion.push({id: devAll[j].id, name: devAll[j].name, type: deviceData2[i].type})
+                            }
                         }
                     }
+                    console.log(ubicacion);
+                    setReportData(ubicacion);
                 }
-                console.log(ubicacion);
-                setReportData(ubicacion);
+                catch(err){
+                    toast.error("Hubo un problema, intentelo más tarde.");
+                }
     }
     const typeAlarm = (type) => {
         let alarma = '';
@@ -170,6 +182,18 @@ const Alarms = ({ver, ocultar}) => {
     }
     return (
         <s.Container>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                
+                />
             <s.busqueda_dispositivo>
                 <s.busqueda_en_linea aria-haspopup="listbox" role="combobox" aria-owns="el-complete-8812">
                     <s.sufijo_entrada>

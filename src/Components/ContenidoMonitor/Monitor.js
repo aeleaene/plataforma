@@ -16,6 +16,9 @@ import {VscThreeBars} from "react-icons/vsc";
 import {BiTargetLock} from "react-icons/bi";
 import {BsThreeDotsVertical, BsDot} from "react-icons/bs";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import * as sapp from '../../App.styles'
 
 import './submenustyles.css';
@@ -57,13 +60,15 @@ const ContenidoMonitor = (props) => {
                 redirect: 'follow'
             };
             
-            const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
+            try{
+                const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
                 const deviceData = await resultado.json();
-                /* console.log(deviceData) */
                 setDevice(deviceData);
-                /* console.log(device) */
+            }
+            catch(err){
+                toast.error("Hubo un problema, intentelo más tarde.");
+            }
+            
     }
 
     const DeviceOpt = () => {
@@ -86,6 +91,18 @@ const ContenidoMonitor = (props) => {
 
     return(
         <s.App>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                
+            />
             <sapp.content_box>
         <s.contenido_monitor>
 

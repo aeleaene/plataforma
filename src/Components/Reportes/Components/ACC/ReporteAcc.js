@@ -6,6 +6,10 @@ import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css';
 
 const ReporteAcc = () => {
@@ -31,17 +35,17 @@ const ReporteAcc = () => {
     const DesdeForm = () =>{
         //validar
         if(deviceId === "0"){
-            alert("Seleccione objetivo")
+            toast.error("Seleccione objetivo")
             setErrorDevice(true)
             return;
         }
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -140,10 +144,14 @@ const ReporteAcc = () => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
-
-            setDevAll(resDev);
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -156,53 +164,58 @@ const ReporteAcc = () => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            console.log("antes de consulta "+ dateFrom)
-            console.log("antes de consulta "+ dateTo)
-            //generar url
-            let urlDevice = `https://www.protrack.ad105.net/api/devices/${deviceId}`;
-            //console.log(urlDevice)
-            let url = "https://www.protrack.ad105.net/api/reports/events?";
-            let groupId;
-            for(let i = 0; i < devAll.length; i++){
-                groupId= devAll[i].groupId;
-            }
-            url = url+"deviceId="+deviceId+"&";
-            url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-            console.log(url)
-            const resultado = await fetch(`${urlDevice}`, requestOptions)
-            const deviceData = await resultado.json();
-            //console.log(deviceData);
-            const resultado2 = await fetch(`${url}`, requestOptions)
-            const deviceData2 = await resultado2.json();
+            try{
+                console.log("antes de consulta "+ dateFrom)
+                console.log("antes de consulta "+ dateTo)
+                //generar url
+                let urlDevice = `https://www.protrack.ad105.net/api/devices/${deviceId}`;
+                //console.log(urlDevice)
+                let url = "https://www.protrack.ad105.net/api/reports/events?";
+                let groupId;
+                for(let i = 0; i < devAll.length; i++){
+                    groupId= devAll[i].groupId;
+                }
+                url = url+"deviceId="+deviceId+"&";
+                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                console.log(url)
+                const resultado = await fetch(`${urlDevice}`, requestOptions)
+                const deviceData = await resultado.json();
+                //console.log(deviceData);
+                const resultado2 = await fetch(`${url}`, requestOptions)
+                const deviceData2 = await resultado2.json();
 
-            //Sumar acc
-            let encendido = 0;
-            let apagado = 0;
-            var full = [];
-            for(let i = 0; i < deviceData2.length; i++){
-                if(deviceData2[i].type === 'deviceOnline'){
-                    encendido = encendido + 1;
-                }
-                else{
-                    apagado = apagado + 1;
-                }
-                full.push(
-                    {
-                        id: i,
-                        name: deviceData.name,
-                        time: deviceData2[i].serverTime,
-                        type: deviceData2[i].type
+                //Sumar acc
+                let encendido = 0;
+                let apagado = 0;
+                var full = [];
+                for(let i = 0; i < deviceData2.length; i++){
+                    if(deviceData2[i].type === 'deviceOnline'){
+                        encendido = encendido + 1;
                     }
-                );
+                    else{
+                        apagado = apagado + 1;
+                    }
+                    full.push(
+                        {
+                            id: i,
+                            name: deviceData.name,
+                            time: deviceData2[i].serverTime,
+                            type: deviceData2[i].type
+                        }
+                    );
+                }
+                setAccEncendido(encendido);
+                setAccApagado(apagado);
+
+                console.log(full)
+                
+
+                setReportData(full);
+                setFilename(`ReportedeACC ${dateFrom} - ${dateTo}`);
             }
-            setAccEncendido(encendido);
-            setAccApagado(apagado);
-
-            console.log(full)
-            
-
-            setReportData(full);
-            setFilename(`ReportedeACC ${dateFrom} - ${dateTo}`);
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const TimeFormat = (duration) => {
         let seconds = (duration / 1000).toFixed(1);
@@ -313,7 +326,18 @@ const ReporteAcc = () => {
     };
     return (
         <s.caja_dispositivo_panelGral style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
-                
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+
+            />
             <s.caja_dispositivo_titulo >
             
                 <s.barra_arrastable />

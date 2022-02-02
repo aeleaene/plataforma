@@ -6,6 +6,10 @@ import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css';
 
 const InformeViaje = () => {
@@ -33,17 +37,17 @@ const InformeViaje = () => {
     const DesdeForm = () =>{
         //validar
         if(deviceId === "0"){
-            alert("Seleccione objetivo")
+            toast.error("Seleccione objetivo")
             setErrorDevice(true)
             return;
         }
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -117,10 +121,14 @@ const InformeViaje = () => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
-
-            setDevAll(resDev);
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -133,37 +141,42 @@ const InformeViaje = () => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            console.log("antes de consulta "+ dateFrom)
-            console.log("antes de consulta "+ dateTo)
-            //generar url
-            let url = "https://www.protrack.ad105.net/api/reports/trips?";
-            let groupId;
-            for(let i = 0; i < devAll.length; i++){
-                groupId= devAll[i].groupId;
-            }
-            url = url+"deviceId="+deviceId+"&";
-            url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-            console.log(url)
-            const resultado2 = await fetch(`${url}`, requestOptions)
-            const deviceData2 = await resultado2.json();
-            
+            try{
+                console.log("antes de consulta "+ dateFrom)
+                console.log("antes de consulta "+ dateTo)
+                //generar url
+                let url = "https://www.protrack.ad105.net/api/reports/trips?";
+                let groupId;
+                for(let i = 0; i < devAll.length; i++){
+                    groupId= devAll[i].groupId;
+                }
+                url = url+"deviceId="+deviceId+"&";
+                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                console.log(url)
+                const resultado2 = await fetch(`${url}`, requestOptions)
+                const deviceData2 = await resultado2.json();
+                
 
-            console.log(deviceData2)
-            let odometro = 0;
-            let duracion = 0;
-            let speed = 0;
-            for(let i = 0; i < deviceData2.length; i++){
-                speed = speed + deviceData2[i].averageSpeed;
-                duracion = duracion + deviceData2[i].duration;
-                odometro = odometro + deviceData2[i].endOdometer
+                console.log(deviceData2)
+                let odometro = 0;
+                let duracion = 0;
+                let speed = 0;
+                for(let i = 0; i < deviceData2.length; i++){
+                    speed = speed + deviceData2[i].averageSpeed;
+                    duracion = duracion + deviceData2[i].duration;
+                    odometro = odometro + deviceData2[i].endOdometer
+                }
+                setTotalDuration(duracion)
+                setTotalSpeed(speed)
+                setTotalOdometro(odometro)
+                
+                console.log(ubicacion)
+                setReportData(deviceData2);
+                setFilename(`InformedeViajeenExcesodeVelocidad ${dateFrom} - ${dateTo}`);
             }
-            setTotalDuration(duracion)
-            setTotalSpeed(speed)
-            setTotalOdometro(odometro)
-            
-            console.log(ubicacion)
-            setReportData(deviceData2);
-            setFilename(`InformedeViajeenExcesodeVelocidad ${dateFrom} - ${dateTo}`);
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const TimeFormat = (duration) => {
         let seconds = (duration / 1000).toFixed(1);
@@ -295,7 +308,18 @@ const InformeViaje = () => {
     ];
     return (
         <s.caja_dispositivo_panelGral style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
-                
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+    
+            />
             <s.caja_dispositivo_titulo >
             
                 <s.barra_arrastable />

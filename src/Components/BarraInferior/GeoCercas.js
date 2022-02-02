@@ -8,6 +8,8 @@ import { FaDrawPolygon } from "react-icons/fa";
 import { BsCircle } from "react-icons/bs";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
     Accordion,
@@ -69,13 +71,14 @@ const GeoCercas = ({ver, ocultar}) => {
                 redirect: 'follow'
             };
             
-            const resultado = await fetch("https://www.protrack.ad105.net/api/geofences", requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
+            try{
+                const resultado = await fetch("https://www.protrack.ad105.net/api/geofences", requestOptions)
                 const geofenceData = await resultado.json();
-                /* console.log(deviceData) */
                 setGeoFences(geofenceData);
-                /* console.log(device) */
+            }
+            catch(err){
+                toast.error("Hubo un problema, intentelo más tarde.");
+            }
     }
     const deleteGeo = async(id) =>{
         
@@ -93,10 +96,12 @@ const GeoCercas = ({ver, ocultar}) => {
             
             const resultado = await fetch(`https://www.protrack.ad105.net/api/geofences/${id}`, requestOptions)
 
+            toast.success("GeoCerca Eliminada con Exito");
             setRefrsh(!refrsh);
+
         }
         else{
-            console.log("No se Elimino Geocerca")
+            toast.error("No pudo eliminarse la GeoCerca Seleccionada");
         }
     }
     const saveItem = (modal, item) => {
@@ -182,8 +187,9 @@ const GeoCercas = ({ver, ocultar}) => {
         if(response.ok) {
             const geofence = await response.json();
             console.log(geofence.id);
+            toast.success("GeoCerca Agregada con Exito");
         }else{
-            alert('No OK');
+            toast.error("No se pudo generar GeoCerca");
         }
 
         setRefrsh(!refrsh);
@@ -196,6 +202,18 @@ const GeoCercas = ({ver, ocultar}) => {
     }
     return (
         <s.Container>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                
+            />
             <s.geoForm visibility={toggle2}>
                 <s.geoFormContent>
                     <s.rowFenceForm>

@@ -6,6 +6,10 @@ import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css'
 
 const InfoKilo = () => {
@@ -30,17 +34,17 @@ const InfoKilo = () => {
     const DesdeForm = () =>{
         //validar
         if(deviceId === "0"){
-            alert("Seleccione objetivo")
+            toast.error("Seleccione objetivo")
             setErrorDevice(true)
             return;
         }
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -172,10 +176,15 @@ const InfoKilo = () => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
 
-            setDevAll(resDev);
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -189,46 +198,51 @@ const InfoKilo = () => {
                 redirect: 'follow'
             };
             
-            if (deviceId === "all") {
-                console.log("antes de consulta "+ dateFrom)
-                console.log("antes de consulta "+ dateTo)
-                //generar url
-                let url = "https://www.protrack.ad105.net/api/reports/trips?";
-                let groupId;
-                for(let i = 0; i < devAll.length; i++){
-                    url = url+"deviceId="+devAll[i].id+"&";
-                    groupId= devAll[i].groupId;
+            try{
+                if (deviceId === "all") {
+                    console.log("antes de consulta "+ dateFrom)
+                    console.log("antes de consulta "+ dateTo)
+                    //generar url
+                    let url = "https://www.protrack.ad105.net/api/reports/trips?";
+                    let groupId;
+                    for(let i = 0; i < devAll.length; i++){
+                        url = url+"deviceId="+devAll[i].id+"&";
+                        groupId= devAll[i].groupId;
+                    }
+                    url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                    console.log(url)
+                    const resultado2 = await fetch(`${url}`, requestOptions)
+                    const deviceData2 = await resultado2.json();
+    
+                    console.log(deviceData2)
+    
+                    setReportData(deviceData2);
+                    setFilename(`InformesobreKilometraje ${dateFrom} - ${dateTo}`);
                 }
-                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-                console.log(url)
-                const resultado2 = await fetch(`${url}`, requestOptions)
-                const deviceData2 = await resultado2.json();
-
-                console.log(deviceData2)
-
-                setReportData(deviceData2);
-                setFilename(`InformesobreKilometraje ${dateFrom} - ${dateTo}`);
+                else{
+                    console.log("antes de consulta "+ dateFrom)
+                    console.log("antes de consulta "+ dateTo)
+                    //generar url
+                    let url = "https://www.protrack.ad105.net/api/reports/trips?";
+                    let groupId;
+                    for(let i = 0; i < devAll.length; i++){
+                        groupId= devAll[i].groupId;
+                    }
+                    url = url+"deviceId="+deviceId+"&";
+                    url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                    console.log(url)
+                    const resultado2 = await fetch(`${url}`, requestOptions)
+                    const deviceData2 = await resultado2.json();
+    
+                    console.log(deviceData2)
+                   
+    
+                    setReportData(deviceData2);
+                    setFilename(`InformesobreKilometraje ${dateFrom} - ${dateTo}`);
+                }
             }
-            else{
-                console.log("antes de consulta "+ dateFrom)
-                console.log("antes de consulta "+ dateTo)
-                //generar url
-                let url = "https://www.protrack.ad105.net/api/reports/trips?";
-                let groupId;
-                for(let i = 0; i < devAll.length; i++){
-                    groupId= devAll[i].groupId;
-                }
-                url = url+"deviceId="+deviceId+"&";
-                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-                console.log(url)
-                const resultado2 = await fetch(`${url}`, requestOptions)
-                const deviceData2 = await resultado2.json();
-
-                console.log(deviceData2)
-               
-
-                setReportData(deviceData2);
-                setFilename(`InformesobreKilometraje ${dateFrom} - ${dateTo}`);
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
             }
     }
     const TimeFormat = (duration) => {
@@ -363,6 +377,18 @@ const InfoKilo = () => {
     };
     return (
         <s.caja_dispositivo_panelGral style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                
+            />
                 
             <s.caja_dispositivo_titulo >
             

@@ -6,6 +6,10 @@ import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css';
 
 const InfoGral = () => {
@@ -42,12 +46,12 @@ const InfoGral = () => {
     const DesdeForm = () =>{
         //validar
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -148,49 +152,55 @@ const InfoGral = () => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            console.log("antes de consulta "+ dateFrom)
-            console.log("antes de consulta "+ dateTo)
-            const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const deviceData = await resultado.json();
-            //generar url
-            let url = "https://www.protrack.ad105.net/api/reports/trips?";
-            let groupId;
-            for(let i = 0; i < deviceData.length; i++){
-                url = url+"deviceId="+deviceData[i].id+"&";
-                groupId= deviceData[i].groupId;
-            }
-            url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-            console.log(url)
-            
-            const resultado2 = await fetch(`${url}`, requestOptions)
-            /* .then(response => response.json())
-            .catch(error => console.log('error', error)); */
-            const deviceData2 = await resultado2.json();
-
-            //var full = [] //JSONS MEZClados
-            //Object.keys(deviceData).forEach(k=>{full[k] = Object.assign(deviceData[k],deviceData2[k])});
-            console.log(deviceData2)
-            //leer kilometraje, exceso de velocidad y estadia
-            let kilometraje = 0;
-            let maxKm = 0;
-            let estadia = 0;
-
-            for(let i = 0; i < deviceData2.length; i++){
-                kilometraje = kilometraje + deviceData2[i].averageSpeed;
-                estadia = estadia + deviceData2[i].duration;
-                if (parseFloat((deviceData2[i].maxSpeed*1.852).toFixed(2)) > 80 ) {
-                    maxKm = maxKm+1;
+            try{
+                console.log("antes de consulta "+ dateFrom)
+                console.log("antes de consulta "+ dateTo)
+                const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const deviceData = await resultado.json();
+                //generar url
+                let url = "https://www.protrack.ad105.net/api/reports/trips?";
+                let groupId;
+                for(let i = 0; i < deviceData.length; i++){
+                    url = url+"deviceId="+deviceData[i].id+"&";
+                    groupId= deviceData[i].groupId;
                 }
-            }
-            kilometraje = (kilometraje*1.852).toFixed(2)+' Km/h';
-            console.log(kilometraje)
-            setTotalKm(kilometraje);
-            setTotalEstadia(estadia);
-            setMaxKm(maxKm);
+                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                console.log(url)
+                
+                const resultado2 = await fetch(`${url}`, requestOptions)
+                /* .then(response => response.json())
+                .catch(error => console.log('error', error)); */
+                const deviceData2 = await resultado2.json();
 
-            setDevice(deviceData);
-            setReportData(deviceData2);
-            setFilename(`Informacióngeneraldemovimiento ${dateFrom} - ${dateTo}`);
+                //var full = [] //JSONS MEZClados
+                //Object.keys(deviceData).forEach(k=>{full[k] = Object.assign(deviceData[k],deviceData2[k])});
+                console.log(deviceData2)
+                //leer kilometraje, exceso de velocidad y estadia
+                let kilometraje = 0;
+                let maxKm = 0;
+                let estadia = 0;
+
+                for(let i = 0; i < deviceData2.length; i++){
+                    kilometraje = kilometraje + deviceData2[i].averageSpeed;
+                    estadia = estadia + deviceData2[i].duration;
+                    if (parseFloat((deviceData2[i].maxSpeed*1.852).toFixed(2)) > 80 ) {
+                        maxKm = maxKm+1;
+                    }
+                }
+                kilometraje = (kilometraje*1.852).toFixed(2)+' Km/h';
+                console.log(kilometraje)
+                setTotalKm(kilometraje);
+                setTotalEstadia(estadia);
+                setMaxKm(maxKm);
+
+                setDevice(deviceData);
+                setReportData(deviceData2);
+                setFilename(`Informacióngeneraldemovimiento ${dateFrom} - ${dateTo}`);
+                
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const FechaActual = () =>{
         const fecha = new Date("DD-MM-YYYTHH:mm");
@@ -316,6 +326,18 @@ const InfoGral = () => {
     };
     return (
         <div className="menuContent" style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                
+            />
                 
             <s.caja_dispositivo_titulo >
             

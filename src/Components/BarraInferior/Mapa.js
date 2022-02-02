@@ -21,6 +21,10 @@ import { BiMapPin } from "react-icons/bi";
 import { ImFileText2 } from "react-icons/im";
 import * as ic from 'react-icons/all';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
@@ -60,6 +64,15 @@ const Mapa = (props) => {
     const [deviceInfo, setDeviceInfo] = useState([])
     const [marker, setMarker] = useState([])
     const [typeFence, setTypeFence] = useState("");
+
+    const [shareLink, setShareLink] = useState(false);
+    const [valueLink, setValueLink] = useState('');
+    const [linkDevice, setLinkDevice] = useState('');
+    const [linkName, setLinkName] = useState('');
+    const [linkStartTime, setLinkStartTime] = useState('');
+    const [linkEndTime, setLinkEndTime] = useState('');
+    const [linkObservation, setLinkObservation] = useState('');
+
     useEffect(() => {
         const interval = setInterval(() => {
             Marcador()
@@ -93,18 +106,17 @@ const Mapa = (props) => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            const responseDevice = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
-            /* .then(response => response.json())
-            .catch(error => console.log('error', error)); */
-            const deviceData = await responseDevice.json();
-            const markerData = await resultado.json();
-            /* console.log(markerData)
-            console.log(deviceData); */
-            setDeviceInfo(deviceData)
-            setMarker(markerData);
-            /* console.log(marker) */
-            /* console.log(deviceInfo) */
+            try{
+                const responseDevice = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resultado = await fetch("https://www.protrack.ad105.net/api/positions", requestOptions)
+                const deviceData = await responseDevice.json();
+                const markerData = await resultado.json();
+                setDeviceInfo(deviceData)
+                setMarker(markerData);
+            }
+            catch(err){
+                toast.error("Hubo un Error");
+            }
         
     }
     const Fecha = (fecha) => {
@@ -178,8 +190,9 @@ const Mapa = (props) => {
             const geofence = await response.json();
             console.log(geofence.id);
             geofenceID = geofence.id;
+            toast.success("GeoCerca Agregada con Exito");
         }else{
-            alert('No OK');
+            toast.error("No se pudo generar GeoCerca");
         }
         /* Conslutar geofence */
         /* Actualizar Device */
@@ -199,9 +212,9 @@ const Mapa = (props) => {
                                     body: JSON.stringify(dataDevice)
                                     });
         if(responseDevice.ok) {
-            console.log('hecho');
+            toast.success("GeoCerca Agregada con Exito");
         }else{
-            alert('NO OK')
+            toast.error("No se pudo generar GeoCerca");
         }
     }
     const _created = (e) => {
@@ -216,9 +229,44 @@ const Mapa = (props) => {
             setBounds(e.layer._latlngs);
         }
     }
+
+    const CompartirTracker = () =>{
+        if([linkDevice, linkName, linkStartTime, linkEndTime, linkObservation].includes('')){
+            toast.error("¡Error! Verifique que todos los campos esten llenos.");
+            return;
+        }
+        const currentUrl = window.location.href;
+        const formatUrl = currentUrl.replace('/Mapa', '');
+        const finalUrl = formatUrl + '/sharemap/'
+        //console.log(finalUrl);
+        setValueLink(finalUrl)
+        setShareLink(true);
+    }
+    const limpiarShareModal = () => {
+        setLinkDevice('');
+        setLinkName('');
+        setLinkStartTime('');
+        setLinkEndTime('');
+        setLinkObservation('');
+        setModalShare(false);
+        setShareLink(false);
+    }
+
     return (
 
     <MapContainer center={[19.432680, -99.134209]} zoom={5} zoomControl={false} minZoom={0} maxZoom={21} scrollWheelZoom={true} onChange={(e) => setMapPos(e.target)}>
+        <ToastContainer 
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            
+        />
         {drawClick.shape === 'circle' ?
             <FeatureGroup>
                 <EditControl 
@@ -449,12 +497,26 @@ const Mapa = (props) => {
             >
                 <s.HeaderModal>
                     <s.TituloModal><FaShareAlt/> Compartir Link</s.TituloModal>
-                    <s.CerrarModal onClick={() => setModalShare(false)}>+</s.CerrarModal>
+                    <s.CerrarModal onClick={limpiarShareModal}>+</s.CerrarModal>
                 </s.HeaderModal>
-                <Compartir/>
+                <Compartir
+                    datos={data}
+                    shareLink={shareLink}
+                    valueLink={valueLink}
+                    linkDevice={linkDevice}
+                    setLinkDevice={setLinkDevice}
+                    linkName={linkName}
+                    setLinkName={setLinkName}
+                    linkStartTime={linkStartTime}
+                    setLinkStartTime={setLinkStartTime}
+                    linkEndTime={linkEndTime}
+                    setLinkEndTime={setLinkEndTime}
+                    linkObservation={linkObservation}
+                    setLinkObservation={setLinkObservation}
+                />
                 <s.DivBotones>
-                    <s.BotonCancelar onClick={() => setModalShare(false)}>Cancelar</s.BotonCancelar>
-                    <s.BotonGuardar>Confirmar</s.BotonGuardar>
+                    <s.BotonCancelar onClick={limpiarShareModal}>Cancelar</s.BotonCancelar>
+                    <s.BotonGuardar onClick={() => CompartirTracker()}>Confirmar</s.BotonGuardar>
                 </s.DivBotones>
             </Modal>
             {/* MODAL DETALLES */}

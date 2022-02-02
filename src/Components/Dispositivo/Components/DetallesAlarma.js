@@ -6,6 +6,10 @@ import { AiFillCaretDown } from "react-icons/ai";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../styles.css';
 const DetallesAlarma = () => {
     const [device, setDevice] = useState([]); //SE GUARDAN LOS DISPOSITIVOS
@@ -28,17 +32,17 @@ const DetallesAlarma = () => {
     const DesdeForm = () =>{
         //validar
         if(deviceId === "0"){
-            alert("Seleccione objetivo")
+            toast.error("Seleccione objetivo")
             setErrorDevice(true)
             return;
         }
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -70,10 +74,14 @@ const DetallesAlarma = () => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
-
-            setDevAll(resDev);
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -86,6 +94,7 @@ const DetallesAlarma = () => {
             headers: myHeaders,
             redirect: 'follow'
         };
+        try{
             console.log("antes de consulta "+ dateFrom)
             console.log("antes de consulta "+ dateTo)
             //generar url route
@@ -123,10 +132,11 @@ const DetallesAlarma = () => {
             }
             console.log(ubicacion);
             setReportData(ubicacion);
-            
-            /* console.log(ubicacion)
-            setReportData(deviceData2); */
-            /* setFilename(`DetallesDeAlarma ${dateFrom} - ${dateTo}`); */
+        }
+        catch(err){
+            toast.error('Hubo un problema, intentelo más tarde');
+        }
+
     }
     const Fecha = (fecha) => {
         const fecha1 = new Date();
@@ -251,7 +261,17 @@ const DetallesAlarma = () => {
     };
     return (
         <div className="menuContent" style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
-                
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <s.caja_dispositivo_titulo >
             
                 <s.barra_arrastable />

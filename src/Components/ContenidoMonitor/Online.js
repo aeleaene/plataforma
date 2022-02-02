@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react'
 import * as s from './Monitor.styles';
 import {BsThreeDotsVertical, BsDot} from "react-icons/bs";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Online = () => {
     const [device, setDevice] = useState([])
 
@@ -24,13 +27,14 @@ const Online = () => {
                 redirect: 'follow'
             };
             
-            const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-                /* .then(response => response.json())
-                .catch(error => console.log('error', error)); */
+            try{
+                const resultado = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
                 const deviceData = await resultado.json();
-                /* console.log(deviceData) */
                 setDevice(deviceData);
-                /* console.log(device) */
+            }
+            catch(err){
+                toast.error("Hubo un problema, intentelo más tarde.");
+            }
     }  
     const Fecha = (fecha) => {
         const fecha1 = new Date();
@@ -42,6 +46,18 @@ const Online = () => {
     }
     return (
         <div>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                
+            />
             {
                 device.map(item => (
                     item.status === 'online' ?

@@ -6,6 +6,10 @@ import ReactExport from "react-data-export";
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css';
 
 const GralAlarma = () => {
@@ -30,12 +34,12 @@ const GralAlarma = () => {
     const DesdeForm = () =>{
         //validar
         if (dateFrom.trim() === '' || dateTo.trim() === '') {
-            alert("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
+            toast.error("Se debe de indicar una Fecha de Inicio y de Final para generar el reporte")
             setError(true);
             return;
         }
         if (dateFrom > dateTo) {
-            alert("La fecha de partida no puede ser mayor a la fecha de llegada");
+            toast.error("La fecha de partida no puede ser mayor a la fecha de llegada");
             setError(true);
             return;
         }
@@ -137,10 +141,14 @@ const GralAlarma = () => {
                 redirect: 'follow'
             };
             
-            const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
-            const resDev = await resulDev.json()
-
-            setDevAll(resDev);
+            try{
+                const resulDev = await fetch("https://www.protrack.ad105.net/api/devices", requestOptions)
+                const resDev = await resulDev.json()
+                setDevAll(resDev);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const Devices = async() =>{
         var myHeaders = new Headers();
@@ -153,83 +161,88 @@ const GralAlarma = () => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            console.log("antes de consulta "+ dateFrom)
-            console.log("antes de consulta "+ dateTo)
-            //generar url
-            let url = "https://www.protrack.ad105.net/api/reports/events?";
-            let groupId;
-            for(let i = 0; i < devAll.length; i++){
-                url = url+"deviceId="+devAll[i].id+"&";
-                groupId= devAll[i].groupId;
-            }
-            url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
-            console.log(url)
-            const resultado2 = await fetch(`${url}`, requestOptions)
-            const deviceData2 = await resultado2.json();
-            
-
-            console.log(deviceData2)
-            
-            console.log(ubicacion);
-
-            for(let i = 0; i < devAll.length; i++){
-                let alarm = 0;
-                let powerCut = 0;
-                let lowBattery = 0;
-                let sos = 0;
-                let geoExit = 0;
-                let geoEnter = 0;
-                let overSpeed = 0;
-                let accOn = 0;
-                let accOff = 0;
-                for(let j = 0; j < deviceData2.length; j++){
-                //console.log(devAll[i].id)
-                    if (devAll[i].id === deviceData2[j].deviceId) {
-                        switch (deviceData2[j].type) {
-                            case 'alarm':
-                                    alarm = alarm + 1;
-                                break;
-                                case 'powerCut':
-                                    powerCut = powerCut + 1;
-                                break;
-                                case 'lowBattery':
-                                    lowBattery = lowBattery + 1;
-                                break;
-                                case 'sos':
-                                    sos = sos + 1;
-                                break;
-                                case 'geofenceExit':
-                                    geoExit = geoExit + 1;
-                                break;
-                                case 'geoFenceEnter':
-                                    geoEnter = geoEnter + 1;
-                                break;
-                                case 'overSpeed':
-                                    overSpeed = overSpeed + 1;
-                                break;
-                                case 'deviceOnline':
-                                    accOn = accOn + 1;
-                                break;
-                                case 'deviceOffline':
-                                    accOff = accOff + 1;
-                                break;
-                            default:
-                                break;
-                        }
-                            
-                    }
+            try{
+                console.log("antes de consulta "+ dateFrom)
+                console.log("antes de consulta "+ dateTo)
+                //generar url
+                let url = "https://www.protrack.ad105.net/api/reports/events?";
+                let groupId;
+                for(let i = 0; i < devAll.length; i++){
+                    url = url+"deviceId="+devAll[i].id+"&";
+                    groupId= devAll[i].groupId;
                 }
-                console.log(devAll[i].name+' '+accOn+' '+accOff);
-                ubicacion.push({id: i, name: devAll[i].name, alarm: alarm, powerCut: powerCut, lowBattery: lowBattery, sos: sos, geoExit: geoExit, geoEnter: geoEnter, overSpeed: overSpeed, accOn: accOn, accOff: accOff});
-                //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
-                //console.log(devAll[i].name+' '+on+' '+off);
+                url = url+"groupId="+groupId+"&type=allEvents&from="+dateFrom+"&to="+dateTo;
+                console.log(url)
+                const resultado2 = await fetch(`${url}`, requestOptions)
+                const deviceData2 = await resultado2.json();
+                
+
+                console.log(deviceData2)
+                
+                console.log(ubicacion);
+
+                for(let i = 0; i < devAll.length; i++){
+                    let alarm = 0;
+                    let powerCut = 0;
+                    let lowBattery = 0;
+                    let sos = 0;
+                    let geoExit = 0;
+                    let geoEnter = 0;
+                    let overSpeed = 0;
+                    let accOn = 0;
+                    let accOff = 0;
+                    for(let j = 0; j < deviceData2.length; j++){
+                    //console.log(devAll[i].id)
+                        if (devAll[i].id === deviceData2[j].deviceId) {
+                            switch (deviceData2[j].type) {
+                                case 'alarm':
+                                        alarm = alarm + 1;
+                                    break;
+                                    case 'powerCut':
+                                        powerCut = powerCut + 1;
+                                    break;
+                                    case 'lowBattery':
+                                        lowBattery = lowBattery + 1;
+                                    break;
+                                    case 'sos':
+                                        sos = sos + 1;
+                                    break;
+                                    case 'geofenceExit':
+                                        geoExit = geoExit + 1;
+                                    break;
+                                    case 'geoFenceEnter':
+                                        geoEnter = geoEnter + 1;
+                                    break;
+                                    case 'overSpeed':
+                                        overSpeed = overSpeed + 1;
+                                    break;
+                                    case 'deviceOnline':
+                                        accOn = accOn + 1;
+                                    break;
+                                    case 'deviceOffline':
+                                        accOff = accOff + 1;
+                                    break;
+                                default:
+                                    break;
+                            }
+                                
+                        }
+                    }
+                    console.log(devAll[i].name+' '+accOn+' '+accOff);
+                    ubicacion.push({id: i, name: devAll[i].name, alarm: alarm, powerCut: powerCut, lowBattery: lowBattery, sos: sos, geoExit: geoExit, geoEnter: geoEnter, overSpeed: overSpeed, accOn: accOn, accOff: accOff});
+                    //setDatosTotal(...datosTotal, {id: devAll[i].id, name: devAll[i].name, encendido: on, apagado: off})
+                    //console.log(devAll[i].name+' '+on+' '+off);
+                }
+                console.log(ubicacion)
+                setDatosTotal(ubicacion);
+                
+                /* console.log(ubicacion)
+                setReportData(deviceData2); */
+                setFilename(`DescripciónGeneralDeAlamara ${dateFrom} - ${dateTo}`);
             }
-            console.log(ubicacion)
-            setDatosTotal(ubicacion);
-            
-            /* console.log(ubicacion)
-            setReportData(deviceData2); */
-            setFilename(`DescripciónGeneralDeAlamara ${dateFrom} - ${dateTo}`);
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
     }
     const columns = [
         {
@@ -397,7 +410,18 @@ const GralAlarma = () => {
     };
     return (
         <div className="menuContent" style={{left:'0px', top:'0px', marginTop:'10px', marginLeft:'10px'}}>
-                
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+
+            />
             <s.caja_dispositivo_titulo >
             
                 <s.barra_arrastable />

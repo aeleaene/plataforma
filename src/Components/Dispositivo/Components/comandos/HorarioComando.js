@@ -10,6 +10,10 @@ import '../../../../styles/modals.css';
 
 import DataTable from 'react-data-table-component';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../../styles.css'
 
 import Comando from './modals/Comando/Comando';
@@ -22,12 +26,12 @@ const HorarioComando = () => {
     const [modalNew, setModalNew] = useState(false);
     const [modalEdit, setModalEdit] = useState(false);
     const [commandId, setCommandId] = useState(0);
-    const [deviceId, setDeviceId] = useState(0);
+    const [deviceId, setDeviceId] = useState('');
     const [commandName, setCommandName] = useState("");
     const [commandType, setCommandType] = useState("");
     const [commandDate, setCommandDate] = useState("");
     const [timeType, setTimeType] = useState("");
-    const [deviceIdEdit, setDeviceIdEdit] = useState(0);
+    const [deviceIdEdit, setDeviceIdEdit] = useState('');
     const [commandNameEdit, setCommandNameEdit] = useState("");
     const [commandTypeEdit, setCommandTypeEdit] = useState("");
     const [commandDateEdit, setCommandDateEdit] = useState("");
@@ -45,14 +49,17 @@ const HorarioComando = () => {
     const SaveCommand = async() => {
         //VAlidación
         if(commandName.trim() === ''){
+            toast.error('El nombre es obligatorio');
             setErrorName(true)
             return;
         }
         if(commandType.trim() === ''){
+            toast.error('El tipo de comando es obligatorio');
             setErrorType(true);
             return;
         }
         if(deviceId.trim() === ''){
+            toast.error('Seleccione un Dispositivo');
             setErrorDevice(true);
             return;
         }
@@ -84,12 +91,17 @@ const HorarioComando = () => {
         if(response.ok) {
             const geofence = await response.json();
             console.log(geofence.id);
-            alert('Comando Agregado correctamente')
+            toast.success('Comando Agregado Correctamente');
             setModalNew(false)
         }else{
-            alert('No OK');
+            toast.error('Hubo un problema, intentelo más tarde');
         }
         setRefrsh(!refrsh);
+        setDeviceId('')
+        setCommandDate('')
+        setCommandName('')
+        setCommandType('')
+        setTimeType('')
     }
 
     const commandGral = async() => {
@@ -104,9 +116,14 @@ const HorarioComando = () => {
             redirect: 'follow'
         };
         
-        const commands = await fetch("https://www.protrack.ad105.net/api/commands", requestOptions)
+        try{
+            const commands = await fetch("https://www.protrack.ad105.net/api/commands", requestOptions)
             const commData = await commands.json();
             setCommandList(commData);
+        }
+        catch(err){
+            toast.error('Hubo un problema, intentelo más tarde');
+        }
     }
 
     const openEditModal = (row) => {
@@ -159,17 +176,22 @@ const HorarioComando = () => {
         if(response.ok) {
             const geofence = await response.json();
             console.log(geofence.id);
-            alert('Comando Agregado correctamente')
+            toast.success('Comando Editado Correctamente');
             setModalEdit(false)
         }else{
-            alert('No OK');
+            toast.error('Hubo un problema, intentelo más tarde');
         }
         setRefrsh(!refrsh);
+        setDeviceIdEdit('')
+        setCommandDateEdit('')
+        setCommandNameEdit('')
+        setCommandTypeEdit('')
+        setTimeTypeEdit('')
     }
 
     const deleteCommand = async(id) =>{
         
-        var confirmar = window.confirm("¿Borrar GeoCerca?");
+        var confirmar = window.confirm("¿Borrar Comando?");
         if (confirmar) {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -181,14 +203,37 @@ const HorarioComando = () => {
                 headers: myHeaders,
             };
             
-            const resultado = await fetch(`https://www.protrack.ad105.net/api/commands/${id}`, requestOptions)
-
-            setRefrsh(!refrsh);
+            try{
+                const resultado = await fetch(`https://www.protrack.ad105.net/api/commands/${id}`, requestOptions)
+                toast.success('Comando Eliminado Correctamente');
+                setRefrsh(!refrsh);
+            }
+            catch(err){
+                toast.error('Hubo un problema, intentelo más tarde');
+            }
         }
         else{
-            console.log("No se Elimino Geocerca")
+            toast.error('Hubo un problema, intentelo más tarde');
         }
     }
+
+    const cerrarModalNew = () => {
+        setModalNew(false)
+        setDeviceId('')
+        setCommandDate('')
+        setCommandName('')
+        setCommandType('')
+        setTimeType('')
+    }
+    const cerrarModalEdit = () => {
+        setModalEdit(false)
+        setDeviceIdEdit('')
+        setCommandDateEdit('')
+        setCommandNameEdit('')
+        setCommandTypeEdit('')
+        setTimeTypeEdit('')
+    }
+
     const typeAlarm = (type) => {
         let alarma = '';
         switch (type) {
@@ -383,6 +428,17 @@ const HorarioComando = () => {
     };
     return (
         <s.contentReportesDiv>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <s.row1>
                 <s.GenBoton onClick={() => setModalNew(true)}><AiOutlinePlus /> Nuevo</s.GenBoton>
             </s.row1>
@@ -419,7 +475,7 @@ const HorarioComando = () => {
             >
                 <s.HeaderModal>
                     <s.TituloModal>+ Nuevo</s.TituloModal>
-                    <s.CerrarModal onClick={() => setModalNew(false)}>+</s.CerrarModal>
+                    <s.CerrarModal onClick={cerrarModalNew}>+</s.CerrarModal>
                 </s.HeaderModal>
                 <Comando 
                     setDeviceId={setDeviceId}
@@ -433,7 +489,7 @@ const HorarioComando = () => {
                     errorType={errorType}
                 />
                 <s.DivBotones>
-                    <s.BotonCancelar onClick={() => setModalNew(false)}>Cancelar</s.BotonCancelar>
+                    <s.BotonCancelar onClick={cerrarModalNew}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar onClick={SaveCommand}>Guardar</s.BotonGuardar>
                 </s.DivBotones>
             </Modal>
@@ -460,7 +516,7 @@ const HorarioComando = () => {
             >
                 <s.HeaderModal>
                     <s.TituloModal>+ Editar Comando</s.TituloModal>
-                    <s.CerrarModal onClick={() => setModalEdit(false)}>+</s.CerrarModal>
+                    <s.CerrarModal onClick={cerrarModalEdit}>+</s.CerrarModal>
                 </s.HeaderModal>
                 <EditarComando 
                     deviceIdEdit={deviceIdEdit}
@@ -480,7 +536,7 @@ const HorarioComando = () => {
                     errorType={errorType}
                 />
                 <s.DivBotones>
-                    <s.BotonCancelar onClick={() => setModalEdit(false)}>Cancelar</s.BotonCancelar>
+                    <s.BotonCancelar onClick={cerrarModalEdit}>Cancelar</s.BotonCancelar>
                     <s.BotonGuardar onClick={EditCommand}>Guardar</s.BotonGuardar>
                 </s.DivBotones>
             </Modal>
