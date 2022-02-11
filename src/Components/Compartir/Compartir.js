@@ -22,6 +22,7 @@ const Compartir = ({
     setLinkObservation
 }) => {
 
+
     const [devices, setDevices] = useState([]);
 
     const [copied, setCopied] = useState(false);
@@ -46,6 +47,7 @@ const Compartir = ({
             const resDev = await resulDev.json()
 
             setDevices(resDev);
+            setLinkDevice(datos.id);
     }
 
     return (
@@ -64,10 +66,10 @@ const Compartir = ({
             />
             <s.InputGroup>
                 <s.Label><s.Sup>*</s.Sup> Dispositivo:</s.Label>
-                <s.Select onChange={e => setLinkDevice(e.target.value)}>
+                <s.Select value={linkDevice} onChange={e => setLinkDevice(e.target.value)}>
                     <option value="" disabled>-- Seleccione Dispositivo --</option>
                     {devices.map(item => (
-                        <option key={item.id} value={item.id} selected={item.id === datos.id ? true: null}>{item.name}</option>
+                        <option key={item.id} value={item.id}>{item.name}</option>
                     ))}
                 </s.Select>
             </s.InputGroup>

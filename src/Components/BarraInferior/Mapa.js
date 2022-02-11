@@ -230,14 +230,85 @@ const Mapa = (props) => {
         }
     }
 
-    const CompartirTracker = () =>{
+    const CompartirTracker = async() =>{
         if([linkDevice, linkName, linkStartTime, linkEndTime, linkObservation].includes('')){
             toast.error("¡Error! Verifique que todos los campos esten llenos.");
             return;
         }
+        const dateTime = new Date(linkEndTime)
+        const name = "share"+linkName.replace(/\s/g, '');
+        /* Crear usuario*/
+        var userId = 0;
+        const dataUserTemporal = {
+            "id": 0,
+            "name": `${name}`,
+            "email": `${name}`,
+            "phone": "",
+            "readonly": true,
+            "administrator": false,
+            "map": "osm",
+            "latitude": 0,
+            "longitude": 0,
+            "zoom": 0,
+            "password": `${name}`,
+            "twelveHourFormat": true,
+            "coordinateFormat": "",
+            "disabled": false,
+            "expirationTime": `${dateTime.toISOString()}`,
+            "deviceLimit": 0,
+            "userLimit": 0,
+            "deviceReadonly": true,
+            "limitCommands": true,
+            "poiLayer": "",
+            "token": "",
+            "attributes": {
+                'observations': `${linkObservation}`,
+                'mensaje': 'Este es un link compartido'
+             }
+        }
+        //console.log(dataUserTemporal);
+        const response = await fetch("https://www.protrack.ad105.net/api/users/", 
+                    {
+                        credentials: 'include',
+                        method: 'POST',
+                        headers:{
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataUserTemporal)
+                    });
+        if(response.ok) {
+            const usuario = await response.json();
+            console.log(usuario.id);
+            userId = usuario.id;
+            console.log("Usuario Agregado con Exito");
+        }else{
+            toast.error("No se pudo generar el enlace, Intentelo más tarde.");
+        }
+
+        /* Asignar dispositivo a usuario */
+        console.log(`USER ID ${userId}`)
+        const dataPermission = {
+            "userId": `${userId}`,
+            "deviceId": `${linkDevice}`,
+        }
+        const responseDevice = await fetch(`https://www.protrack.ad105.net/api/permissions`,
+                                    {
+                                        credentials: 'include',
+                                        method: 'POST',
+                                        headers:{
+                                        'Content-Type': 'application/json',
+                                        },
+                                    body: JSON.stringify(dataPermission)
+                                    });
+        if(responseDevice.ok) {
+            console.log("Usuario Agregado con Exito");
+        }else{
+            toast.error("No se pudo generar el enlace, Intentelo más tarde.");
+        }
+
         const currentUrl = window.location.href;
         const formatUrl = currentUrl.replace('/Mapa', '');
-        const finalUrl = formatUrl + '/sharemap/'
+        const finalUrl = formatUrl + `/sharemap/${linkDevice}/${name}`
         //console.log(finalUrl);
         setValueLink(finalUrl)
         setShareLink(true);

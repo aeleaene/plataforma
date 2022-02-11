@@ -43,7 +43,7 @@ function App() {
         <Route exact={true} path="/dealer2/" component={AdminDashboard} />
         <Route exact={true} path="/recorrido" component={Recorrido} />
         <Route exact={true} path="/" component={Login}/>
-        <Route exact={true} path="/sharemap" component={ShareMap} />
+        <Route exact={true} path="/sharemap/:deviceId/:user/" component={ShareMap} />
         <MenuContext>
           <Route path="/mapa" component={Principal}/>
         </MenuContext>
