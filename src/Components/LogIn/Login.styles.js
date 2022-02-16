@@ -1,6 +1,6 @@
 import styled from '@emotion/styled/macro';
 
-import fondo from '../../assets/images/fondo.jpg';
+import fondo from '../../assets/images/img_home.jpeg';
 import iconos from '../../assets/images/bg_home_ui.png';
 import cat from '../../assets/images/cat.png';
 
@@ -199,17 +199,17 @@ export const caja_login = styled.div`
     float: right;
     position: relative;
     width: 338px;
-    height: 344px;
+    height: 350px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 2px;
+    /* border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 2px; */
     box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     margin-top: 294.5px;
     /**Falta agregar ::after & ::before */
     &:before{
         content: "";
         width: 338px;
-        height: 344px;
+        height: 359px;
         position: absolute;
         top: 0;
         left: 0;
@@ -241,11 +241,13 @@ export const container = styled.div`
     margin: 0;
     padding: 0;
     width: 338px;
-    height: 344px;
+    height: 350px;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 3;
+    background-color: rgba(8, 8, 8, 0.75);
+    border-radius: 10px;
 `
 
 export const formulario = styled.form`
@@ -262,8 +264,12 @@ export const formulatio_titulo = styled.div`
     color: #fff;
     visibility: visible;
     margin: 0;
-    padding: 38px 19px 12px;
-    font-size: 20px;
+    padding: 12px 0px 12px;
+    font-size: 60px;
+    text-align: center;
+    margin: 10px 120px;
+    border: 1px solid white;
+    border-radius: 50%;
     line-height: 1;
 `
 
@@ -279,10 +285,13 @@ export const ipt_f_f_ms = styled.input`
     &:hover{
         background-color: rgba(255,255,255,0.4);
     }
+    &::placeholder{
+        color: #fff;
+    }
 `
 
 export const formulario_contenido = styled.ul`
-    padding: 18px 19px 0;
+    padding: 0px 19px 0;
     list-style: none;
 `
 export const formulario_contenido_cuenta = styled.li`
@@ -552,7 +561,7 @@ export const boton = styled.button`
     font-weight: inherit;
     width: 300px;
     height: 38px;
-    background-color: #2D8CF0;
+    background-color: #FF9934;
     color: #fff;
     text-align: center;
     line-height: 40px;
@@ -560,6 +569,7 @@ export const boton = styled.button`
     font-size: 18px;
     border: none;
     outline: none;
+    border-radius: 3px;
 `
 
 export const formulario_contenido_demo = styled.li`
@@ -1140,6 +1150,7 @@ export const derechos = styled.div`
     visibility: visible;
     color: #fff;
     font-size: 14px;
+    font-weight: bold;
     margin: 0;
     padding: 0;
     height: 25px;
@@ -1151,12 +1162,17 @@ export const enlaces = styled.div`
     visibility: visible;
     color: #fff;
     font-size: 14px;
+    font-weight: bold;
     margin: 0;
     padding: 0;
     height: 25px;
     line-height: 25px;
-    &:hover{
-        color: #ffab05;
+    a{
+        color: #fff;
+        text-decoration: underline;
+        &:hover{
+            color: #ffab05;
+        }
     }
 `
 

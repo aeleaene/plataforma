@@ -5,7 +5,13 @@ import { usePromiseTracker } from 'react-promise-tracker';
 import { trackPromise } from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
 
+import { FaRegUser } from "react-icons/fa";
+
 import * as Cookies from 'js-cookie';
+
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
     BrowserRouter as Router,
@@ -90,7 +96,7 @@ const Login = (props) => {
             console.log(user);
             redireccionar();
         }else{
-            alert('No OK');
+            toast.error('Usuario o Contraseña Incorrecta.');
         }
     }
 
@@ -98,6 +104,18 @@ const Login = (props) => {
     return (
         <Router>
             <s.principal>
+            <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                    
+            />
 
                 <s.cabecera>
                     <s.wrap>
@@ -118,17 +136,17 @@ const Login = (props) => {
                         <s.caja_login>
                             <s.container>
                                 <s.formulario onSubmit={handleLogin}>
-                                    <s.formulatio_titulo>Iniciar Sesión</s.formulatio_titulo>
+                                    <s.formulatio_titulo><FaRegUser /></s.formulatio_titulo>
                                     <s.formulario_contenido>
                                         <s.formulario_contenido_cuenta>
-                                            <s.ipt_f_f_ms type="text" id="email" value={usuario.email} onChange={handleCambio} tabIndex={1} style={{ display: "table-cell", color: "white" }} placeholder="Cuenta" />
+                                            <s.ipt_f_f_ms type="text" id="email" value={usuario.email} onChange={handleCambio} tabIndex={1} style={{ display: "table-cell", color: "#fff" }} placeholder="Cuenta" />
                                             <s.icono_cuenta />
                                             <s.tips_f13 />
                                             <s.entrada_limpia />
                                         </s.formulario_contenido_cuenta>
 
                                         <s.formulario_contenido_contrasena>
-                                            <s.ipt_f_f_ms type="password" id="password" value={usuario.password} onChange={handleCambio} tabIndex={2} style={{ display: "table-cell", color: "white" }} placeholder="Contraseña" />
+                                            <s.ipt_f_f_ms type="password" id="password" value={usuario.password} onChange={handleCambio} tabIndex={2} style={{ display: "table-cell", color: "#fff" }} placeholder="Contraseña" />
                                             <s.icono_contra />
                                             <s.tips_f13 />
                                             <s.entrada_limpia />
@@ -200,11 +218,10 @@ const Login = (props) => {
                             <s.derechos>Copyright © 2021 Protrack GPS. All rights reserved.</s.derechos>
 
                             <s.enlaces>
-                                <a>OPEN API</a> &nbsp;&nbsp;
-                            <a>Privacy policy</a>&nbsp;&nbsp;
-                            <a>Terms of service</a>&nbsp;&nbsp;
-                            <a>v3.1.9@20210121</a>&nbsp;&nbsp;
-                            <a>v1</a>
+                                <a href='!#'>OPEN API</a> &nbsp;&nbsp;
+                                <a href='!#'>Privacy policy</a>&nbsp;&nbsp;
+                                <a href='!#'>Terms of service</a>&nbsp;&nbsp;
+                                <a href='!#'>Realese Notes</a>&nbsp;&nbsp;
                             </s.enlaces>
                         </s.copyright>
 

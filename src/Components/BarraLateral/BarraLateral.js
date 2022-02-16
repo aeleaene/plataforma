@@ -14,6 +14,10 @@ import { getSessionCookie } from '../../sessions';
 
 import * as Cookies from 'js-cookie';
 
+/* TOAST ALERTS */
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './styles.css'
 
 /* Modals */
@@ -131,6 +135,18 @@ const BarraLateral = (props) => {
     const { menuOp, setMenuOp, submenuOp, setSubmenuOp } = useContext(MenContext);
     return (
         <Router>
+        <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                    
+        />
         <s.menu_caja>
 
             <s.cuenta>
